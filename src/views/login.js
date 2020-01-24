@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
+import { Typography, Button } from '@material-ui/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../firebaseConfig';
@@ -26,8 +27,9 @@ const Login = ({ user, signOut, signInWithGoogle, setUser }) => {
 
     return (
         <>
-            <p>Please sign in.</p>
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
+            <Button variant="contained" color="primary" onClick={signInWithGoogle}>
+                Sign in with Google
+            </Button>
         </>
     )
 }

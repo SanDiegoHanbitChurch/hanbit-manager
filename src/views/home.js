@@ -1,10 +1,10 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 const Home = ({ user }) => (
-    <>
-        <p>Home</p>
-        <p>Welcome, {user.displayName}!</p>
-    </>
+    <Typography>
+        Welcome Home, {user.displayName}!
+    </Typography>
 );
 
 export default Home;

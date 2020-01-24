@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navigation from './navigation'
 import Login from './login';
 import generateRoutes from './routes';
 
@@ -15,12 +16,15 @@ const Views = () => {
     }
     
     return (
-        <Router>
-            <Switch>
-                { generateRoutes(user) }
-                <Route path="/login" render={() => (<Login setUser={setUser}/>)} />
-            </Switch>
-        </Router>
+        <>
+            <Navigation />
+            <Router>
+                <Switch>
+                    { generateRoutes(user) }
+                    <Route path="/login" render={() => (<Login setUser={setUser}/>)} />
+                </Switch>
+            </Router>
+        </>
     )
 }
 

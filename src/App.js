@@ -1,12 +1,12 @@
 import React from 'react';
-import Views from './views'
+import MuiApp from './muiApp';
 import './App.css';
 
 
 function App() {
   return (
     <div className="App">
-        <Views />
+        <MuiApp />
     </div>
   );
 }
