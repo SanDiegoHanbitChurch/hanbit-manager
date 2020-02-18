@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import AddChowonDialog from './addChowonDialog';
+import { Typography } from '@material-ui/core';
 
 const renderChowon = (chowon, editChowon, deleteChowon) => {
   const { id, name, leader } = chowon;
@@ -43,6 +44,9 @@ const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
 
   return (
     <>
+      <Typography>
+        Chowon List
+      </Typography>
       <List>
         {chowonList.map(chowon => renderChowon(chowon, editChowon, deleteChowon))}
       </List>

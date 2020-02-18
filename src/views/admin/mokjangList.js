@@ -9,17 +9,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import AddMokjangDialog from './addMokjangDialog';
+import { Typography } from '@material-ui/core';
 
 /* 
   <MokjangList  mokjanglist={mokjangList} />
 */
 
 const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
-    console.log({
-        mokjang,
-        editMokjang,
-        deleteMokjang
-    });
     const { id, name, leader, chowon } = mokjang;
 
     return (
@@ -53,6 +49,9 @@ const MokjangList = ({ mokjangList, addMokjang, editMokjang, deleteMokjang, chow
 
     return (
         <>
+            <Typography>
+                Mokjang List
+            </Typography>
             <List>
                 {mokjangList.map(mokjang => renderMokjang(mokjang, editMokjang, deleteMokjang))}
             </List>

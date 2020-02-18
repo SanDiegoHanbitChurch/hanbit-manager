@@ -16,15 +16,13 @@ const Views = () => {
     }
     
     return (
-        <>
+        <Router>
             <Navigation />
-            <Router>
-                <Switch>
-                    { generateRoutes(user) }
-                    <Route path="/login" render={() => (<Login setUser={setUser}/>)} />
-                </Switch>
-            </Router>
-        </>
+            <Switch>
+                { generateRoutes(user) }
+                <Route path="/login" render={() => (<Login setUser={setUser}/>)} />
+            </Switch>
+        </Router>
     )
 }
 

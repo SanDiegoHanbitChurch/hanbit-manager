@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -73,6 +74,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const menuItems = [
+  {
+    text: 'Chowon',
+    url: '/chowon'
+  },
+  {
+    text: 'Mokjang',
+    url: '/mokjang'
+  }
+]
+
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
@@ -126,8 +138,8 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['Chowon', 'Mokjang'].map((text, index) => (
-            <ListItem button key={text}>
+          {menuItems.map(({text, url}) => (
+            <ListItem button key={text} component={Link} to={url}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
