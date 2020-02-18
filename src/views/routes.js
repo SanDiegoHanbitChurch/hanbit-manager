@@ -1,7 +1,8 @@
 import React from 'react';
 import Home from "./home";
-import Admin from './admin';
 import AuthenticatedRoute from './authenticateRoute';
+import MokjangList from './admin/mokjangList'
+import ChowonList from './admin/chowonList'
 
 const generateRouteConfigs = (user) => (
     [
@@ -11,10 +12,20 @@ const generateRouteConfigs = (user) => (
             exact: true,
             render: (props) => <Home user={user} {...props} />
         },
+        // {
+        //     name: 'Admin',
+        //     path: "/admin",
+        //     render: (props) => <Admin user={user} {...props} />
+        // },
         {
-            name: 'Admin',
-            path: "/admin",
-            render: (props) => <Admin user={user} {...props} />
+            name: 'Chowon',
+            path: "/chowon",
+            render: (props) => <ChowonList user={user} {...props} />
+        },
+        {
+            name: 'Mokjang',
+            path: "/mokjang",
+            render: (props) => <MokjangList user={user} {...props} />
         }
     ]
 )

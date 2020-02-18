@@ -54,4 +54,11 @@ const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
   )
 }
 
+ChowonList.defaultProps = {
+  chowonList: [],
+  addChowon: () => {},
+  editChowon: () => {},
+  deleteChowon: () => {}
+}
+
 export default ChowonList;

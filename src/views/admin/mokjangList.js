@@ -6,6 +6,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import AddMokjangDialog from './addMokjangDialog';
 
 /* 
   <MokjangList  mokjanglist={mokjangList} />
@@ -34,13 +37,39 @@ const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
     )
 }
 
-const MokjangList = ({ mokjangList, editMokjang, deleteMokjang }) => {
+const MokjangList = ({ mokjangList, addMokjang, editMokjang, deleteMokjang, chowonList }) => {
+
+    const [open, setOpen] = useState(false);
+    const openDialog = () => setOpen(true);
+    const handleCancel = () => setOpen(false);
+    const handleAdd = (name, leader, chowon) => {
+      addMokjang({
+        chowon,
+        name,
+        leader
+      });
+      setOpen(false);
+    }
 
     return (
+        <>
             <List>
                 {mokjangList.map(mokjang => renderMokjang(mokjang, editMokjang, deleteMokjang))}
             </List>
+            <Fab color='primary'>
+                <AddIcon onClick={openDialog}/>
+            </Fab>
+            <AddMokjangDialog open={open} handleCancel={handleCancel} handleAdd={handleAdd} chowonList={chowonList} />
+        </>
     )
+}
+
+MokjangList.defaultProps = {
+    mokjangList: [],
+    chowonList: [],
+    addMokjang: () => {},
+    editMokjang: () => {},
+    deleteMokjang: () => {}
 }
 
 export default MokjangList;

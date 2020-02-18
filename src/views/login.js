@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
-import { Typography, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../firebaseConfig';

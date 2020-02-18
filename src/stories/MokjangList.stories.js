@@ -29,20 +29,38 @@ const mokjangList = [
   }
 ]
 
+const chowonList = [
+  {
+    name:'AAA',
+    leader:'BBB'
+  }
+]
+
+const addMokjang = (mokjang) => mokjangList.push(mokjang);
 const editMokjang = action('editing mokjang')
 const deleteMokjang = action('deleting mokjang')
  
 export const defaultRendering = () => 
 <MokjangList 
+    chowonList={chowonList}
+    addMokjang={ addMokjang }
     mokjangList={ mokjangList } 
     editMokjang={editMokjang} 
     deleteMokjang={deleteMokjang} />;
 
-const sang = (id) => console.log('hello sang' + id)
-const jin = (id) => console.log('hello jin' + id)
-
-export const secondRendering = () => 
+export const missingProp=() => 
 <MokjangList 
-    mokjangList={ mokjangList } 
-    editMokjang={sang} 
-    deleteMokjang={jin} />;
+    chowonList={chowonList}
+    addMokjang={ addMokjang }
+    editMokjang={editMokjang} 
+    deleteMokjang={deleteMokjang} />;
+
+  export const wrongPropType = () => 
+  <MokjangList 
+      abc="xyz"
+      loading="false"
+      chowonList={chowonList}
+      addMokjang={ addMokjang }
+      mokjangList='Test'
+      editMokjang={editMokjang} 
+      deleteMokjang={deleteMokjang} />;
