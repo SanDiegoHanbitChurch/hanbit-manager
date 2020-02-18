@@ -26,11 +26,13 @@ const chowonList = [
   }
 ]
 
+const addChowon = (chowon) => chowonList.push(chowon);
 const editChowon = action('editing chowon')
 const deleteChowon = action('deleting chowon')
  
 export const defaultRendering = () => 
 <ChowonList 
     chowonList={ chowonList } 
+    addChowon={addChowon}
     editChowon={editChowon} 
     deleteChowon={deleteChowon} />;
