@@ -2,12 +2,10 @@ import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
 import { Button } from '@material-ui/core';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseConfig from '../firebaseConfig';
+import '@firebase/auth';
+import firebase from '../firebase';
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseAppAuth = firebaseApp.auth();
+const firebaseAppAuth = firebase.auth();
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
 };

@@ -31,6 +31,8 @@ const renderChowon = (chowon, editChowon, deleteChowon) => {
 
 const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
 
+  console.log('rendering chowon list');
+  
   const [open, setOpen] = useState(false);
   const openDialog = () => setOpen(true);
   const handleCancel = () => setOpen(false);
