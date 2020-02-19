@@ -15,7 +15,7 @@ const renderChowon = (chowon, editChowon, deleteChowon) => {
   const { id, name, leader } = chowon;
 
   return (
-    <ListItem key={id}>
+    <ListItem button onClick={() => editChowon(id)} key={id}>
       <ListItemText primary={name} secondary={leader} />
       <ListItemSecondaryAction>
           <IconButton edge="end" onClick={() => editChowon(id)} >

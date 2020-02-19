@@ -14,7 +14,8 @@ const renderMokjang = (mokjang) => {
   )
 
 }
-const ChowonDetail = ({ name, leader, mokjangList}) => {
+const ChowonDetail = ({ name, leader, mokjangList = []}) => {
+  console.log({name, leader, mokjangList});
   return (
     <>
       <Typography >
