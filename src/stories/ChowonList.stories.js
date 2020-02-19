@@ -1,5 +1,5 @@
 import React from 'react';
-import ChowonList from '../views/admin/chowonList';
+import ChowonList from '../views/admin/chowon/chowonList';
 import uuid from 'uuid';
 import { action } from '@storybook/addon-actions';
 

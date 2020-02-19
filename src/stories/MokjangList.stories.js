@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
-import MokjangList from '../views/admin/mokjangList';
+import MokjangList from '../views/admin/mokjang/mokjangList';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -54,13 +54,3 @@ export const missingProp=() =>
     addMokjang={ addMokjang }
     editMokjang={editMokjang} 
     deleteMokjang={deleteMokjang} />;
-
-  export const wrongPropType = () => 
-  <MokjangList 
-      abc="xyz"
-      loading="false"
-      chowonList={chowonList}
-      addMokjang={ addMokjang }
-      mokjangList='Test'
-      editMokjang={editMokjang} 
-      deleteMokjang={deleteMokjang} />;

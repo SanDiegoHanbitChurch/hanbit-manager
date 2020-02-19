@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'uuid';
 import faker from 'faker';
 import { range } from 'lodash';
-import ChowonDetail from '../views/admin/chowonDetail';
+import ChowonDetail from '../views/admin/chowon/chowonDetail/chowonDetail';
 
 export default {
   title: 'chowon detail',

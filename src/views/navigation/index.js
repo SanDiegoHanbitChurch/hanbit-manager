@@ -139,7 +139,7 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {menuItems.map(({text, url}) => (
-            <ListItem button key={text} component={Link} to={url}>
+            <ListItem button key={text} onClick={handleDrawerClose} component={Link} to={url}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
