@@ -19,7 +19,7 @@ const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
     const { id, name, leader, chowon } = mokjang;
 
     return (
-        <ListItem key={id}>
+        <ListItem button onClick={() => editMokjang(id)} key={id}>
             <ListItemText primary={`${name} (${chowon})`} secondary={leader} />
             <ListItemSecondaryAction>
                 <IconButton edge="end" onClick={() => editMokjang(id)} >

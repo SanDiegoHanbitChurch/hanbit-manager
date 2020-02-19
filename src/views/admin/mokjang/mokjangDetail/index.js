@@ -6,7 +6,7 @@ import MokjangDetail from './mokjangDetail';
 const MokjangDetailContainer = ({ match }) => {
   return (
     <FirestoreDocument
-      path={`mokjang/${match.params.name}`} 
+      path={`mokjang/${match.params.id}`} 
       render={
         ({ isLoading, data }) => {
           return isLoading ? (
