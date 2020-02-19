@@ -4,6 +4,7 @@ import AuthenticatedRoute from './authenticateRoute';
 import MokjangList from './admin/mokjang'
 import ChowonList from './admin/chowon'
 import ChowonDetail from './admin/chowon/chowonDetail';
+import MokjangDetail from './admin/mokjang/mokjangDetail/mokjangDetail';
 
 const generateRouteConfigs = (user) => (
     [
@@ -28,6 +29,11 @@ const generateRouteConfigs = (user) => (
             path: "/mokjang",
             render: (props) => <MokjangList user={user} {...props} />
         },
+        {
+            name: 'Mokjang Detail',
+            path: '/mokjang/:id',
+            render: (props) => <MokjangDetail user={user} {...props} />
+        }
     ]
 )
 
