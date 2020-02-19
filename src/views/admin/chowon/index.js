@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FirestoreCollection } from 'react-firestore';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ChowonList from './chowonList';
 
 const addChowon = () => {};
@@ -25,7 +26,7 @@ const ChowonListContainer = () => {
       path='chowon'
       render={
         ({isLoading, data}) => {
-          return isLoading ? (<p>Loading...</p>) : 
+          return isLoading ? (<CircularProgress />) : 
             <ChowonList 
               chowonList={data} 
               addChowon={addChowon} 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FirestoreDocument } from 'react-firestore';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ChowonDetail from './chowonDetail';
 
 const ChowonDetailContainer = ({ match }) => {
@@ -10,9 +11,7 @@ const ChowonDetailContainer = ({ match }) => {
       render={
         ({ isLoading, data }) => {
           return isLoading ? (
-            <p>
-              Loading...
-            </p>
+            <CircularProgress />
           ) : (
             <ChowonDetail name={data.name} leader={data.leader} mokjangList={data.mokjangList} />
           )
