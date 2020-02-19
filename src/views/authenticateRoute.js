@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const AuthenticatedRoute = ({user, redirectTo, ...rest}) => {
     
-    const to = redirectTo ? `/login?redirectTo=${redirectTo}` : '/login';
+    const to = '/login';
     return (
         user ? <Route {...rest} /> : <Redirect to={to} />
     )
