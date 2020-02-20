@@ -26,7 +26,7 @@ const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjan
                     }
                     action={
                         <IconButton onClick={() => editMokjang(id)}>
-                        <EditIcon />
+                            <EditIcon />
                         </IconButton>
                     }
                     title={`${name} (${chowon})`}
