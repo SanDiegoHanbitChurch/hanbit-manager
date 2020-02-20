@@ -18,7 +18,7 @@ const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjan
     const toggleExpand = () => setExpanded(!expanded);
     
     return (
-        <Box m={2}>
+        <Box m={1}>
             <Card>
                 <CardHeader
                     avatar={
