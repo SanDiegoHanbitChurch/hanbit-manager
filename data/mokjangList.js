@@ -22,32 +22,32 @@ const mokjangList = [
     {
         name: '하늘향기',
         leader: '주동식',
-        chown: '두나미스'
+        chowon: '두나미스'
     },
     {
         name: '예담',
         leader: '조태유',
-        chown: '두나미스'
+        chowon: '두나미스'
     },
     {
         name: '참좋은',
         leader: '이용인',
-        chown: '두나미스'
+        chowon: '두나미스'
     },
     {
         name: '은혜',
         leader: '염상용',
-        chown: '두나미스'
+        chowon: '두나미스'
     },
     {
         name: '주남의 땅',
         leader: '김형규',
-        chown: '두나미스'
+        chowon: '두나미스'
     },
     {
         name: '주의 처소',
         leader: '강성민',
-        chown: '두나미스'
+        chowon: '두나미스'
     },
     {
         chowon: '바다',

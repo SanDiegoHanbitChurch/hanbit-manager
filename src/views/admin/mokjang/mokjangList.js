@@ -1,35 +1,15 @@
 import React, {useState} from 'react';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import AddMokjangDialog from './addMokjangDialog';
 import { Typography } from '@material-ui/core';
-
-/* 
-  <MokjangList  mokjanglist={mokjangList} />
-*/
+import MokjangCard from './mokjangCard';
 
 const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
-    const { id, name, leader, chowon } = mokjang;
 
     return (
-        <ListItem button onClick={() => editMokjang(id)} key={id}>
-            <ListItemText primary={`${name} (${chowon})`} secondary={leader} />
-            <ListItemSecondaryAction>
-                <IconButton edge="end" onClick={() => editMokjang(id)} >
-                    <EditIcon />
-                </IconButton>
-                <IconButton edge="end" onClick={() => deleteMokjang(id)}>
-                    <DeleteIcon />
-                </IconButton>
-            </ListItemSecondaryAction>
-        </ListItem>
+        <MokjangCard {...mokjang} editMokjang={editMokjang} />
     )
 }
 
