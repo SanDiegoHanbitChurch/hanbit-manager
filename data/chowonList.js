@@ -5,19 +5,19 @@ const chowonList = [
         mokjangList: [
             {
                 name: '나눔',
-                leader: ''
+                leader: '윤근희'
             },
             {
                 name: '소망',
-                leader: ''
+                leader: '지명인'
             },
             {
                 name: '헤세드',
-                leader: ''
+                leader: '박영하'
             },
             {
                 name: '사랑',
-                leader: ''
+                leader: '박형준'
             }
         ]
     },
@@ -27,27 +27,27 @@ const chowonList = [
         mokjangList: [
             {
                 name: '하늘향기',
-                leader: ''
+                leader: '주동식'
             },
             {
                 name: '예담',
-                leader: ''
+                leader: '조태유'
             },
             {
                 name: '참좋은',
-                leader: ''
+                leader: '이용인'
             },
             {
                 name: '은혜',
-                leader: ''
+                leader: '염상용'
             },
             {
                 name: '주남의 땅',
-                leader: ''
+                leader: '김형규'
             },
             {
                 name: '주의 처소',
-                leader: ''
+                leader: '강성민'
             }
         ]
     },
@@ -57,27 +57,27 @@ const chowonList = [
         mokjangList: [
             {
                 name: '아름다운',
-                leader: ''
+                leader: '박군호'
             },
             {
                 name: '감동',
-                leader: ''
+                leader: '이동희'
             },
             {
                 name: '낮은 자의',
-                leader: ''
+                leader: '정진길'
             },
             {
                 name: '축복의 통로',
-                leader: ''
+                leader: '박기수'
             },
             {
-                name: '알아',
-                leader: ''
+                name: '아라',
+                leader: '옥성민'
             },
             {
                 name: '물댄동산',
-                leader: ''
+                leader: '신호순'
             }
         ]
     },
@@ -87,27 +87,27 @@ const chowonList = [
         mokjangList: [
             {
                 name: '따뜻한',
-                leader: ''
+                leader: '이성창'
             },
             {
                 name: '하나님의 정원',
-                leader: ''
+                leader: '최원하'
             },
             {
                 name: '새벽이슬',
-                leader: ''
+                leader: '최영재'
             },
             {
                 name: '디딤돌',
-                leader: ''
+                leader: '권창기'
             },
             {
                 name: '예그리나',
-                leader: ''
+                leader: '김주일'
             },
             {
                 name: '함께라면',
-                leader: ''
+                leader: '유영훈'
             }
         ]
     },
@@ -117,23 +117,23 @@ const chowonList = [
         mokjangList: [
             {
                 name: '하늘바다',
-                leader: ''
+                leader: '김영택'
             },
             {
                 name: '온유',
-                leader: ''
+                leader: '김재영'
             },
             {
                 name: '미라클',
-                leader: ''
+                leader: '류현희'
             },
             {
                 name: '발걸음',
-                leader: ''
+                leader: '양우석'
             },
             {
                 name: '임마누엘',
-                leader: ''
+                leader: '박중성'
             }
         ]
     },
@@ -143,27 +143,27 @@ const chowonList = [
         mokjangList: [
             {
                 name: '그루터기',
-                leader: ''
+                leader: '양영준'
             },
             {
                 name: '즐거운',
-                leader: ''
+                leader: '박상빈'
             },
             {
                 name: '르우엘',
-                leader: ''
+                leader: '권성민'
             },
             {
                 name: '열매',
-                leader: ''
+                leader: '정준영'
             },
             {
                 name: '빌립보',
-                leader: ''
+                leader: '류재혁'
             },
             {
                 name: '드림',
-                leader: ''
+                leader: '박갑식'
             }
         ]
     },
@@ -173,7 +173,7 @@ const chowonList = [
         mokjangList: [
             {
                 name: '마레',
-                leader: ''
+                leader: '이기영'
             },
             {
                 name: '샘터',
@@ -181,15 +181,15 @@ const chowonList = [
             },
             {
                 name: '시온',
-                leader: ''
+                leader: '전태수'
             },
             {
                 name: '별밤',
-                leader: ''
+                leader: '이창환'
             },
             {
                 name: '어울림',
-                leader: ''
+                leader: '노성길'
             }
         ]
     },
@@ -199,23 +199,23 @@ const chowonList = [
         mokjangList: [
             {
                 name: '카라스',
-                leader: ''
+                leader: '김민호'
             },
             {
                 name: '시심나',
-                leader: ''
+                leader: '박철현'
             },
             {
                 name: '한마음',
-                leader: ''
+                leader: '최성애'
             },
             {
                 name: '샘물',
-                leader: ''
+                leader: '조태연'
             },
             {
                 name: '기도하는',
-                leader: ''
+                leader: '고재황'
             }
         ]
     },
@@ -225,26 +225,26 @@ const chowonList = [
         mokjangList: [
             {
                 name: '노아방주',
-                leader: ''
+                leader: '김병대'
             },
             {
                 name: '마라나타',
-                leader: ''
+                leader: '박성준'
             },
             {
                 name: '싯딤',
-                leader: ''
+                leader: '김준영'
             },
             {
                 name: '감사',
-                leader: ''
+                leader: '권대암'
             },
             {
                 name: '하늘빛',
-                leader: ''
+                leader: '원승현'
             }
         ]
     }
 ]
 
-export default chowonList;
+module.exports = chowonList;
