@@ -46,7 +46,7 @@ const mokjangList = [
         ]
     },
     {
-        name: '주남의 땅',
+        name: '주님의 땅',
         leader: '김형규',
         chowon: '두나미스'
     },

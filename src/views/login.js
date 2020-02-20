@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
-import { Button } from '@material-ui/core';
+import { Button, Typography, Box } from '@material-ui/core';
 import '@firebase/auth';
 import firebase from '../firebase';
 
@@ -25,9 +25,12 @@ const Login = ({ user, signOut, signInWithGoogle, setUser }) => {
 
     return (
         <>
-            <Button variant="contained" color="primary" onClick={signInWithGoogle}>
-                Sign in with Google
-            </Button>
+            <Box m={5}>
+                <Button variant="contained" color="primary" onClick={signInWithGoogle}>
+                    Sign in with Google
+                </Button>
+            </Box>
+            <Typography color="primary">Please sign-in with your sdhanbit.org account.</Typography>
         </>
     )
 }
