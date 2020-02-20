@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
-import List from '@material-ui/core/List';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import AddMokjangDialog from './addMokjangDialog';
-import { Typography } from '@material-ui/core';
 import MokjangCard from './mokjangCard';
+
+const style = {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed',
+};
 
 const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
 
@@ -31,9 +38,6 @@ const MokjangList = ({ mokjangList, addMokjang, editMokjang, deleteMokjang, chow
 
     return (
         <>
-            <Typography>
-                Mokjang List
-            </Typography>
             <GridList cellHeight={160} cols={3}>
                 {mokjangList.map(mokjang => (
                     <GridListTile key={mokjang.id} cols={mokjang.cols || 1}>
@@ -41,7 +45,7 @@ const MokjangList = ({ mokjangList, addMokjang, editMokjang, deleteMokjang, chow
                     </GridListTile>
                 ))}
             </GridList>
-            <Fab color='primary'>
+            <Fab style={style} color='primary'>
                 <AddIcon onClick={openDialog}/>
             </Fab>
             <AddMokjangDialog open={open} handleCancel={handleCancel} handleAdd={handleAdd} chowonList={chowonList} />

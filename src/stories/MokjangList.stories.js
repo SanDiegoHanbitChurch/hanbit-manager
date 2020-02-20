@@ -1,5 +1,7 @@
 import React from 'react';
+import faker from 'faker';
 import uuid from 'uuid';
+import { range } from 'lodash';
 import MokjangList from '../views/admin/mokjang/mokjangList';
 import { action } from '@storybook/addon-actions';
 
@@ -8,26 +10,16 @@ export default {
   component: MokjangList,
 };
 
-const mokjangList = [
-  {
+const generateMokjangList = (numberOfMokjang) => {
+  return range(numberOfMokjang).map(() => ({
     id: uuid.v4(),
-    name:'Eunhye',
-    leader:'Park',
-    chowon:'Dynamis'
-  },
-  {
-    id: uuid.v4(),
-    name:'Eunhye',
-    leader:'Park',
-    chowon:'Dynamis'
-  },
-  {
-    id: uuid.v4(),
-    name:'Eunhye',
-    leader:'Park',
-    chowon:'Dynamis'
-  }
-]
+    name: faker.random.word(),
+    leader:`${faker.name.firstName()} ${faker.name.lastName()}`,
+    chowon: faker.random.word()
+  }))
+};
+
+const mokjangList = generateMokjangList(15);
 
 const chowonList = [
   {
