@@ -52,7 +52,7 @@ const chowonList = [
         ]
     },
     {
-        name: '바다초원',
+        name: '바다',
         leader: '이봉천',
         mokjangList: [
             {
