@@ -37,7 +37,13 @@ const mokjangList = [
     {
         name: '은혜',
         leader: '염상용',
-        chowon: '두나미스'
+        chowon: '두나미스',
+        memberFamilies: [
+            '염상용/염진',
+            '성일경/성민경',
+            '백종득/이한나',
+            '장세령/김혜진'
+        ]
     },
     {
         name: '주남의 땅',

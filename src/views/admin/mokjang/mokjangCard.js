@@ -1,31 +1,35 @@
 import React from 'react';
-import ListItem from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 
-const MokjangCard = ({ id, name, leader, chowon, memberFamilies, editMokjang }) => {
+const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjang }) => {
+    
+    
     return (
-        <ListItem button onClick={() => editMokjang(id)} key={id}>
-            <ListItemAvatar>
-                <Avatar alt={leader} src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-                primary={`${name} (${chowon})`}
-                secondary={
-                    <React.Fragment>
-                        <Typography
-                            component="span"
-                            variant="body2"
-                            color="textPrimary"
-                        >
-                            {leader}
-                        </Typography>
-                    </React.Fragment>
+        <Card>
+            <CardHeader
+                avatar={
+                    <Avatar alt={leader} src='/static/avatar.jpg' />
                 }
+                action={
+                    <IconButton onClick={() => editMokjang(id)}>
+                      <EditIcon />
+                    </IconButton>
+                }
+                title={`${name} (${chowon})`}
+                subheader={leader}
             />
-        </ListItem>
+            <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    {memberFamilies.join(', ')}
+                </Typography>
+            </CardContent>
+        </Card>
     )
 }
 
