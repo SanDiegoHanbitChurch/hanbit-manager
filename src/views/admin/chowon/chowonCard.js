@@ -4,10 +4,12 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import Box from '@material-ui/core/Box';
 
 const ChowonCard = ({ id, name, leader, editChowon }) => {
     
     return (
+      <Box m={1}>
         <Card>
             <CardHeader
                 avatar={
@@ -22,6 +24,7 @@ const ChowonCard = ({ id, name, leader, editChowon }) => {
                 subheader={leader}
             />
         </Card>
+      </Box>
     )
 }
 

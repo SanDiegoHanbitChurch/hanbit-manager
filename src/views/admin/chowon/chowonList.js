@@ -7,6 +7,15 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ChowonCard from './chowonCard';
 
+const style = {
+  margin: 0,
+  top: 'auto',
+  right: 120,
+  bottom: 20,
+  left: 'auto',
+  position: 'fixed',
+};
+
 const renderChowon = (chowon, editChowon, deleteChowon) => {
   return (
     <ChowonCard {...chowon} editChowon={editChowon} />
@@ -39,8 +48,8 @@ const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
                 { renderChowon(chowon, editChowon, deleteChowon) }
             </GridListTile>
         ))}
-            </GridList>
-      <Fab color='primary'>
+      </GridList>
+      <Fab style={style} color='primary'>
         <AddIcon onClick={openDialog}/>
       </Fab>
       <AddChowonDialog open={open} handleCancel={handleCancel} handleAdd={handleAdd} />
