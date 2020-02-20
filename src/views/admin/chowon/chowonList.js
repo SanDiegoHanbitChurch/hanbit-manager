@@ -1,31 +1,15 @@
 import React, { useState } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import AddChowonDialog from './addChowonDialog';
 import { Typography } from '@material-ui/core';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import ChowonCard from './chowonCard';
 
 const renderChowon = (chowon, editChowon, deleteChowon) => {
-  const { id, name, leader } = chowon;
-
   return (
-    <ListItem button onClick={() => editChowon(id)} key={id}>
-      <ListItemText primary={name} secondary={leader} />
-      <ListItemSecondaryAction>
-          <IconButton edge="end" onClick={() => editChowon(id)} >
-              <EditIcon />
-          </IconButton>
-          <IconButton edge="end" onClick={() => deleteChowon(id)}>
-              <DeleteIcon />
-          </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>
+    <ChowonCard {...chowon} editChowon={editChowon} />
   )
 }
 
@@ -49,9 +33,13 @@ const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
       <Typography>
         Chowon List
       </Typography>
-      <List>
-        {chowonList.map(chowon => renderChowon(chowon, editChowon, deleteChowon))}
-      </List>
+      <GridList cellHeight={120} cols={3}>
+        {chowonList.map(chowon => (
+            <GridListTile key={chowon.id} cols={1}>
+                { renderChowon(chowon, editChowon, deleteChowon) }
+            </GridListTile>
+        ))}
+            </GridList>
       <Fab color='primary'>
         <AddIcon onClick={openDialog}/>
       </Fab>

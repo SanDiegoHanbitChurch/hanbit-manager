@@ -23,6 +23,36 @@ const chowonList = [
     id: uuid.v4(),
     name:'Dynamis',
     leader:'Kim'
+  },
+  {
+    id: uuid.v4(),
+    name:'Dynamis',
+    leader:'Kim'
+  },
+  {
+    id: uuid.v4(),
+    name:'Dynamis',
+    leader:'Kim'
+  },
+  {
+    id: uuid.v4(),
+    name:'Dynamis',
+    leader:'Kim'
+  },
+  {
+    id: uuid.v4(),
+    name:'Dynamis',
+    leader:'Kim'
+  },
+  {
+    id: uuid.v4(),
+    name:'Dynamis',
+    leader:'Kim'
+  },
+  {
+    id: uuid.v4(),
+    name:'Dynamis',
+    leader:'Kim'
   }
 ]
 
