@@ -39,7 +39,7 @@ const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjan
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography variant="caption" color="textSecondary" component="p">
                             {memberFamilies.join(', ')}
                         </Typography>
                     </CardContent>

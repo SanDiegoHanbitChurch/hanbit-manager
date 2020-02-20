@@ -38,7 +38,7 @@ const MokjangList = ({ mokjangList, addMokjang, editMokjang, deleteMokjang, chow
 
     return (
         <>
-            <GridList cellHeight={160} cols={3}>
+            <GridList cellHeight={200} cols={3}>
                 {mokjangList.map(mokjang => (
                     <GridListTile key={mokjang.id} cols={mokjang.cols || 1}>
                         { renderMokjang(mokjang, editMokjang, deleteMokjang) }
