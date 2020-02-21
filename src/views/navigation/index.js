@@ -76,12 +76,16 @@ const useStyles = makeStyles(theme => ({
 
 const menuItems = [
   {
-    text: 'Chowon',
+    text: '초원',
     url: '/chowon'
   },
   {
-    text: 'Mokjang',
+    text: '목장',
     url: '/mokjang'
+  },
+  {
+    text: '교인',
+    url: '/family'
   }
 ]
 

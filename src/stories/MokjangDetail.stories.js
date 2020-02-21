@@ -1,7 +1,5 @@
 import React from 'react';
-import uuid from 'uuid';
 import faker from 'faker';
-import { range } from 'lodash';
 import MokjangDetail from '../views/admin/mokjang/mokjangDetail/mokjangDetail';
 
 export default {

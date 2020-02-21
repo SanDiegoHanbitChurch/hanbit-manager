@@ -2,9 +2,11 @@ import React from 'react';
 import Home from "./home";
 import AuthenticatedRoute from './authenticateRoute';
 import MokjangList from './admin/mokjang'
-import ChowonList from './admin/chowon'
+import ChowonList from './admin/chowon';
+import FamilyList from './admin/family';
 import ChowonDetail from './admin/chowon/chowonDetail';
 import MokjangDetail from './admin/mokjang/mokjangDetail';
+import FamilyDetail from './admin/family/familyDetail';
 
 const generateRouteConfigs = (user) => (
     [
@@ -25,6 +27,11 @@ const generateRouteConfigs = (user) => (
             render: (props) => <MokjangDetail user={user} {...props} />
         },
         {
+            name: 'Family Detail',
+            path: '/family/:id',
+            render: (props) => <FamilyDetail user={user} {...props} />
+        },
+        {
             name: 'Chowon',
             path: "/chowon",
             render: (props) => <ChowonList user={user} {...props} />
@@ -33,6 +40,11 @@ const generateRouteConfigs = (user) => (
             name: 'Mokjang',
             path: "/mokjang",
             render: (props) => <MokjangList user={user} {...props} />
+        },
+        {
+            name: 'Family',
+            path: "/family",
+            render: (props) => <FamilyList user={user} {...props} />
         }
     ]
 )
