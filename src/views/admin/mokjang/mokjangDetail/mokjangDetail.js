@@ -1,5 +1,5 @@
 import React from 'react';
-import FamilyList from './familyList';
+import FamilyList from '../../family/familyList';
 import Typography from '@material-ui/core/Typography';
 
 

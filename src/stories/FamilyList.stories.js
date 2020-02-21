@@ -1,6 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
-import FamilyList from '../views/admin/mokjang/mokjangDetail/familyList';
+import FamilyList from '../views/admin/family/familyList';
 import uuid from 'uuid';
 
 export default {
@@ -128,4 +129,7 @@ const familyList = [
   }
 ];
 
-export const defaultRendering = () => <FamilyList familyList={familyList} goToFamily={goToFamily} />
+export const defaultRendering = () => 
+  <Router>
+    <FamilyList familyList={familyList} goToFamily={goToFamily} />
+  </Router>

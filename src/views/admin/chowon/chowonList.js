@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import AddChowonDialog from './addChowonDialog';
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ChowonCard from './chowonCard';
-
-const style = {
-  margin: 0,
-  top: 'auto',
-  right: 120,
-  bottom: 20,
-  left: 'auto',
-  position: 'fixed',
-};
 
 const renderChowon = (chowon, editChowon, deleteChowon) => {
   return (
@@ -22,20 +10,7 @@ const renderChowon = (chowon, editChowon, deleteChowon) => {
   )
 }
 
-const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
-
-  console.log('rendering chowon list');
-  
-  const [open, setOpen] = useState(false);
-  const openDialog = () => setOpen(true);
-  const handleCancel = () => setOpen(false);
-  const handleAdd = (name, leader) => {
-    addChowon({
-      name,
-      leader
-    });
-    setOpen(false);
-  }
+const ChowonList = ({ chowonList, editChowon, deleteChowon}) => {
 
   return (
     <>
@@ -49,10 +24,6 @@ const ChowonList = ({ chowonList, addChowon, editChowon, deleteChowon}) => {
             </GridListTile>
         ))}
       </GridList>
-      <Fab style={style} color='primary'>
-        <AddIcon onClick={openDialog}/>
-      </Fab>
-      <AddChowonDialog open={open} handleCancel={handleCancel} handleAdd={handleAdd} />
     </>
   )
 }

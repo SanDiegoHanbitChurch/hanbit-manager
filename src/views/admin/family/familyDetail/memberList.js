@@ -10,11 +10,10 @@ const renderMember = (member) => {
     </GridListTile>
   )
 }
-const MemberList = ({memberList}) => {
-  console.log('Member List', memberList);
+const MemberList = ({members}) => {
   return (
     <GridList cellHeight={180} >
-      {memberList.map(member => renderMember(member))}
+      {members.map(member => renderMember(member))}
     </GridList>
   )
 }

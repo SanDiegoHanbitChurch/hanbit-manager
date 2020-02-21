@@ -18,12 +18,12 @@ const generateRouteConfigs = (user) => (
         },
         {
             name: 'Chowon Detail',
-            path: '/chowon/:id',
+            path: '/chowon/:name',
             render: (props) => <ChowonDetail user={user} {...props} />
         },
         {
             name: 'Mokjang Detail',
-            path: '/mokjang/:id',
+            path: '/mokjang/:name',
             render: (props) => <MokjangDetail user={user} {...props} />
         },
         {

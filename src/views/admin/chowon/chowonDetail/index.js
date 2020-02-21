@@ -1,23 +1,32 @@
 import React from 'react';
-import { FirestoreDocument } from 'react-firestore';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import DetailContainer from '../../../shared/detailContainer';
 import ChowonDetail from './chowonDetail';
+import FilteredListContainer from '../../../shared/filteredListContainer';
+import MokjangList from '../../../shared/mokjangList';
 
 const ChowonDetailContainer = ({ match }) => {
-  console.log('chowondetail container');
+  
+  const chowonFilter = ['name', '==', match.params.name];
+  const mokjangFilter = ['chowon', '==', match.params.name];
+
   return (
-    <FirestoreDocument
-      path={`chowon/${match.params.id}`} 
-      render={
-        ({ isLoading, data }) => {
-          return isLoading ? (
-            <CircularProgress />
-          ) : (
-            <ChowonDetail name={data.name} leader={data.leader} mokjangList={data.mokjangList} />
-          )
-        }
-      }
-    />
+    <>
+      <DetailContainer
+        path="chowon"
+        filter={chowonFilter}
+        render={({isLoading, data}) => {
+          return isLoading ? <CircularProgress /> : <ChowonDetail {...data[0]} />
+        }}
+      />
+      <FilteredListContainer
+        path="mokjang" 
+        filter={mokjangFilter}
+        render={({isLoading, data}) => {
+          return isLoading ? <CircularProgress /> : <MokjangList mokjangList={data} />
+        }}
+      />
+    </>
   )
 }
 

@@ -10,12 +10,11 @@ const deleteChowon = () => {};
 const ChowonListContainer = () => {
 
   const [redirectTo, setRedirectTo] = useState(null);
-  const editChowon = (id) => {
-    setRedirectTo(`/chowon/${id}`);
+  const editChowon = (name) => {
+    setRedirectTo(`/chowon/${name}`);
   };
 
   if (redirectTo) {
-    console.log('redirecting', redirectTo);
     return (
       <Redirect to={redirectTo} />
     )

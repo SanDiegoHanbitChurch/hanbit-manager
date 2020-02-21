@@ -1,22 +1,32 @@
 import React from 'react';
-import { FirestoreDocument } from 'react-firestore';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress } from '@material-ui/core';
+import DetailContainer from '../../../shared/detailContainer';
 import MokjangDetail from './mokjangDetail';
+import FamilyList from '../../family/familyList';
+import FilteredListContainer from '../../../shared/filteredListContainer';
 
 const MokjangDetailContainer = ({ match }) => {
+  const mokjangName = match.params.name;
+  const mokjangFilter = ['name', '==', mokjangName];
+  const familyFilter = ['mokjang', '==', mokjangName];
+
   return (
-    <FirestoreDocument
-      path={`mokjang/${match.params.id}`} 
-      render={
-        ({ isLoading, data }) => {
-          return isLoading ? (
-            <CircularProgress />
-          ) : (
-            <MokjangDetail name={data.name} leader={data.leader} memberFamilies={data.memberFamilies} />
-          )
-        }
-      }
-    />
+    <>
+      <DetailContainer
+        path="mokjang"
+        filter={mokjangFilter}
+        render={({isLoading, data}) => {
+          return isLoading ? <CircularProgress /> : <MokjangDetail {...data[0]} />
+        }}
+      />
+      <FilteredListContainer
+        path="family"
+        filter={familyFilter}
+        render={({isLoading, data}) => {
+          return isLoading ? <CircularProgress /> : <FamilyList familyList={data} />
+        }}
+      />
+    </>
   )
 }
 

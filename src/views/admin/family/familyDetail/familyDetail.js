@@ -9,7 +9,7 @@ const FamilyDetail = ({ family }) => {
         <>
             <Typography color='primary'>{mokjang}</Typography>
             <Typography color='primary'>{address}</Typography>
-            <MemberList memberList={members} />
+            <MemberList members={members} />
         </>
     )
 }

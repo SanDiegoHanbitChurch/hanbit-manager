@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -22,10 +23,10 @@ const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjan
             <Card>
                 <CardHeader
                     avatar={
-                        <Avatar alt={leader} src='/static/avatar.jpg' />
+                        <Avatar alt={name} src='/static/avatar.jpg' />
                     }
                     action={
-                        <IconButton onClick={() => editMokjang(id)}>
+                        <IconButton component={Link} to={`/mokjang/${name}`}>
                             <EditIcon />
                         </IconButton>
                     }

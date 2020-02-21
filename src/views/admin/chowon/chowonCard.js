@@ -13,10 +13,10 @@ const ChowonCard = ({ id, name, leader, editChowon }) => {
         <Card>
             <CardHeader
                 avatar={
-                    <Avatar alt={leader} src='/static/avatar.jpg' />
+                    <Avatar alt={name} src='/static/avatar.jpg' />
                 }
                 action={
-                    <IconButton onClick={() => editChowon(id)}>
+                    <IconButton onClick={() => editChowon(name)}>
                       <EditIcon />
                     </IconButton>
                 }

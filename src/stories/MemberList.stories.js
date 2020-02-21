@@ -7,6 +7,6 @@ export default {
   component: MemberList
 }
 
-const memberList = generateMembers();
+const members = generateMembers();
 
-export const defaultRendering = () => <MemberList memberList={memberList} />
+export const defaultRendering = () => <MemberList members={members} />

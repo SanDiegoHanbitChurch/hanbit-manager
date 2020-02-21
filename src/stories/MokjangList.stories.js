@@ -1,8 +1,9 @@
 import React from 'react';
 import faker from 'faker';
 import uuid from 'uuid';
+import { BrowserRouter as Router } from 'react-router-dom'
 import { range } from 'lodash';
-import MokjangList from '../views/admin/mokjang/mokjangList';
+import MokjangList from '../views/shared/mokjangList';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -33,16 +34,21 @@ const editMokjang = action('editing mokjang')
 const deleteMokjang = action('deleting mokjang')
  
 export const defaultRendering = () => 
-<MokjangList 
-    chowonList={chowonList}
-    addMokjang={ addMokjang }
-    mokjangList={ mokjangList } 
-    editMokjang={editMokjang} 
-    deleteMokjang={deleteMokjang} />;
+  <Router>
+    <MokjangList 
+        chowonList={chowonList}
+        addMokjang={ addMokjang }
+        mokjangList={ mokjangList } 
+        editMokjang={editMokjang} 
+        deleteMokjang={deleteMokjang} />
+  </Router>
+;
 
 export const missingProp=() => 
-<MokjangList 
-    chowonList={chowonList}
-    addMokjang={ addMokjang }
-    editMokjang={editMokjang} 
-    deleteMokjang={deleteMokjang} />;
+  <Router>
+    <MokjangList 
+        chowonList={chowonList}
+        addMokjang={ addMokjang }
+        editMokjang={editMokjang} 
+        deleteMokjang={deleteMokjang} />
+  </Router>;

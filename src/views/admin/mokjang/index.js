@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import { Redirect } from 'react-router-dom';
 import { FirestoreCollection } from 'react-firestore';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MokjangList from './mokjangList';
+import MokjangList from '../../shared/mokjangList'
 
 const addMokjang = () => {};
 const deleteMokjang = () => {};
@@ -10,8 +10,8 @@ const deleteMokjang = () => {};
 const MokjangListContainer = () => {
 
   const [redirectTo, setRedirectTo] = useState(null);
-  const editMokjang = (id) => {
-    setRedirectTo(`/mokjang/${id}`);
+  const editMokjang = (name) => {
+    setRedirectTo(`/mokjang/${name}`);
   };
 
   if (redirectTo) {

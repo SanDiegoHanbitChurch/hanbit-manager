@@ -4,9 +4,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import FamilyDetail from './familyDetail';
 
 const FamilyDetailContainer = ({ match }) => {
+  const path = `family/${match.params.id}`;
+
   return (
     <FirestoreDocument
-      path={`family/${match.params.id}`} 
+      path={path} 
       render={
         ({ isLoading, data }) => {
           return isLoading ? (

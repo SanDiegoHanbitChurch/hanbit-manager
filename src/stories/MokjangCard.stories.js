@@ -1,7 +1,8 @@
 import React from 'react';
 import uuid from 'uuid';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
-import MokjangCard from '../views/admin/mokjang/mokjangCard';
+import MokjangCard from '../views/shared/mokjangCard';
 
 export default {
     title: 'Mokjang Card',
@@ -21,4 +22,7 @@ const mokjang = {
 
 const editMokjang = action('editing mokjang');
 
-export const defaultRendering = () => <MokjangCard {...mokjang} editMokjang={editMokjang} />
+export const defaultRendering = () => 
+<Router>
+    <MokjangCard {...mokjang} editMokjang={editMokjang} />
+</Router>

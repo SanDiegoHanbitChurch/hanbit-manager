@@ -1,5 +1,6 @@
 import React from 'react';
 import faker from 'faker';
+import { BrowserRouter as Router } from 'react-router-dom'
 import MokjangDetail from '../views/admin/mokjang/mokjangDetail/mokjangDetail';
 
 export default {
@@ -49,7 +50,9 @@ const memberFamilies = [
 ]
 
 export const defaultRendering = () => 
-<MokjangDetail 
-    name={name} 
-    leader={leader} 
-    memberFamilies={memberFamilies} />;
+  <Router>
+    <MokjangDetail 
+        name={name} 
+        leader={leader} 
+        memberFamilies={memberFamilies} />
+  </Router>;
