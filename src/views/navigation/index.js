@@ -122,7 +122,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            샌디에고 한빛교회 - 교인 관리
           </Typography>
         </Toolbar>
       </AppBar>
