@@ -2,13 +2,16 @@ import faker from 'faker';
 import uuid from 'uuid';
 import { range } from 'lodash';
 
-const generateMembers = (numberOfMembers) => {
-    return range(numberOfMembers).map(() => ({
-        koreanName: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        englishName: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        birthDate: faker.date.past(),
-        phoneNumber: faker.phone.phoneNumber(),
-    }))
+const generateMember = () => ({
+    koreanName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    englishName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    birthDate: faker.date.past(),
+    phoneNumber: faker.phone.phoneNumber(),
+    email: faker.internet.email()
+});
+
+const generateMembers = (numberOfMembers = 4) => {
+    return range(numberOfMembers).map(() => generateMember());
 }
 
 const generateFamily = (numberOfMembers = 4) => ({
@@ -23,6 +26,7 @@ const generateFamilyList = (numberOfFamilies) => {
 }
 
 export {
+    generateMember,
     generateFamily,
     generateFamilyList,
     generateMembers
