@@ -11,32 +11,37 @@ const name = faker.random.words(2);
 const leader = `${faker.name.firstName()} ${faker.name.lastName()}`;
 const memberFamilies = [
   {
-    familyMembers: [
+    members: [
       {
-        name: '염상용',
+        koreanName: '염상용',
         relation: 'husband',
         isHeadOfHousehold: true
       },
       {
-        name: '염진',
+        koreanName: '염진',
+        relation: 'wife',
+        isHeadOfHousehold: true
+      },
+      {
+        koreanName: '염민규',
         relation: 'wife',
         isHeadOfHousehold: true
       }
     ]
   },
   {
-    familyMembers: [
+    members: [
       {
-        name: '박성진',
+        koreanName: '박성진',
         relation: 'husband',
         isHeadOfHousehold: true
       }
     ]
   },
   {
-    familyMembers: [
+    members: [
       {
-        name: '구미애',
+        koreanName: '구미애',
         relation: 'wife'
       }
     ]
