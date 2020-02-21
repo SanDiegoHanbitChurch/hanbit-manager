@@ -6,7 +6,7 @@ import MokjangCard from '../views/shared/mokjangCard';
 
 export default {
     title: 'Mokjang Card',
-    component: MokjangCard,
+    component: MokjangCard
 };
 
 const mokjang = {

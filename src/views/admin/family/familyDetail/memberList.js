@@ -12,7 +12,7 @@ const renderMember = (member) => {
 }
 const MemberList = ({members}) => {
   return (
-    <GridList cellHeight={180} >
+    <GridList cellHeight={400} >
       {members.map(member => renderMember(member))}
     </GridList>
   )

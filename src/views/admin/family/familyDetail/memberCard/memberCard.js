@@ -4,9 +4,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 
-
-const MemberCard = ({member}) => {
+const MemberCard = ({member, editMember}) => {
   const { koreanName, englishName, email, birthDate, phoneNumber } = member;
 
   return (
@@ -14,6 +15,11 @@ const MemberCard = ({member}) => {
       <CardHeader
         avatar={
           <Avatar alt={koreanName} src='/abc' />
+        }
+        action={
+          <IconButton onClick={editMember} >
+            <EditIcon />
+          </IconButton>
         }
         title={koreanName}
         subheader={englishName}
