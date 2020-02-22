@@ -1,13 +1,40 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import AuthButton from './views/authButton';
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Toolbar, Grid, IconButton, Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
-const Header = ({ setUser }) => (
-    <AppBar position="static">
-        <Toolbar>
-            <AuthButton setUser={setUser}/>            
-        </Toolbar>
-    </AppBar>
-);
+const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  }));
+  
+
+const Header = ({ setUser }) => {
+    const classes = useStyles();
+
+    return (
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" className={classes.title}>
+                교인정보 관리
+              </Typography>
+              <AuthButton setUser={setUser} />
+            </Toolbar>
+          </AppBar>
+        </div>
+    )
+};
 
 export default Header;

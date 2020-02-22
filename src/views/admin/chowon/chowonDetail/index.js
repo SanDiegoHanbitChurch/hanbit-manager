@@ -1,14 +1,17 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DetailContainer from '../../../shared/detailContainer';
 import ChowonDetail from './chowonDetail';
 import FilteredListContainer from '../../../shared/filteredListContainer';
 import MokjangList from '../../../shared/mokjangList';
 
-const ChowonDetailContainer = ({ match }) => {
+const ChowonDetailContainer = () => {
   
-  const chowonFilter = ['name', '==', match.params.name];
-  const mokjangFilter = ['chowon', '==', match.params.name];
+  const { name } = useParams();
+
+  const chowonFilter = ['name', '==', name];
+  const mokjangFilter = ['chowon', '==', name];
 
   return (
     <>

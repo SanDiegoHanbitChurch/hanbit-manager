@@ -5,6 +5,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Avatar from '@material-ui/core/Avatar';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from '../firebase';
+import { Tooltip } from '@material-ui/core';
 
 class AuthButton extends React.Component {
 
@@ -49,14 +50,15 @@ class AuthButton extends React.Component {
           <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
       );
     }
+
+    const displayName = firebase.auth().currentUser.displayName;
+
     return (
-      <IconButton onClick={() => firebase.auth().signOut()}>
-        <Avatar alt={firebase.auth().currentUser.displayName} src='/foo/bar.jpg' />
-      </IconButton>
-      // <div>
-      //   <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-      //   <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-      // </div>
+      <Tooltip title={displayName}>
+        <IconButton onClick={() => firebase.auth().signOut()}>
+          <Avatar alt={displayName} src='/foo/bar.jpg' />
+        </IconButton>
+      </Tooltip>
     );
   }
 }

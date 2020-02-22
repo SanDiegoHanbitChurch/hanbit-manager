@@ -1,14 +1,15 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 import DetailContainer from '../../../shared/detailContainer';
 import MokjangDetail from './mokjangDetail';
 import FamilyList from '../../family/familyList';
 import FilteredListContainer from '../../../shared/filteredListContainer';
 
-const MokjangDetailContainer = ({ match }) => {
-  const mokjangName = match.params.name;
-  const mokjangFilter = ['name', '==', mokjangName];
-  const familyFilter = ['mokjang', '==', mokjangName];
+const MokjangDetailContainer = () => {
+  const { name } = useParams();
+  const mokjangFilter = ['name', '==', name];
+  const familyFilter = ['mokjang', '==', name];
 
   return (
     <>

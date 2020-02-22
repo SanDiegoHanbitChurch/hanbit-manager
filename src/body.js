@@ -5,7 +5,7 @@ import Admin from './views/admin';
 import ChowonList from './views/admin/chowon';
 import ChowonDetail from './views/admin/chowon/chowonDetail';
 import MokjangList from './views/admin/mokjang';
-import MokjangDetail from './views/admin/chowon/chowonDetail';
+import MokjangDetail from './views/admin/mokjang/mokjangDetail';
 import FamilyList from './views/admin/family';
 import FamilyDetail from './views/admin/family/familyDetail';
 import Unauthenticatd from './views/unAuthenticated';
