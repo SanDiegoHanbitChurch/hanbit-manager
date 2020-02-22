@@ -1,8 +1,13 @@
 import React from 'react';
-import Login from './views/login';
+import AuthButton from './views/authButton';
+import { AppBar, Toolbar } from '@material-ui/core';
 
 const Header = ({ setUser }) => (
-    <Login setUser={setUser} />
+    <AppBar position="static">
+        <Toolbar>
+            <AuthButton setUser={setUser}/>            
+        </Toolbar>
+    </AppBar>
 );
 
 export default Header;

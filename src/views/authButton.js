@@ -1,9 +1,12 @@
 // Import FirebaseAuth and firebase.
 import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Avatar from '@material-ui/core/Avatar';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from '../firebase';
 
-class Login extends React.Component {
+class AuthButton extends React.Component {
 
   // The component's Local state.
   state = {
@@ -47,12 +50,15 @@ class Login extends React.Component {
       );
     }
     return (
-      <div>
-        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-      </div>
+      <IconButton onClick={() => firebase.auth().signOut()}>
+        <Avatar alt={firebase.auth().currentUser.displayName} src='/foo/bar.jpg' />
+      </IconButton>
+      // <div>
+      //   <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+      //   <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+      // </div>
     );
   }
 }
 
-export default Login;
+export default AuthButton;
