@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'
 import ErrorBoundary from './errorBoundary'
 import Header from './header';
 import Body from './body';
@@ -9,9 +10,11 @@ const App = () => {
 
     return (
         <ErrorBoundary>
-            <Header setUser={setUser}/>
-            <Body user={user}/>
-            <Footer />
+            <Router>
+                <Header setUser={setUser}/>
+                <Body user={user}/>
+                <Footer />
+            </Router>
         </ErrorBoundary>
     )
 }

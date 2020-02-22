@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './views/home';
 import Admin from './views/admin';
 import ChowonList from './views/admin/chowon';
@@ -15,7 +15,6 @@ const Body = ({ user }) => {
     
     if (user) {
         return (
-            <Router>
                 <Switch>
                     <Route path='/' exact>
                         <Home user={user} />
@@ -38,14 +37,13 @@ const Body = ({ user }) => {
                     <Route path='/mokjang'>
                         <MokjangList user={user}/>
                     </Route>
-                    <Router path='/family'>
+                    <Route path='/family'>
                         <FamilyList user={user}/>
-                    </Router>
-                    <Router>
+                    </Route>
+                    <Route>
                         <NoMatch />
-                    </Router>
+                    </Route>
                 </Switch>
-            </Router>
         )
     }
 
