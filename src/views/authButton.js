@@ -51,12 +51,12 @@ class AuthButton extends React.Component {
       );
     }
 
-    const displayName = firebase.auth().currentUser.displayName;
+    const { displayName, photoURL } = firebase.auth().currentUser;
 
     return (
       <Tooltip title={displayName}>
         <IconButton onClick={() => firebase.auth().signOut()}>
-          <Avatar alt={displayName} src='/foo/bar.jpg' />
+          <Avatar alt={displayName} src={photoURL} />
         </IconButton>
       </Tooltip>
     );
