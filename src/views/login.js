@@ -1,42 +1,58 @@
+// Import FirebaseAuth and firebase.
 import React from 'react';
-import { Redirect, useLocation } from 'react-router-dom';
-import withFirebaseAuth from 'react-with-firebase-auth'
-import { Button, Typography, Box } from '@material-ui/core';
-import '@firebase/auth';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from '../firebase';
 
-const firebaseAppAuth = firebase.auth();
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
+class Login extends React.Component {
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
+  // The component's Local state.
+  state = {
+    isSignedIn: false // Local signed-in state.
+  };
 
-const Login = ({ user, signOut, signInWithGoogle, setUser }) => {
-    const query = useQuery();
-    const to = query.get('redirectTo') || "/";
-
-    if (user) {
-        setUser(user);
-        return (<Redirect to={to} />)
+  // Configure FirebaseUI.
+  uiConfig = {
+    // Popup signin flow rather than redirect flow.
+    signInFlow: 'popup',
+    // We will display Google and Facebook as auth providers.
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    ],
+    callbacks: {
+      // Avoid redirects after sign-in.
+      signInSuccessWithAuthResult: () => false
     }
+  };
 
+  // Listen to the Firebase Auth state and set the local state.
+  componentDidMount() {
+      const { setUser } = this.props;
+    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+        (user) => {
+            this.setState({isSignedIn: !!user, user});
+            setUser(user);
+        }
+    );
+  }
+  
+  // Make sure we un-register Firebase observers when the component unmounts.
+  componentWillUnmount() {
+    this.unregisterAuthObserver();
+  }
+
+  render() {
+    if (!this.state.isSignedIn) {
+      return (
+          <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+      );
+    }
     return (
-        <>
-            <Box m={5}>
-                <Button variant="contained" color="primary" onClick={signInWithGoogle}>
-                    Sign in with Google
-                </Button>
-            </Box>
-            <Typography color="primary">Please sign-in with your sdhanbit.org account.</Typography>
-        </>
-    )
+      <div>
+        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+      </div>
+    );
+  }
 }
 
-export default withFirebaseAuth({
-    providers,
-    firebaseAppAuth,
-  })(Login);
-
+export default Login;

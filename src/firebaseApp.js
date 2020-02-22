@@ -2,16 +2,13 @@ import React from 'react';
 import { FirestoreProvider } from 'react-firestore';
 import MuiApp from './muiApp';
 import firebase from './firebase';
-import './App.css';
 
-function App() {
+const FirebaseApp = () => {
   return (
-    <div className="App">
-      <FirestoreProvider firebase={firebase}>
+    <FirestoreProvider firebase={firebase}>
         <MuiApp />
-      </FirestoreProvider>
-    </div>
+    </FirestoreProvider>
   );
 }
 
-export default App;
+export default FirebaseApp;
