@@ -7,13 +7,21 @@ export default {
   component: MokjangSelect
 }
 
-const mokjangList = ['은혜', '샘터', '르우엘', '샘물'];
+const mokjangList = [
+  {
+    name:'하늘'
+  },
+  {
+    name:'샘터'
+  }
+];
+
 const handleMokjangChange = action('Mokjang Selected');
-const mokjang = '은혜';
+const mokjang = '샘터';
 
 export const defaultRendering = () => 
   <MokjangSelect 
-    handleMokjangChange={handleMokjangChange} 
+    onChange={handleMokjangChange} 
     mokjangList={mokjangList} 
-    mokjang={mokjang}
+    value={mokjang}
   />

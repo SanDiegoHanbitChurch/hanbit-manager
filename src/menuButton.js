@@ -44,6 +44,7 @@ const MenuButton = () => {
                 <MenuItem component={Link} to='/chowon' onClick={handleClose}>초원</MenuItem>
                 <MenuItem component={Link} to='/mokjang' onClick={handleClose}>목장</MenuItem>
                 <MenuItem component={Link} to='/family' onClick={handleClose}>가족</MenuItem>
+                <MenuItem component={Link} to='/user' onClick={handleClose}>사용자</MenuItem>
             </Menu>
         </>
     )

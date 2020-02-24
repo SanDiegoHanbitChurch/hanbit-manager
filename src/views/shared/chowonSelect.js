@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const renderMokjagMenuItem = ({name}) => {
+const renderChowonMenuItem = ({name}) => {
   return (
     <MenuItem value={name}>{name}</MenuItem>
   )
 }
 
-const MokjangSelect = ({mokjangList, onChange, value}) => {
-  const [mokjangName, setMokjangName] = useState(value);
+const MokjangSelect = ({chowonList, onChange, value}) => {
+  const [chowonName, setchowonName] = useState(value);
   const handleOnChange = (event) => {
     onChange(event);
-    setMokjangName(event.target.value);
+    setchowonName(event.target.value);
   }
 
   return (
     <Select
-      value={mokjangName}
+      value={chowonName}
       onChange={handleOnChange}
     >
-      {mokjangList.map(mokjang => renderMokjagMenuItem(mokjang))}
+      {chowonList.map(mokjang => renderChowonMenuItem(mokjang))}
   </Select>
   )
 }

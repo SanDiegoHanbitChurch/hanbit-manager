@@ -8,6 +8,7 @@ import MokjangList from './views/admin/mokjang';
 import MokjangDetail from './views/admin/mokjang/mokjangDetail';
 import FamilyList from './views/admin/family';
 import FamilyDetail from './views/admin/family/familyDetail';
+import UserList from './views/admin/user/userList';
 import Unauthenticatd from './views/unAuthenticated';
 import NoMatch from './views/noMatch';
 
@@ -39,6 +40,9 @@ const Body = ({ user }) => {
                     </Route>
                     <Route path='/family'>
                         <FamilyList user={user}/>
+                    </Route>
+                    <Route path='/user'>
+                        <UserList user={user}/>
                     </Route>
                     <Route>
                         <NoMatch />
