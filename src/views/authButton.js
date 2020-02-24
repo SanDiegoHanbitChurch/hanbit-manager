@@ -1,65 +1,46 @@
-// Import FirebaseAuth and firebase.
-import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Avatar from '@material-ui/core/Avatar';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import React, { useState } from 'react';
 import firebase from '../firebase';
-import { Tooltip } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
-class AuthButton extends React.Component {
+const provider = new firebase.auth.GoogleAuthProvider();
 
-  // The component's Local state.
-  state = {
-    isSignedIn: false // Local signed-in state.
-  };
+const AuthButton = ({ setUser }) => {
 
-  // Configure FirebaseUI.
-  uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => false
-    }
-  };
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  // Listen to the Firebase Auth state and set the local state.
-  componentDidMount() {
-      const { setUser } = this.props;
-    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-        (user) => {
-            this.setState({isSignedIn: !!user, user});
-            setUser(user);
-        }
-    );
-  }
-  
-  // Make sure we un-register Firebase observers when the component unmounts.
-  componentWillUnmount() {
-    this.unregisterAuthObserver();
+  const signOut = () => {
+    setIsSignedIn(false);
+    setUser(null);
+    firebase.auth().signOut();
   }
 
-  render() {
-    if (!this.state.isSignedIn) {
-      return (
-          <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-      );
-    }
+  const signIn = () => {
+    firebase.auth().signInWithPopup(provider).then(result => {
+      const user = result.user;
+      // only allow sdhanbit.org user
+      if (user.email.endsWith('@sdhanbit.org')) {
+        setIsSignedIn(true);
+        setUser(user);
+      } else {
+        firebase.auth().signOut();
+      }
 
-    const { displayName, photoURL } = firebase.auth().currentUser;
-
-    return (
-      <Tooltip title={displayName}>
-        <IconButton onClick={() => firebase.auth().signOut()}>
-          <Avatar alt={displayName} src={photoURL} />
-        </IconButton>
-      </Tooltip>
-    );
+    }).catch(error =>  {
+      // TODO: Log failed attempt to login
+      // // Handle Errors here.
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
+      // // The email of the user's account used.
+      // var email = error.email;
+      // // The firebase.auth.AuthCredential type that was used.
+      // var credential = error.credential;
+      // // ...
+    });
   }
+
+  return isSignedIn
+    ? <Button onClick={signOut}>Logout</Button>
+    : <Button onClick={signIn}>Login</Button>
 }
 
 export default AuthButton;
