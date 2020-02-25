@@ -12,15 +12,26 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import Collapse from '@material-ui/core/Collapse';
 import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    card: {
+      borderRadius: 0,
+      backgroundColor: '#eceff1',
+      color: '#212121',
+      boxShadow: "3"
+     },
+  }));
 
 const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjang }) => {
     
     const [expanded, setExpanded] = useState(false);
     const toggleExpand = () => setExpanded(!expanded);
+    const classes = useStyles();
     
     return (
         <Box m={1}>
-            <Card>
+            <Card classes={{ root: classes.card }}>
                 <CardHeader
                     avatar={
                         <Avatar alt={name} src='/static/avatar.jpg' />

@@ -6,12 +6,23 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  card: {
+    borderRadius: 0,
+    backgroundColor: '#eceff1',
+    color: '#212121',
+    boxShadow: "3"
+   },
+}));
 
 const MemberCard = ({member, editMember}) => {
   const { koreanName, englishName, email, birthDate, phoneNumber } = member;
+  const classes = useStyles();
 
   return (
-    <Card>
+    <Card classes={{ root: classes.card }}>
       <CardHeader
         avatar={
           <Avatar alt={koreanName} src='/abc' />

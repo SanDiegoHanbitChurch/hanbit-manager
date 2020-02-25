@@ -4,13 +4,25 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
+const useStyles = makeStyles(theme => ({
+  card: {
+    borderRadius: 0,
+    backgroundColor: '#eceff1',
+    color: '#212121',
+    boxShadow: "3"
+   },
+}));
+
 const ChowonCard = ({ id, name, leader, editChowon }) => {
+
+  const classes = useStyles();
     
     return (
-      <Box m={1}>
-        <Card>
+      <Box>
+        <Card classes={{ root: classes.card }}>
             <CardHeader
                 avatar={
                     <Avatar alt={name} src='/static/avatar.jpg' />
