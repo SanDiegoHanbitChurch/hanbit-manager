@@ -26,9 +26,11 @@ const Header = ({ setUser, user, setAuthError }) => {
               <Typography variant="h6" className={classes.title}>
                 교인정보 관리
               </Typography>
-              <IconButton component={Link} to='/'>
-                <HomeIcon />
-              </IconButton>
+              { user &&
+                <IconButton component={Link} to='/'>
+                  <HomeIcon />
+                </IconButton>
+              }
               <AuthButton setUser={setUser} setAuthError={setAuthError} />
             </Toolbar>
           </AppBar>
