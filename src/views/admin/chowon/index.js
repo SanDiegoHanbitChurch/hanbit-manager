@@ -7,7 +7,7 @@ import ChowonList from './chowonList';
 const addChowon = () => {};
 const deleteChowon = () => {};
 
-const ChowonListContainer = () => {
+const ChowonListContainer = ({ user }) => {
 
   const [redirectTo, setRedirectTo] = useState(null);
   const editChowon = (name) => {

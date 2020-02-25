@@ -9,7 +9,7 @@ const deleteMokjang = () => {};
 
 const MokjangListContainer = ({user}) => {
 
-let filter;
+  let filter;
   if (user.role === '담임목사' || user.role === '관리자') {
     filter = [];
   } else if (user.role === '초원장') {
@@ -17,7 +17,6 @@ let filter;
   } else if (user.role === '목자') {
     filter = ['name', '==', user.mokjang];
   } 
-  console.log('Filter contents', filter);
 
   const [redirectTo, setRedirectTo] = useState(null);
   const editMokjang = (name) => {

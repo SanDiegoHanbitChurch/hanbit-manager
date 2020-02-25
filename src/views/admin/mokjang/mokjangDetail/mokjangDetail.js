@@ -1,9 +1,8 @@
 import React from 'react';
-import FamilyList from '../../family/familyList';
 import Typography from '@material-ui/core/Typography';
 
 
-const MokjangDetail = ({ name, leader, memberFamilies = [] }) => {
+const MokjangDetail = ({ name, leader }) => {
   return (
     <>
       <Typography >
@@ -12,7 +11,6 @@ const MokjangDetail = ({ name, leader, memberFamilies = [] }) => {
       <Typography >
         Leader: {leader}
       </Typography>
-      <FamilyList familyList={memberFamilies} />
     </>
   )
 }

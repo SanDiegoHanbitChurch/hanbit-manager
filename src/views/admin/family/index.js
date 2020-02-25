@@ -12,7 +12,6 @@ const FamilyListContainer = () => {
   };
 
   if (redirectTo) {
-    console.log('redirecting', redirectTo);
     return (
       <Redirect to={redirectTo} />
     )

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemText, ListItemAvatar,
-    Avatar, ListItemIcon  } from '@material-ui/core';
+    Avatar, ListItemIcon } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 
 const getFamilyName = (members) => {
     return members.map(member => member.koreanName).join('/');
 }
 
-const renderFamily = ({ id, members }) => {
+const renderFamily = ({ id, members = [] }) => {
 
     const familyName = getFamilyName(members);
 
@@ -25,7 +25,7 @@ const renderFamily = ({ id, members }) => {
     )
 }
 
-const FamilyList = ({familyList}) => {
+const FamilyList = ({familyList = []}) => {
 
     return (
         <List>
