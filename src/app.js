@@ -9,7 +9,7 @@ const App = () => {
 
     return (
         <Router>
-            <Header setUser={setUser}/>
+            <Header setUser={setUser} user={user} />
             <Body user={user}/>
             <Footer />
         </Router>

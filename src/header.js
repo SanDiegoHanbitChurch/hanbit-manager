@@ -15,14 +15,14 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const Header = ({ setUser }) => {
+const Header = ({ setUser, user }) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar>
-              <MenuButton />
+              <MenuButton user={user}/>
               <Typography variant="h6" className={classes.title}>
                 교인정보 관리
               </Typography>
