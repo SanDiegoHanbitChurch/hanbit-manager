@@ -1,6 +1,24 @@
 import firebase from '../firebase';
 
 const db = firebase.firestore();
+const usersRef = db.collection("user");
+
+const getUser = (email) => {
+
+    const query = usersRef.where("email", "==", email);
+
+    return new Promise((resolve, reject) => {
+        query.get()
+            .then(querySnapshot => {
+                if (querySnapshot.length === 0) {
+                    return reject('user not found');
+                }
+
+                resolve(querySnapshot[0]);
+            })
+            .catch(reject);
+    })
+}
 
 const deleteUser = (user) => {
     console.log('deleting user', user);
@@ -43,5 +61,6 @@ const updateUser = (user) => {
 
 export {
     deleteUser,
-    updateUser
+    updateUser,
+    getUser
 }
