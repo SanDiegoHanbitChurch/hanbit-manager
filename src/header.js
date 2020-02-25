@@ -20,7 +20,7 @@ const Header = ({ setUser, user, setAuthError }) => {
 
     return (
         <div className={classes.root}>
-          <AppBar position="static">
+          <AppBar position="static" style={{ background: 'linear-gradient(to right, #64b5f6, #e3f2fd)' }}>
             <Toolbar>
               <MenuButton user={user}/>
               <Typography variant="h6" className={classes.title}>
