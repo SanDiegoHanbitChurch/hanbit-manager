@@ -1,31 +1,7 @@
-import firebase from '../firebase';
+import userDAL from './dataAccess/user'
 
-const db = firebase.firestore();
-const usersRef = db.collection("user");
-
-const getUser = (email) => {
-
-    const query = usersRef.where("email", "==", email);
-
-    return new Promise((resolve, reject) => {
-        query.get()
-            .then(querySnapshot => {
-                if (querySnapshot.empty) {
-                    return reject('user not found');
-                }
-
-                resolve(querySnapshot.docs[0].data());
-            })
-            .catch(reject);
-    })
-}
-
-const deleteUser = (user) => {
-    console.log('deleting user', user);
-    db.collection("user").doc(user.id).delete()
-        .then(() => console.log('delete user'));
-  };
-
+const getUser = (email) => userDAL.search('email', '==', 'email');
+const deleteUser = (user) => userDAL.remove(user);
 const updateUser = (user) => {
 
     const {id, name, email, role, chowon, mokjang } = user;
@@ -55,8 +31,7 @@ const updateUser = (user) => {
         delete userToSave.chowon;
     }
 
-    db.collection("user").doc(user.id).update(userToSave)
-        .then(doc => console.log('updated', doc));
+    return userDAL.update(userToSave);
 };
 
 export {

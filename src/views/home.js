@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 const Home = ({ user }) => (
     <Typography>
-        Welcome Home, {user.displayName}!
+        Welcome Home, {user.name}!
     </Typography>
 );
 
