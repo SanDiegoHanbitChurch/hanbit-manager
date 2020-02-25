@@ -56,8 +56,8 @@ const AuthButton = ({ setUser, setAuthError }) => {
   }
 
   return isSignedIn
-    ? <Button onClick={signOut}>Logout</Button>
-    : <Button onClick={signIn}>Login</Button>
+    ? <Button variant='outlined' onClick={signOut}>Logout</Button>
+    : <Button variant='outlined' onClick={signIn}>Login</Button>
 }
 
 export default AuthButton;
