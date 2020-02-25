@@ -15,31 +15,31 @@ import NoMatch from './views/noMatch';
 const buildRoutesForSeniorPastorOrChowonLeader = (user) => {
     return (
         <Switch>
-                    <Route path='/' exact>
-                        <Home user={user} />
-                    </Route>
-                    <Route path='/chowon/:name'>
-                        <ChowonDetail user={user}/>
-                    </Route>
-                    <Route path='/mokjang/:name'>
-                        <MokjangDetail user={user}/>
-                    </Route>
-                    <Route path='/family/:id'>
-                        <FamilyDetail user={user}/>
-                    </Route>
-                    <Route path='/chowon'>
-                        <ChowonList user={user}/>
-                    </Route>
-                    <Route path='/mokjang'>
-                        <MokjangList user={user}/>
-                    </Route>
-                    <Route path='/family'>
-                        <FamilyList user={user}/>
-                    </Route>
-                    <Route>
-                        <NoMatch />
-                    </Route>
-                </Switch>
+            <Route path='/' exact>
+                <Home user={user} />
+            </Route>
+            <Route path='/chowon/:name'>
+                <ChowonDetail user={user}/>
+            </Route>
+            <Route path='/mokjang/:name'>
+                <MokjangDetail user={user}/>
+            </Route>
+            <Route path='/family/:id'>
+                <FamilyDetail user={user}/>
+            </Route>
+            <Route path='/chowon'>
+                <ChowonList user={user}/>
+            </Route>
+            <Route path='/mokjang'>
+                <MokjangList user={user}/>
+            </Route>
+            <Route path='/family'>
+                <FamilyList user={user}/>
+            </Route>
+            <Route>
+                <NoMatch />
+            </Route>
+        </Switch>
     )
 }
 
@@ -104,7 +104,7 @@ const buildRoutesForAdmin = (user) => {
         </Switch>
     )
 }
-const Body = ({ user }) => {
+const Body = ({ user, authError }) => {
     
     if (user) {
         if (user.role === '담임목사' || user.role === '초원장') {
@@ -115,7 +115,7 @@ const Body = ({ user }) => {
             return buildRoutesForAdmin(user);
         }
     }
-    return <Unauthenticatd />
+    return <Unauthenticatd authError={authError} />
 };
 
 export default Body;

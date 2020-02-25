@@ -1,7 +1,11 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
-const Unauthenticated = () => (
-    <h1>this is Unauthenticated</h1>
-)
+const Unauthenticated = ({ authError }) => (
+    <>
+        <h1>You are currently unauthenticated.</h1>
+        <Typography>{authError}</Typography>
+    </>
+);
 
 export default Unauthenticated;

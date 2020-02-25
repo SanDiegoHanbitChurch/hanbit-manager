@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-const AuthButton = ({ setUser }) => {
+const AuthButton = ({ setUser, setAuthError }) => {
 
   const [isSignedIn, setIsSignedIn] = useState(false);
 
@@ -28,10 +28,12 @@ const AuthButton = ({ setUser }) => {
           });
         
       } else {
+        setAuthError('Only users with sdhanbit.org account is allowed.')
         firebase.auth().signOut();
       }
 
     }).catch(error =>  {
+      setAuthError(error.message);
       // TODO: Log failed attempt to login
       // // Handle Errors here.
       // var errorCode = error.code;

@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const Header = ({ setUser, user }) => {
+const Header = ({ setUser, user, setAuthError }) => {
     const classes = useStyles();
 
     return (
@@ -29,7 +29,7 @@ const Header = ({ setUser, user }) => {
               <IconButton component={Link} to='/'>
                 <HomeIcon />
               </IconButton>
-              <AuthButton setUser={setUser} />
+              <AuthButton setUser={setUser} setAuthError={setAuthError} />
             </Toolbar>
           </AppBar>
         </div>

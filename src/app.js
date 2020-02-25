@@ -6,11 +6,12 @@ import Footer from './footer';
 
 const App = () => {
     const [user, setUser] = useState(null);
+    const [authError, setAuthError] = useState('');
 
     return (
         <Router>
-            <Header setUser={setUser} user={user} />
-            <Body user={user}/>
+            <Header setUser={setUser} user={user} setAuthError={setAuthError}/>
+            <Body user={user} authError={authError}/>
             <Footer />
         </Router>
     )
