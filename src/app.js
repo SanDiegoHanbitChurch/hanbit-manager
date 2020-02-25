@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import Header from './header';
 import Body from './body';
 import Footer from './footer';
+import { Box } from '@material-ui/core';
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -15,8 +16,10 @@ const App = () => {
             <Header setUser={setUser} user={user} setAuthError={setAuthError}/>
             <CssBaseline />
                 <Container maxWidth="md">
-                    <Body user={user} authError={authError}/>
-                    <Footer />
+                    <Box m={1}>
+                        <Body user={user} authError={authError}/>
+                        <Footer />
+                    </Box>
                 </Container>
         </Router>
     )
