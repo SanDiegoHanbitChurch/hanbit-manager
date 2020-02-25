@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import firebase from '../firebase';
+import { getUser } from '../actions/user';
 import Button from '@material-ui/core/Button';
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -16,11 +17,16 @@ const AuthButton = ({ setUser }) => {
 
   const signIn = () => {
     firebase.auth().signInWithPopup(provider).then(result => {
-      const user = result.user;
+      const googleUser = result.user;
       // only allow sdhanbit.org user
-      if (user.email.endsWith('@sdhanbit.org')) {
-        setIsSignedIn(true);
-        setUser(user);
+      if (googleUser.email.endsWith('@sdhanbit.org')) {
+
+        getUser(googleUser.email)
+          .then(user => {
+            setIsSignedIn(true);
+            setUser(user);
+          });
+        
       } else {
         firebase.auth().signOut();
       }

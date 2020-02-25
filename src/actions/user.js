@@ -10,11 +10,11 @@ const getUser = (email) => {
     return new Promise((resolve, reject) => {
         query.get()
             .then(querySnapshot => {
-                if (querySnapshot.length === 0) {
+                if (querySnapshot.empty) {
                     return reject('user not found');
                 }
 
-                resolve(querySnapshot[0]);
+                resolve(querySnapshot.docs[0].data());
             })
             .catch(reject);
     })
