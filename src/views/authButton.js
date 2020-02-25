@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import firebase from '../firebase';
 import { getUser } from '../actions/user';
-import Button from '@material-ui/core/Button';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
 const AuthButton = ({ setUser, setAuthError }) => {
 
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [redirectTo, setRedirectTo] = useState(null);
 
   const signOut = () => {
     setIsSignedIn(false);
@@ -32,6 +34,7 @@ const AuthButton = ({ setUser, setAuthError }) => {
         firebase.auth().signOut();
       }
 
+      setRedirectTo('/');
     }).catch(error =>  {
       setAuthError(error.message);
       // TODO: Log failed attempt to login
@@ -44,6 +47,12 @@ const AuthButton = ({ setUser, setAuthError }) => {
       // var credential = error.credential;
       // // ...
     });
+  }
+
+  if (redirectTo) {
+    return (
+      <Redirect to={redirectTo} />
+    )
   }
 
   return isSignedIn

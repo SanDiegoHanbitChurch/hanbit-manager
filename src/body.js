@@ -104,7 +104,7 @@ const buildRoutesForAdmin = (user) => {
         </Switch>
     )
 }
-const Body = ({ user, authError }) => {
+const Body = ({ user, setUser }) => {
     
     if (user) {
         if (user.role === '담임목사' || user.role === '초원장') {
@@ -115,7 +115,8 @@ const Body = ({ user, authError }) => {
             return buildRoutesForAdmin(user);
         }
     }
-    return <Unauthenticatd authError={authError} />
+
+    return <Unauthenticatd setUser={setUser} />
 };
 
 export default Body;

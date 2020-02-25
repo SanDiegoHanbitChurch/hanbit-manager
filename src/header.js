@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import AuthButton from './views/authButton';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuButton from './menuButton';
@@ -15,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const Header = ({ setUser, user, setAuthError }) => {
+const Header = ({ user }) => {
     const classes = useStyles();
 
     return (
@@ -31,7 +30,6 @@ const Header = ({ setUser, user, setAuthError }) => {
                   <HomeIcon />
                 </IconButton>
               }
-              <AuthButton setUser={setUser} setAuthError={setAuthError} />
             </Toolbar>
           </AppBar>
         </div>

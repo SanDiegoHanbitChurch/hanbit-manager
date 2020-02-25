@@ -28,15 +28,14 @@ const App = () => {
     const classes = useStyles();
 
     const [user, setUser] = useState(null);
-    const [authError, setAuthError] = useState('');
 
     return (
         <Router>
-            <Header setUser={setUser} user={user} setAuthError={setAuthError}/>
+            <Header setUser={setUser} user={user}/>
             <CssBaseline />
             <Container className={classes.main} maxWidth="md">
                 <Box m={1}>
-                    <Body user={user} authError={authError}/>
+                    <Body user={user} setUser={setUser}/>
                 </Box>
             </Container>
             <Container className={classes.footer} maxWidth="sm">
