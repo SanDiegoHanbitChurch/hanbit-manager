@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 
 const Admin = ({ user }) => (
     <Typography>
-        Welcome to Admin, {user.displayName}!
+        Welcome to Admin, {user.name}!
     </Typography>
 )
 

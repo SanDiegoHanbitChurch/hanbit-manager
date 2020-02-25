@@ -1,6 +1,19 @@
 import userDAL from './dataAccess/user'
 
-const getUser = (email) => userDAL.search('email', '==', 'email');
+const getUser = (email) => {
+    return new Promise((resolve, reject) => {
+        userDAL.search('email', '==', email)
+            .then(users => {
+                if (users.length === 0) {
+                    return reject('user not found')
+                }
+
+                resolve(users[0]);
+            })
+            .catch(reject);
+    })
+    
+};
 const deleteUser = (user) => userDAL.remove(user);
 const updateUser = (user) => {
 
