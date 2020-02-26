@@ -1,5 +1,15 @@
 import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { FirestoreCollection } from 'react-firestore';
+import VisitorList from './visitorList';
 
-const VisitorList = () => <h1>This is a visitor list</h1>;
+const VisitorListContainer = () => (
+    <FirestoreCollection
+        path='visitor'
+        render={({isLoading, data}) => {
+            return isLoading ? <CircularProgress /> : <VisitorList visitorList={data} />;
+        }}
+    />
+)
 
-export default VisitorList;
+export default VisitorListContainer;

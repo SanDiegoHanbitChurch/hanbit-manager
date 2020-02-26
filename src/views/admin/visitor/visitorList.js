@@ -1,8 +1,27 @@
 import React from 'react';
+// import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import { Table, TableHead, TableBody, TableRow, TableCell, IconButton } from '@material-ui/core'
+import { Table, TableHead, TableBody, TableRow, TableCell, IconButton, TableContainer, Paper, Fab } from '@material-ui/core'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import AddIcon from '@material-ui/icons/Add';
 import MembersAvatarGroup from '../../shared/membersAvatarGroup';
+
+const fabStyle = {
+    margin: 0,
+    top: 'auto',
+    right: 50,
+    bottom: 50,
+    left: 'auto',
+    position: 'fixed',
+};
+
+// const useStyles = makeStyles(theme => ({
+//     fab: {
+//       position: 'absolute',
+//       bottom: theme.spacing(2),
+//       right: theme.spacing(2),
+//     },
+// }));
 
 const renderHeader = () => {
     return (
@@ -42,7 +61,7 @@ const renderRow = ({ id, members, visitDate, address }) => {
                 {address}
             </TableCell>
             <TableCell>
-                {visitDate.toLocaleDateString()}
+                {typeof visitDate === 'string' ? visitDate : visitDate.toLocaleDateString()}
             </TableCell>
             <TableCell>
                 <IconButton component={Link} to={`/visitor/{id}`}>
@@ -61,11 +80,20 @@ const renderBody = (visitorList) => (
 
 const VisitorList = ({ visitorList }) => {
 
+    // const classes = useStyles();
+
     return (
-        <Table>
-            { renderHeader() }
-            { renderBody(visitorList)} 
-        </Table>
+        <>
+            <TableContainer component={Paper}>
+                <Table size="small">
+                    { renderHeader() }
+                    { renderBody(visitorList)} 
+                </Table>
+            </TableContainer>
+            <Fab style={fabStyle} color='primary'>
+                <AddIcon />
+            </Fab>
+        </>
     )
 
 };
