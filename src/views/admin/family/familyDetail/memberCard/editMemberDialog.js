@@ -77,7 +77,6 @@ const EditMemberDialog = ({member, open, handleSave, handleCancel}) => {
                     placeholder="생일"
                     value={birthDate}
                     onChange={handleDateChange}
-                    fullWidth
                 />
             </DialogContent>
             <DialogActions>
