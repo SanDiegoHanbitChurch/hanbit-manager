@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
+import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -109,7 +110,9 @@ export default function App() {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Body user={user} login={login} authError={authError}/>
-                <Footer />
+                <Container maxWidth="sm">
+                    <Footer />
+                </Container>
             </main>
         </MuiPickersUtilsProvider>
         </div>
