@@ -1,0 +1,18 @@
+[debug] [2020-02-26T17:38:33.737Z] ----------------------------------------------------------------------
+[debug] [2020-02-26T17:38:33.739Z] Command:       /home/sangyum/.nvm/versions/node/v10.18.0/bin/node /home/sangyum/.nvm/versions/node/v10.18.0/bin/firebase use hanbit-manager-dev
+[debug] [2020-02-26T17:38:33.739Z] CLI Version:   7.13.1
+[debug] [2020-02-26T17:38:33.739Z] Platform:      linux
+[debug] [2020-02-26T17:38:33.739Z] Node Version:  v10.18.0
+[debug] [2020-02-26T17:38:33.739Z] Time:          Wed Feb 26 2020 09:38:33 GMT-0800 (Pacific Standard Time)
+[debug] [2020-02-26T17:38:33.739Z] ----------------------------------------------------------------------
+[debug] [2020-02-26T17:38:33.739Z] 
+[debug] [2020-02-26T17:38:33.746Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-26T17:38:33.746Z] > authorizing via signed-in user
+[debug] [2020-02-26T17:38:33.749Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-02-26T17:38:33.749Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-02-26T17:38:34.054Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-26T17:38:34.117Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/hanbit-manager-dev  
+ 
+[debug] [2020-02-26T17:38:34.422Z] <<< HTTP RESPONSE 200
+[info] Now using project hanbit-manager-dev

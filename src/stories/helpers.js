@@ -7,7 +7,8 @@ const generateMember = () => ({
     englishName: `${faker.name.firstName()} ${faker.name.lastName()}`,
     birthDate: faker.date.past(),
     phoneNumber: faker.phone.phoneNumber(),
-    email: faker.internet.email()
+    email: faker.internet.email(),
+    avatar: faker.image.avatar()
 });
 
 const generateMembers = (numberOfMembers = 4) => {
@@ -25,9 +26,24 @@ const generateFamilyList = (numberOfFamilies) => {
     return range(numberOfFamilies).map(() => generateFamily())
 }
 
+const generateVisitor = () => {
+    const family = generateFamily();
+
+    return {
+        ...family,
+        visitDate: faker.date.past()
+    }
+}
+
+const generateVisitorList = (numberOfVisitors) => {
+    return range(numberOfVisitors).map(() => generateVisitor())
+}
+
 export {
     generateMember,
     generateFamily,
     generateFamilyList,
-    generateMembers
+    generateMembers,
+    generateVisitorList,
+    generateVisitor
 }
