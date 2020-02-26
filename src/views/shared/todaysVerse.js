@@ -14,7 +14,7 @@ const TodaysVerse = () => (
     <Box display='flex' flexDirection='column' alignItems='center' flexWrap='wrap'>
         <FormatQuoteIcon />
         <Box m={1}>
-            <Typography variant='h6' style={style}>
+            <Typography variant='h6' style={style} align='center'>
                 {verse}
             </Typography>
         </Box>
