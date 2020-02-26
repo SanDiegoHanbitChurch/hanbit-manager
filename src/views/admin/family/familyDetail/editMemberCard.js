@@ -7,12 +7,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import Box from '@material-ui/core/Box';
+import { KeyboardDatePicker } from '@material-ui/pickers';
 
 const EditMemberCard = ({member, saveMemberInfo, cancel}) => {
   const [koreanName, setKoreanName] = useState(member.koreanName);
@@ -36,7 +32,6 @@ const EditMemberCard = ({member, saveMemberInfo, cancel}) => {
   }
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
     <Card>
       <CardHeader
         avatar={
@@ -56,62 +51,68 @@ const EditMemberCard = ({member, saveMemberInfo, cancel}) => {
         subheader={englishName}
       />
       <CardContent>
-        <TextField
-          onChange={(event) => setKoreanName(event.target.value)}
-          value={koreanName}
-          autoFocus
-          margin="dense"
-          id="koreanName"
-          label="Korean Name"
-          type="text"
-          fullWidth
-        />
-        <TextField
-          onChange={(event) => setEnglishName(event.target.value)}
-          value={englishName}
-          autoFocus
-          margin="dense"
-          id="englishName"
-          label="English Name"
-          type="text"
-          fullWidth
-        />
-        <TextField
-          onChange={(event) => setPhoneNumber(event.target.value)}
-          value={phoneNumber}
-          autoFocus
-          margin="dense"
-          id="phoneNumber"
-          label="Phone Number"
-          type="text"
-          fullWidth
-        />
-        <TextField
-          onChange={(event) => setEmail(event.target.value)}
-          value={email}
-          autoFocus
-          margin="dense"
-          id="email"
-          label="Email Address"
-          type="text"
-          fullWidth
-        />
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          value={birthDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
+        <Box display='flex'>
+          <Box m={1}>
+            <TextField
+              onChange={(event) => setKoreanName(event.target.value)}
+              value={koreanName}
+              autoFocus
+              margin="dense"
+              id="koreanName"
+              placeholder="한국이름"
+              type="text"
+            />
+          </Box>
+          <Box m={1}>
+            <TextField
+              onChange={(event) => setEnglishName(event.target.value)}
+              value={englishName}
+              autoFocus
+              margin="dense"
+              id="englishName"
+              placeholder="영어이름"
+              type="text"
+            />
+          </Box>
+        </Box>
+        <Box display='flex'>
+          <Box m={1}>
+            <TextField
+              onChange={(event) => setPhoneNumber(event.target.value)}
+              value={phoneNumber}
+              autoFocus
+              margin="dense"
+              id="phoneNumber"
+              placeholder="전화번호"
+              type="text"
+            />
+          </Box>
+          <Box m={1}>
+            <TextField
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              autoFocus
+              margin="dense"
+              id="email"
+              placeholder="이메일"
+              type="text"
+            />
+          </Box>
+        </Box>
+        <Box m={1}>
+          <KeyboardDatePicker
+            disableToolbar
+            variant="inline"
+            format="MM/dd/yyyy"
+            margin="dense"
+            placeholder="생일"
+            value={birthDate}
+            onChange={handleDateChange}
+            fullWidth
+          />
+        </Box>
       </CardContent>
     </Card>
-    </MuiPickersUtilsProvider>
   )
 }
 
