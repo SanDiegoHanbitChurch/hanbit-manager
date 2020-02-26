@@ -3,17 +3,22 @@ import MemberCard from './memberCard';
 import { GridListTile } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 
-const renderMember = (member) => {
+const renderMember = (index, member, saveMemberInfo) => {
   return (
     <GridListTile cols={1} >
-      <MemberCard member={member} />
+      <MemberCard index={index} member={member} saveMemberInfo={saveMemberInfo}/>
     </GridListTile>
   )
 }
-const MemberList = ({members}) => {
+const MemberList = ({members, saveFamilyMembers}) => {
+  const saveMemberInfo = (index, memberInfo) => {
+    members[index] = memberInfo;
+    saveFamilyMembers(members);
+  } 
+
   return (
-    <GridList cellHeight={400} >
-      {members.map(member => renderMember(member))}
+    <GridList>
+      {members.map((member, index) => renderMember(index, member, saveMemberInfo))}
     </GridList>
   )
 }

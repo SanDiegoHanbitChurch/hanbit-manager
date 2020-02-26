@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import MemberCard from './memberCard';
-import EditMemberCard from '../editMemberCard';
+import EditMemberDialog from './editMemberDialog';
 
-const MemberCardContainer = ({member}) => {
+const MemberCardContainer = ({index, member, saveMemberInfo}) => {
   const [editMode, setEditMode] = useState(false);
-  const saveMemberInfo = (memberInfo) => setEditMode(false);
-  const cancel = () => setEditMode(false);
   const editMember = () => setEditMode(true);
+  const handleCancel = () => setEditMode(false);
+  const handleSave = (memberInfo) => {
+    saveMemberInfo(index, memberInfo);
+    setEditMode(false);
+  } 
 
-  return editMode ? <EditMemberCard member={member} saveMemberInfo={saveMemberInfo} cancel={cancel} /> :
-    <MemberCard member={member} editMember={editMember} />
-  
+  return (
+    <>
+      <MemberCard member={member} editMember={editMember} />
+      <EditMemberDialog open={editMode} member={member} handleSave={handleSave} handleCancel={handleCancel} />
+    </>
+  )
 }
 
 export default MemberCardContainer;

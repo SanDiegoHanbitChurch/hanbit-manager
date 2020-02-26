@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MemberCard = ({member, editMember}) => {
-  const { koreanName, englishName, email, birthDate, phoneNumber } = member;
   const classes = useStyles();
+  const { koreanName, englishName, email, birthDate, phoneNumber } = member;
 
   return (
     <Card classes={{ root: classes.card }}>
@@ -29,7 +29,7 @@ const MemberCard = ({member, editMember}) => {
         }
         action={
           <IconButton onClick={editMember} >
-            <ArrowForwardIosIcon />
+            <EditIcon />
           </IconButton>
         }
         title={koreanName}
