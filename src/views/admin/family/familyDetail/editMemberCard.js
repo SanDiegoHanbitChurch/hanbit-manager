@@ -40,7 +40,7 @@ const EditMemberCard = ({member, saveMemberInfo, cancel}) => {
     <Card>
       <CardHeader
         avatar={
-          <Avatar alt={koreanName} src='/abc' />
+          <Avatar alt={koreanName} src='https://i.pravatar.cc/300' />
         }
         action={
           <>
@@ -96,16 +96,6 @@ const EditMemberCard = ({member, saveMemberInfo, cancel}) => {
           type="text"
           fullWidth
         />
-        {/* <TextField
-          onChange={(event) => setBirthDate(event.target.value)}
-          value={birthDate}
-          autoFocus
-          margin="dense"
-          id="birthDate"
-          label="Birthday"
-          type="date"
-          fullWidth
-        /> */}
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
