@@ -5,11 +5,16 @@ import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
 
 const verse = '하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 저를 믿는 자 마다 영생을 얻게 하려 하심이라';
 
+const style = {
+    fontFamily: 'Nanum Brush Script',
+    fontSize: 30
+};
+
 const TodaysVerse = () => (
     <Box display='flex' flexDirection='column' alignItems='center' flexWrap='wrap'>
         <FormatQuoteIcon />
         <Box m={1}>
-            <Typography variant='h6'>
+            <Typography variant='h6' style={style}>
                 {verse}
             </Typography>
         </Box>
