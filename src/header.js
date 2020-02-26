@@ -33,6 +33,7 @@ const Header = ({ user, logout }) => {
         <div className={classes.root}>
           <AppBar position="fixed" className={classes.appBar} style={{ background: 'linear-gradient(to right, #64b5f6, #e3f2fd)' }}>
             <Toolbar>
+              {/* <img src='http://www.sdhanbit.org/sdhanbit/img/top/logo.gif' width="200" height="100"alt='hanbit logo' /> */}
               <Typography variant="h6" style={style} className={classes.title}>
                 교인정보 관리
               </Typography>
