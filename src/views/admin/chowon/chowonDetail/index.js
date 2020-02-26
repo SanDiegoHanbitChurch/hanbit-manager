@@ -5,6 +5,15 @@ import DetailContainer from '../../../shared/detailContainer';
 import ChowonDetail from './chowonDetail';
 import FilteredListContainer from '../../../shared/filteredListContainer';
 import MokjangList from '../../../shared/mokjangList';
+import Box from '@material-ui/core/Box';
+
+const renderProgress = () => {
+  return <Box display='flex' justifyContent='center' alignItems='flex-end' ><CircularProgress /></Box>
+}
+
+const renderChowonDetail = (data) => {
+  return <ChowonDetail {...data[0]} />
+}
 
 const ChowonDetailContainer = () => {
   
@@ -19,7 +28,7 @@ const ChowonDetailContainer = () => {
         path="chowon"
         filter={chowonFilter}
         render={({isLoading, data}) => {
-          return isLoading ? <CircularProgress /> : <ChowonDetail {...data[0]} />
+          return isLoading ? renderProgress() : renderChowonDetail(data)
         }}
       />
       <FilteredListContainer

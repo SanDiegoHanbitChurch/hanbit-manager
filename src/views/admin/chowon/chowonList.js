@@ -1,5 +1,4 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ChowonCard from './chowonCard';
@@ -14,9 +13,6 @@ const ChowonList = ({ chowonList, editChowon, deleteChowon}) => {
 
   return (
     <>
-      <Typography>
-        Chowon List
-      </Typography>
       <GridList cellHeight={120} cols={3}>
         {chowonList.map(chowon => (
             <GridListTile key={chowon.id} cols={1}>
