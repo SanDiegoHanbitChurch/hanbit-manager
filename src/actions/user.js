@@ -1,6 +1,6 @@
 import userDAL from './dataAccess/user'
 
-const getUser = (email) => {
+const getUserByEmail = (email) => {
     return new Promise((resolve, reject) => {
         userDAL.search('email', '==', email)
             .then(users => {
@@ -50,5 +50,5 @@ const updateUser = (user) => {
 export {
     deleteUser,
     updateUser,
-    getUser
+    getUserByEmail
 }

@@ -13,10 +13,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MenuList from './menuList';
 import Body from './body';
 import Footer from './footer';
-import firebase from './firebase';
-import { getUser } from './actions/user';
-
-const provider = new firebase.auth.GoogleAuthProvider();
+import * as auth from './actions/auth';
 
 const drawerWidth = 240;
 
@@ -67,30 +64,22 @@ export default function App() {
     const classes = useStyles();
 
     const [user, setUser] = useState(null);
-    const [authError, setAuthError] = useState('');
+    const [authError, setAuthError] = useState(null);
 
     const logout = () => {
         setUser(null);
-        firebase.auth().signOut();
+        auth.logout();
     }
     const login = () => {
-        firebase.auth().signInWithPopup(provider).then(result => {
-          const googleUser = result.user;
-          // only allow sdhanbit.org user
-          if (googleUser.email.endsWith('@sdhanbit.org')) {
-            getUser(googleUser.email)
-              .then(user => {
-                setUser(user);
-                setAuthError('');
-              });
-            
-          } else {
-            setAuthError('Only users with sdhanbit.org account is allowed.')
-            firebase.auth().signOut();
-          }
-        }).catch(error =>  {
-          setAuthError(error.message);
-        });
+      auth.login()
+        .then(user => {
+          setUser(user);
+          setAuthError(null)
+        })
+        .catch(error => {
+          setUser(null);
+          setAuthError(error);
+        })
       }
 
 
