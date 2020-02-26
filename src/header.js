@@ -11,6 +11,10 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
+const style = {
+  fontFamily: 'Nanum Gothic'
+}
+
 const Header = () => {
     const classes = useStyles();
 
@@ -18,7 +22,7 @@ const Header = () => {
         <div className={classes.root}>
           <AppBar position="static" style={{ background: 'linear-gradient(to right, #64b5f6, #e3f2fd)' }}>
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" style={style} className={classes.title}>
                 교인정보 관리
               </Typography>
             </Toolbar>
