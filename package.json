@@ -38,7 +38,7 @@
     "live": " sh -ac '. ./.env.live;  firebase use hanbit-manager-live  && react-scripts build && firebase deploy'",
     "import": " sh -ac '. ./.env.dev;  node data/import.js'",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "echo \"Error: no test specified\"",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"

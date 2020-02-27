@@ -64,7 +64,7 @@ const renderRow = ({ id, members, visitDate, address }) => {
                 {typeof visitDate === 'string' ? visitDate : visitDate.toLocaleDateString()}
             </TableCell>
             <TableCell>
-                <IconButton component={Link} to={`/visitor/{id}`}>
+                <IconButton component={Link} to={`/visitor/${id}`}>
                     <ArrowForwardIosIcon />
                 </IconButton>
             </TableCell>
