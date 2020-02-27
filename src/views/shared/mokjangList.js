@@ -1,6 +1,7 @@
 import React from 'react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import { Container, Paper } from '@material-ui/core';
 import MokjangCard from './mokjangCard';
 
 const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
@@ -13,15 +14,15 @@ const renderMokjang = (mokjang, editMokjang, deleteMokjang) => {
 const MokjangList = ({ mokjangList, editMokjang, deleteMokjang, chowonList }) => {
 
     return (
-        <>
-            <GridList cellHeight={200} cols={3}>
+        <Container component={Paper}>
+            <GridList cols={3}>
                 {mokjangList.map(mokjang => (
                     <GridListTile key={mokjang.id} cols={mokjang.cols || 1}>
                         { renderMokjang(mokjang, editMokjang, deleteMokjang) }
                     </GridListTile>
                 ))}
             </GridList>
-        </>
+        </Container>
     )
 }
 
