@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import RelationSelect from '../views/admin/visitor/editVisitorDialog/familyMembers/relationSelect';
+import RelationSelect from '../views/admin/visitor/visitorList/editVisitorDialog/familyMembers/relationSelect';
 
 export default {
   title: 'Relation Select',

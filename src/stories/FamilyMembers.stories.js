@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import FamilyMembers from '../views/admin/visitor/editVisitorDialog/familyMembers';
+import FamilyMembers from '../views/admin/visitor/visitorList/editVisitorDialog/familyMembers';
 
 export default {
   title: 'Family Members',

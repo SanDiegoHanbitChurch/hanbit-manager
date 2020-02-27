@@ -8,6 +8,7 @@ const RelationSelect = ({value, onChange}) => {
     <Select 
       value={value}
       onChange={onChange}>
+      <MenuItem value=''></MenuItem>
       <MenuItem value='남편'>남편</MenuItem>
       <MenuItem value='아내'>아내</MenuItem>
       <MenuItem value='아들'>아들</MenuItem>

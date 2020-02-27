@@ -17,7 +17,6 @@ const VisitorName = ({ koreanName, englishName, setKoreanName, setEnglishName })
       <TextField
         onChange={(event) => setEnglishName(event.target.value)}
         value={englishName}
-        autoFocus
         margin="dense"
         id="englishName"
         placeholder="영어이름"

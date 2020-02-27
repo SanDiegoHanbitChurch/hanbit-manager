@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import VisitorName from '../views/admin/visitor/editVisitorDialog/visitorName';
+import VisitorName from '../views/admin/visitor/visitorList/editVisitorDialog/visitorName';
 
 export default {
   title: 'Visitor Name',

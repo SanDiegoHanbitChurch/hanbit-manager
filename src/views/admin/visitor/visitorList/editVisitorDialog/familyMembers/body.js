@@ -26,10 +26,8 @@ const renderTableRow = (member, index, updateMember) => {
         <TextField
           onChange={(event) => setKoreanName(event.target.value)}
           value={koreanName}
-          autoFocus
           margin="dense"
-          id="koreanName"
-          placeholder="한국이름"
+          placeholder="이름"
           type="text"
         />
       </TableCell>

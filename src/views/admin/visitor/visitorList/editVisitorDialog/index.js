@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { get } from 'lodash';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -13,6 +14,7 @@ const EditVisitorDialog = ({open, handleSave, handleCancel, visitor = {}}) => {
 
   const [koreanName, setKoreanName] = useState(get(visitor, 'members.0.koreanName', ''));  
   const [englishName, setEnglishName] = useState(get(visitor, 'members.0.englishName', ''));
+  const [address, setAddress] = useState(get(visitor, 'address', ''));
   const [email, setEmail] = useState(get(visitor, 'members.0.email', ''));
   const [phoneNumber, setPhoneNumber] = useState(get(visitor, 'members.0.phoneNumber', ''));
   const [members, setMembers] = useState(get(visitor, 'members', []));
@@ -26,7 +28,7 @@ const EditVisitorDialog = ({open, handleSave, handleCancel, visitor = {}}) => {
       email,
       phoneNumber,
       members
-    })
+    });
 };
 
   return (
@@ -35,21 +37,27 @@ const EditVisitorDialog = ({open, handleSave, handleCancel, visitor = {}}) => {
         방문자 정보
       </DialogTitle>
       <DialogContent>
-        <VisitorName 
-          englishName={englishName} 
-          koreanName={koreanName} 
-          setKoreanName={setKoreanName} 
-          setEnglishName={setEnglishName}
-        />
-        <ContactInfo 
-          email={email} 
-          phoneNumber={phoneNumber} 
-          setEmail={setEmail} 
-          setPhoneNumber={setPhoneNumber} 
-        />
-        <FamilyMembers 
-          members={members} 
-          setMembers={setMembers} />
+        <Box display='flex' flexDirection='column'>
+          <Box>
+            <VisitorName 
+              englishName={englishName} 
+              koreanName={koreanName} 
+              setKoreanName={setKoreanName} 
+              setEnglishName={setEnglishName}
+            />
+            <ContactInfo 
+              address={address}
+              email={email} 
+              phoneNumber={phoneNumber} 
+              setAddress={setAddress}
+              setEmail={setEmail} 
+              setPhoneNumber={setPhoneNumber} 
+            />
+          </Box>
+          <FamilyMembers 
+            members={members} 
+            setMembers={setMembers} />
+        </Box>
       </DialogContent>
       <DialogActions>
           <Button onClick={handleCancel} color="primary">

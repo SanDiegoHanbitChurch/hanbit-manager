@@ -1,5 +1,5 @@
 import React from 'react';
-import EditVisitorDialog from '../views/admin/visitor/editVisitorDialog';
+import EditVisitorDialog from '../views/admin/visitor/visitorList/editVisitorDialog';
 import { generateVisitor } from './helpers';
 import { action } from '@storybook/addon-actions';
 
