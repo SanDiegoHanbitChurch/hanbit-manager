@@ -42,7 +42,7 @@ const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
     return roles.includes(user.role)
         ?
             <>
-                <ListItem component={Link} to={to}>
+                <ListItem button component={Link} to={to}>
                     <ListItemIcon>
                         <Icon />
                     </ListItemIcon>
@@ -61,7 +61,7 @@ const MenuList = ({ user, logout }) => {
         return (
             <List>
                 { menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig)) }
-                <ListItem onClick={logout}>
+                <ListItem button onClick={logout}>
                     <ListItemIcon>
                         <ExitToAppIcon />
                     </ListItemIcon>
