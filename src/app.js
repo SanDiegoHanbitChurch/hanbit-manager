@@ -17,7 +17,7 @@ import Footer from './footer';
 import * as auth from './actions/auth';
 import HanbitLogoSvg from './hanbitLogoSvg';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -92,7 +92,7 @@ export default function App() {
         <AppBar position="fixed" className={classes.appBar} style={{ background: 'linear-gradient(to right, #64b5f6, #e3f2fd)' }}>
             <Toolbar>
               <IconButton component={Link} to='/'>
-                  <HanbitLogoSvg height="50px" width="50px" />
+                  <HanbitLogoSvg height="35px" width="35px" />
               </IconButton>
               <Typography variant="h6" noWrap style={style}>
                   교인정보 관리
