@@ -42,7 +42,7 @@ const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
     return roles.includes(user.role)
         ?
             <>
-                <ListItem component={Link} to={to}>
+                <ListItem button component={Link} to={to}>
                     <ListItemIcon>
                         <Icon />
                     </ListItemIcon>
