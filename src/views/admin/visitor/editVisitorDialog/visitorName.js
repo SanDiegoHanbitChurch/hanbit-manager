@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const VisitorName = (props) => {
-  const [koreanName, setKoreanName] = useState(props.koreanName);
-  const [englishName, setEnglishName] = useState(props.englishName);
+const VisitorName = ({ koreanName, englishName, setKoreanName, setEnglishName }) => {
 
   return (
     <>
       <TextField
-        onChange={(event) => {
-          setKoreanName(event.target.value)
-          props.updateNames({koreanName, englishName})
-        }}
+        onChange={(event) => setKoreanName(event.target.value)}
         value={koreanName}
         autoFocus
         margin="dense"
@@ -20,10 +15,7 @@ const VisitorName = (props) => {
         type="text"
       />
       <TextField
-        onChange={(event) => {
-          setEnglishName(event.target.value)
-          props.updateNames({koreanName, englishName})
-        }}
+        onChange={(event) => setEnglishName(event.target.value)}
         value={englishName}
         autoFocus
         margin="dense"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import FamilyMembers from '../views/admin/visitor/editVisitorDialog/familyMembers';
 
 export default {
@@ -25,4 +26,6 @@ const members = [
   }
 ];
 
-export const defaultRendering = () => <FamilyMembers members={members}/>
+const setMembers = action('update members')
+
+export const defaultRendering = () => <FamilyMembers members={members} setMembers={setMembers}/>

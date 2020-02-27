@@ -3,11 +3,12 @@ import Table from '@material-ui/core/Table';
 import Header from './header';
 import Body from './body';
 
-const FamilyMembers = ({members}) => {
+const FamilyMembers = ({ members, setMembers }) => {
+
   return (
-    <Table >
+    <Table size='small'>
       <Header />
-      <Body members={members}/>
+      <Body members={members} setMembers={setMembers}/>
     </Table>
   )
 }

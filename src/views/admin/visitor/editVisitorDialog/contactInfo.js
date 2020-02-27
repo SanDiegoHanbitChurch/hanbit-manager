@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const ContactInfo = (props) => {
-  const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
-  const [email, setEmail] = useState(props.email);
+const ContactInfo = ({email, phoneNumber, setEmail, setPhoneNumber}) => {
 
   return (
     <>
       <TextField
-        onChange={(event) => {
-          setPhoneNumber(event.target.value)
-          props.updateContact({email, phoneNumber})
-        }}
+        onChange={(event) => setPhoneNumber(event.target.value)}
         value={phoneNumber}
         autoFocus
         margin="dense"
@@ -20,10 +15,7 @@ const ContactInfo = (props) => {
         type="text"
       />
       <TextField
-        onChange={(event) => {
-          setEmail(event.target.value)
-          props.updateContact({email, phoneNumber})
-        }}
+        onChange={(event) => setEmail(event.target.value)}
         value={email}
         autoFocus
         margin="dense"

@@ -3,19 +3,21 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody'
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import RelationSelect from './relationSelect';
 
 const renderTableRow = (member, index, updateMember) => {
   const {koreanName, relation} = member;
   const setKoreanName = (name) => {
     updateMember(index, {
-      name, relation
+      koreanName: name,
+      relation
     })
   }
-  const updateRelation = ({relation}) => {
-    console.log(relation);
+  const updateRelation = (event) => {
+    updateMember(index, {
+      koreanName,
+      relation: event.target.value
+    })
   }
 
   return (
@@ -32,7 +34,7 @@ const renderTableRow = (member, index, updateMember) => {
         />
       </TableCell>
       <TableCell>
-        <RelationSelect relation={relation} updateRelation={updateRelation} />
+        <RelationSelect value={relation} onChange={updateRelation} />
       </TableCell>
     </TableRow>
   )
@@ -48,10 +50,9 @@ const Body = (props) => {
       return existingMember
     })
 
-    setMembers(updatedMembers)
+    setMembers(updatedMembers);
+    props.setMembers(updatedMembers);
   }
-
-  console.log('members', members);
   
   return (
     <TableBody>
