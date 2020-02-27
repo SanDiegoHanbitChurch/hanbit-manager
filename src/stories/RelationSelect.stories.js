@@ -10,4 +10,4 @@ export default {
 const relation = '아내';
 const updateRelation = action('Update Names');
 
-export const defaultRendering = () => <RelationSelect relation={relation} updateRelation={updateRelation} />
+export const defaultRendering = () => <RelationSelect value={relation} onChange={updateRelation} />
