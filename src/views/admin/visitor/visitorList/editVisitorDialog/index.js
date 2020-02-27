@@ -38,7 +38,7 @@ const EditVisitorDialog = ({open, handleSave, handleCancel, visitor = {}}) => {
       </DialogTitle>
       <DialogContent>
         <Box display='flex' flexDirection='column'>
-          <Box>
+          <Box m={2}>
             <VisitorName 
               englishName={englishName} 
               koreanName={koreanName} 
