@@ -61,7 +61,7 @@ const MenuList = ({ user, logout }) => {
         return (
             <List>
                 { menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig)) }
-                <ListItem onClick={logout}>
+                <ListItem button onClick={logout}>
                     <ListItemIcon>
                         <ExitToAppIcon />
                     </ListItemIcon>

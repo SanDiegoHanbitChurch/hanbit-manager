@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -14,6 +15,7 @@ import MenuList from './menuList';
 import Body from './body';
 import Footer from './footer';
 import * as auth from './actions/auth';
+import HanbitLogoSvg from './hanbitLogoSvg';
 
 const drawerWidth = 240;
 
@@ -89,9 +91,12 @@ export default function App() {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar} style={{ background: 'linear-gradient(to right, #64b5f6, #e3f2fd)' }}>
             <Toolbar>
-            <Typography variant="h6" noWrap style={style}>
-                교인정보 관리
-            </Typography>
+              <IconButton component={Link} to='/'>
+                  <HanbitLogoSvg height="50px" width="50px" />
+              </IconButton>
+              <Typography variant="h6" noWrap style={style}>
+                  교인정보 관리
+              </Typography>
             </Toolbar>
         </AppBar>
         { renderDrawer(user, logout, classes) }
