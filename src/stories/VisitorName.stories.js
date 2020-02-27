@@ -10,6 +10,13 @@ export default {
 const englishName = 'English Name';
 const koreanName = '한국 이름';
 
-const updateNames = action('Update Names');
+const setKoreanName = action('set korean name');
+const setEnglishName = action('set English name');
 
-export const defaultRendering = () => <VisitorName englishName={englishName} koreanName={koreanName} updateNames={updateNames} />
+export const defaultRendering = () => 
+  <VisitorName 
+    englishName={englishName} 
+    koreanName={koreanName}
+    setKoreanName={setKoreanName}
+    setEnglishName={setEnglishName}
+  />
