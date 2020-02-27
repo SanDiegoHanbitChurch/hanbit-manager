@@ -21,8 +21,8 @@ const EditVisitorDialog = ({open, handleSave, handleCancel, visitor}) => {
       </DialogTitle>
       <DialogContent>
         <VisitorName englishName={englishName} koreanName={koreanName} updateNames={updateNames}/>
-        <FamilyMembers />
         <ContactInfo email={email} phoneNumber={phoneNumber} updateContact={updateContact} />
+        <FamilyMembers members={visitor.members} />
       </DialogContent>
     </Dialog>
   )

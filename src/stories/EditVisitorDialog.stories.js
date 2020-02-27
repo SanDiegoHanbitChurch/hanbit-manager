@@ -12,5 +12,11 @@ const open = true;
 const visitor = generateVisitor();
 const handleSave = action('handle save');
 const handleCancel = action('handle cancel');
-console.log(visitor);
-export const defaultRendering = () => <EditVisitorDialog visitor={visitor} handleSave={handleSave} handleCancel={handleCancel} open={open} />
+
+export const defaultRendering = () => 
+  <EditVisitorDialog 
+    visitor={visitor} 
+    handleSave={handleSave} 
+    handleCancel={handleCancel} 
+    open={open} 
+  />
