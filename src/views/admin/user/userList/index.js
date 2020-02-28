@@ -2,7 +2,7 @@ import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UserList from './userList';
-import { updateUser, deleteUser } from '../../../../actions/user';
+import { updateUser, deleteUser, addUser } from '../../../../actions/user';
 
 const UserListContainer = () => {
 
@@ -17,6 +17,7 @@ const UserListContainer = () => {
                 userList={data} 
                 deleteUser={deleteUser}
                 updateUser={updateUser}
+                addUser={addUser}
               />
         }
       }

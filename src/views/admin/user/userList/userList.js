@@ -13,11 +13,16 @@ const fabStyle = {
   position: 'fixed',
 };
 
-const UserList = ({ userList, deleteUser, updateUser }) => {
+const UserList = ({ userList, deleteUser, updateUser, addUser }) => {
 
   const [showNewUserRow, setShowNewUserRow] = useState(false);
   const addNewUser = () => {
     setShowNewUserRow(true);
+  }
+  const handleAddUser = (user) => {
+    //to do: save user
+    addUser(user)
+    setShowNewUserRow(false);
   }
 
   const cancel = () => setShowNewUserRow(false);
@@ -47,7 +52,7 @@ const UserList = ({ userList, deleteUser, updateUser }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {showNewUserRow && <AddUser cancel={cancel} />}
+            {showNewUserRow && <AddUser cancel={cancel} addUser={handleAddUser} />}
             { userList.map(user => <UserRow user={user} deleteUser={deleteUser} updateUser={updateUser} />) }
           </TableBody>
         </Table>
