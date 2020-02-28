@@ -88,9 +88,9 @@ const buildRoutesForAdmin = (user) => {
             <Route path='/family/:id'>
                 <FamilyDetail user={user}/>
             </Route>
-            <Route path='/visitor/:id'>
+            {/* <Route path='/visitor/:id'>
                 <VisitorDetail user={user}/>
-            </Route>
+            </Route> */}
             <Route path='/chowon'>
                 <ChowonList user={user}/>
             </Route>
@@ -103,9 +103,9 @@ const buildRoutesForAdmin = (user) => {
             <Route path='/user'>
                 <UserList user={user}/>
             </Route>
-            <Route path='/visitor'>
+            {/* <Route path='/visitor'>
                 <VisitorList user={user}/>
-            </Route>
+            </Route> */}
             <Route>
                 <NoMatch />
             </Route>
