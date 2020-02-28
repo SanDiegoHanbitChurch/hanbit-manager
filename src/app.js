@@ -15,6 +15,7 @@ import MenuList from './menuList';
 import Body from './body';
 import Footer from './footer';
 import * as auth from './actions/auth';
+import { addSuggestion } from './actions/suggestion';
 import HanbitLogoSvg from './hanbitLogoSvg';
 import ErrorBoundary from './errorBoundary';
 
@@ -45,7 +46,7 @@ const style = {
     fontFamily: 'Nanum Gothic'
 }
 
-const renderDrawer = (user, logout, classes) => {
+const renderDrawer = (user, logout, classes, handleSuggestion) => {
     if (user) {
         return (
             <Drawer
@@ -56,7 +57,7 @@ const renderDrawer = (user, logout, classes) => {
                 }}
             >
                 <div className={classes.toolbar} />
-                <MenuList user={user} logout={logout} />
+                <MenuList user={user} logout={logout} addSuggestion={handleSuggestion}/>
             </Drawer>
 
         )
@@ -85,6 +86,9 @@ export default function App() {
         })
       }
 
+    const handleSuggestion = (suggestion) => {
+      addSuggestion({user, suggestion})
+    }
   return (
       <Router>
         <div className={classes.root}>
@@ -99,7 +103,7 @@ export default function App() {
               </Typography>
             </Toolbar>
         </AppBar>
-        { renderDrawer(user, logout, classes) }
+        { renderDrawer(user, logout, classes, handleSuggestion) }
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
