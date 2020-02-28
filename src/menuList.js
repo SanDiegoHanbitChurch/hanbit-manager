@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { List, ListItem, ListItemText, ListItemIcon, Divider } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Link } from 'react-router-dom';
+import SuggestionDialog from './views/shared/suggestionDialog';
 
 const menuConfigs = [
     {
@@ -55,21 +56,45 @@ const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
         : null;
 }
 
-const MenuList = ({ user, logout }) => {
+const MenuList = ({ user, logout, addSuggestion }) => {
+    const [open, setOpen] = useState(false);
+    const handleCancel = () => setOpen(false);
+    const handleSubmit = (suggestion) => {
+        setOpen(false);
+        addSuggestion(suggestion)
+    };
 
     if (user) {
         return (
-            <List>
-                { menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig)) }
-                <ListItem button onClick={logout}>
-                    <ListItemIcon>
-                        <ExitToAppIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                        Logout
-                    </ListItemText>
-                </ListItem>
-            </List>
+            <>
+                <List>
+                    { menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig)) }
+                    <ListItem button onClick={() => setOpen(true)}>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText>
+                            건의사항
+                        </ListItemText>
+                    </ListItem>
+                    <ListItem button onClick={logout}>
+                        <ListItemIcon>
+                            <ExitToAppIcon />
+                        </ListItemIcon>
+                        <ListItemText>
+                            Logout
+                        </ListItemText>
+                    </ListItem>
+                </List>
+                { open &&                 
+                    <SuggestionDialog
+                        open={open}
+                        handleSubmit={handleSubmit}
+                        handleCancel={handleCancel}
+                    />
+                }
+            </>
+
         )
     }
 
