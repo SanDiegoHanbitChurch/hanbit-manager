@@ -28,13 +28,13 @@ const menuConfigs = [
         text: '사용자',
         roles: ['관리자'],
         icon: HomeIcon
-    },
-    {
-        to: '/visitor',
-        text: '방문자',
-        roles: ['관리자'],
-        icon: HomeIcon
     }
+    // {
+    //     to: '/visitor',
+    //     text: '방문자',
+    //     roles: ['관리자'],
+    //     icon: HomeIcon
+    // }
 ]
 
 const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
