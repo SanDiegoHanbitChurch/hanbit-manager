@@ -12,9 +12,6 @@ import MokjangSelectContainer from './userList/userRow/mokjangSelect';
 const isValidUserInfo = ({
   name, email, role, chowon, mokjang
 }) => {
-  console.log({
-    name, email, role, chowon, mokjang
-  })
   return name && email && role;
 }
 
