@@ -14,7 +14,12 @@ jobs:
           key: 'v1-package-{{ checksum "package-lock.json" }}'
           paths:
             - ./node_modules
-      - run: npm build
+      - run:
+          name: Run unit tests
+          command: npm test
+      - run:
+          name: Create production build
+          command: npm build
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
