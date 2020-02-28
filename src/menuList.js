@@ -30,12 +30,6 @@ const menuConfigs = [
         icon: HomeIcon
     }
     // {
-    //     to: '/user',
-    //     text: '사용자',
-    //     roles: ['관리자'],
-    //     icon: HomeIcon
-    // },
-    // {
     //     to: '/visitor',
     //     text: '방문자',
     //     roles: ['관리자'],
