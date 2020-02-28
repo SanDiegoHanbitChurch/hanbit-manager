@@ -9,8 +9,6 @@ import MokjangDetail from './views/admin/mokjang/mokjangDetail';
 import FamilyList from './views/admin/family';
 import FamilyDetail from './views/admin/family/familyDetail';
 import UserList from './views/admin/user/userList';
-import VisitorList from './views/admin/visitor';
-import VisitorDetail from './views/admin/visitor/visitorDetail';
 import Unauthenticatd from './views/unAuthenticated';
 import NoMatch from './views/noMatch';
 
@@ -88,9 +86,6 @@ const buildRoutesForAdmin = (user) => {
             <Route path='/family/:id'>
                 <FamilyDetail user={user}/>
             </Route>
-            {/* <Route path='/visitor/:id'>
-                <VisitorDetail user={user}/>
-            </Route> */}
             <Route path='/chowon'>
                 <ChowonList user={user}/>
             </Route>
@@ -103,9 +98,6 @@ const buildRoutesForAdmin = (user) => {
             <Route path='/user'>
                 <UserList user={user}/>
             </Route>
-            {/* <Route path='/visitor'>
-                <VisitorList user={user}/>
-            </Route> */}
             <Route>
                 <NoMatch />
             </Route>
