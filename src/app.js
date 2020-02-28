@@ -16,6 +16,7 @@ import Body from './body';
 import Footer from './footer';
 import * as auth from './actions/auth';
 import HanbitLogoSvg from './hanbitLogoSvg';
+import ErrorBoundary from './errorBoundary';
 
 const drawerWidth = 200;
 
@@ -103,7 +104,9 @@ export default function App() {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Body user={user} login={login} authError={authError}/>
+                <ErrorBoundary>
+                  <Body user={user} login={login} authError={authError}/>
+                </ErrorBoundary>
                 <Container maxWidth="sm">
                     <Footer />
                 </Container>
