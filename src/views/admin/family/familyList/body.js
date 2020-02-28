@@ -6,7 +6,7 @@ import MembersAvatarGroup from '../../../shared/membersAvatarGroup';
 import MembersName from '../../../shared/membersName';
 
 const renderRow = ({id, address, members, mokjang}) => (
-    <TableRow>
+    <TableRow key={id}>
         <TableCell>
             <MembersAvatarGroup members={members} />
         </TableCell>

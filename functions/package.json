@@ -5,13 +5,15 @@
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy:dev": " sh -ac '. ../.env.dev;  firebase use hanbit-manager-dev  && firebase deploy --only functions'",
+    "deploy:live": " sh -ac '. ../.env.live;  firebase use hanbit-manager-live  && firebase deploy --only functions'",
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "dependencies": {
+    "algoliasearch": "^4.0.3",
     "firebase-admin": "^8.6.0",
     "firebase-functions": "^3.3.0"
   },
