@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
@@ -84,7 +84,6 @@ export default function App() {
           setAuthError(error);
         })
       }
-
 
   return (
       <Router>

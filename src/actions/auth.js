@@ -10,9 +10,10 @@ const login = () => {
     if (googleUser) {
         if (isSdhanbitUser(googleUser)) {
             return getUserByEmail(googleUser.email);
+        } else {
+            logout();
+            return Promise.reject('Only users with sdhanbit.org account is allowed.');            
         }
-
-        return Promise.reject('Only users with sdhanbit.org account is allowed.');
     }
 
     return new Promise((resolve, reject) => {
@@ -20,10 +21,14 @@ const login = () => {
             .then(result => {
                 googleUser = result.user;
                 if (isSdhanbitUser(googleUser)) {
-                    return getUserByEmail(googleUser.email);
+                    getUserByEmail(googleUser.email)
+                        .then(resolve)
+                        .catch(reject)
+                } else {
+                    logout();
+                    reject('Only users with sdhanbit.org account is allowed.');
                 }
         
-                reject('Only users with sdhanbit.org account is allowed.');
             })
             .catch(error => reject(error.message))
     });
