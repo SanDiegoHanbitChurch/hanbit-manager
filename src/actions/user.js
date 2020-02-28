@@ -14,6 +14,22 @@ const getUserByEmail = (email) => {
     })
     
 };
+const addUser = (user) => {
+
+    const { name, email, role, mokjang, chowon } = user;
+
+    if (name && email && role) {
+        userDAL.add({
+            name,
+            email,
+            role,
+            mokjang: mokjang ? mokjang : '',
+            chowon: chowon ? chowon : ''
+        })
+    }
+
+    // TODO: Nedd to perform additonal validation based on roles.
+}
 const deleteUser = (user) => userDAL.remove(user);
 const updateUser = (user) => {
 
@@ -48,6 +64,7 @@ const updateUser = (user) => {
 };
 
 export {
+    addUser,
     deleteUser,
     updateUser,
     getUserByEmail

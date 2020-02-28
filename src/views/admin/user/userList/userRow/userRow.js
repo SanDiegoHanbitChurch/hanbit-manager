@@ -7,6 +7,9 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 const UserRow = ({ user, editUser, deleteUser }) => {
   const { name, email, role, chowon, mokjang} = user;
+  const handleDeleteUser = () => {
+    deleteUser(user)
+  } 
   
   return (
     <TableRow>
@@ -29,7 +32,7 @@ const UserRow = ({ user, editUser, deleteUser }) => {
         <IconButton onClick={editUser}>
           <EditIcon />
         </IconButton>
-        <IconButton onClick={deleteUser}>
+        <IconButton onClick={handleDeleteUser}>
           <DeleteIcon />
         </IconButton>
       </TableCell>

@@ -8,7 +8,7 @@ const renderChowonMenuItem = ({name}) => {
   )
 }
 
-const MokjangSelect = ({chowonList, onChange, value}) => {
+const ChowonSelect = ({chowonList, onChange, value}) => {
   const [chowonName, setchowonName] = useState(value);
   const handleOnChange = (event) => {
     onChange(event);
@@ -25,4 +25,4 @@ const MokjangSelect = ({chowonList, onChange, value}) => {
   )
 }
 
-export default MokjangSelect;
+export default ChowonSelect;
