@@ -9,8 +9,10 @@ const login = () => {
     let googleUser = firebase.auth().currentUser;
     if (googleUser) {
         if (isSdhanbitUser(googleUser)) {
+            firebase.analytics().logEvent('login', googleUser);
             return getUserByEmail(googleUser.email);
         } else {
+            firebase.analytics().logEvent('logout', googleUser);            
             logout();
             return Promise.reject('Only users with sdhanbit.org account is allowed.');            
         }
@@ -21,10 +23,12 @@ const login = () => {
             .then(result => {
                 googleUser = result.user;
                 if (isSdhanbitUser(googleUser)) {
+                    firebase.analytics().logEvent('login', googleUser);
                     getUserByEmail(googleUser.email)
                         .then(resolve)
                         .catch(reject)
                 } else {
+                    firebase.analytics().logEvent('logout', googleUser);            
                     logout();
                     reject('Only users with sdhanbit.org account is allowed.');
                 }
