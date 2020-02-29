@@ -1,22 +1,21 @@
 import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
 import RoleSelect from '../../../../shared/roleSelect';
-import { CircularProgress } from '@material-ui/core';
+
+const roleList = [
+  '관리자',
+  '담임목사',
+  '초원장',
+  '목자'
+];
 
 const RoleSelectContainer = ({onChange, value = ''}) => {
 
   return (
-    <FirestoreCollection 
-      path='role'
-      render={({isLoading, data}) => {
-        return isLoading ? <CircularProgress /> : 
         <RoleSelect 
           onChange={onChange} 
-          roleList={data} 
+          roleList={roleList} 
           value={value}
         /> 
-      }}
-    />
 
   )
 }
