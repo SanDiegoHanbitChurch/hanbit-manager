@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const renderRoleMenuItem = ({name}) => {
+const renderRoleMenuItem = (role) => {
   return (
-    <MenuItem value={name}>{name}</MenuItem>
+    <MenuItem value={role}>{role}</MenuItem>
   )
 }
 
@@ -20,7 +20,7 @@ const RoleSelect = ({roleList, onChange, value}) => {
       value={roleName}
       onChange={handleOnChange}
     >
-      {roleList.map(mokjang => renderRoleMenuItem(mokjang))}
+      {roleList.map(role => renderRoleMenuItem(role))}
   </Select>
   )
 }
