@@ -7,7 +7,7 @@ import FamilyDetail from '../views/admin/family/familyDetail/familyDetail';
 import { generateFamily } from './helpers';
 
 export default {
-    title: 'Family Detail',
+    title: 'Family/Family Detail',
     Component: FamilyDetail
 };
 

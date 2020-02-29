@@ -7,7 +7,7 @@ import MemberList from '../views/admin/family/familyDetail/memberList';
 import { generateMembers } from './helpers';
 
 export default {
-  title: 'Member List',
+  title: 'Member/Member List',
   component: MemberList
 }
 

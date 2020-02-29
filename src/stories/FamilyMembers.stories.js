@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import FamilyMembers from '../views/admin/visitor/visitorList/editVisitorDialog/familyMembers';
 
 export default {
-  title: 'Family Members',
+  title: 'Family/Family Members',
   component: FamilyMembers
 }
 

@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import ContactInfo from '../views/admin/visitor/visitorList/editVisitorDialog/contactInfo';
 
 export default {
-  title: 'Contact Info',
+  title: 'Visitor/Contact Info',
   component: ContactInfo
 }
 

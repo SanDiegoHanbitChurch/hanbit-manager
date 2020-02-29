@@ -5,7 +5,7 @@ import FamilyList from '../views/admin/family/familyList';
 import uuid from 'uuid';
 
 export default {
-  title: 'Family List',
+  title: 'Family/Family List',
   component: FamilyList
 };
 const goToFamily = action('go to family');

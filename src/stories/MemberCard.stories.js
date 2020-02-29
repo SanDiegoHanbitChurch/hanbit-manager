@@ -7,7 +7,7 @@ import MemberCard from '../views/admin/family/familyDetail/memberCard';
 import { generateMember } from './helpers';
 
 export default {
-  title: 'Member Card',
+  title: 'Member/Member Card',
   component: MemberCard
 }
 

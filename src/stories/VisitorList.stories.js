@@ -4,7 +4,7 @@ import VisitorList from '../views/admin/visitor/visitorList';
 import { generateVisitorList } from './helpers';
 
 export default {
-    title: 'Visitor List',
+    title: 'Visitor/Visitor List',
     component: VisitorList
 }
 

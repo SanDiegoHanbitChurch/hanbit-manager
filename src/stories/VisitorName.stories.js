@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import VisitorName from '../views/admin/visitor/visitorList/editVisitorDialog/visitorName';
 
 export default {
-  title: 'Visitor Name',
+  title: 'Visitor/Visitor Name',
   component: VisitorName
 }
 

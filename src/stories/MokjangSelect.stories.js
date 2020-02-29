@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import MokjangSelect from '../views/shared/mokjangSelect';
 
 export default {
-  title: 'Mokjang Select',
+  title: 'Mokjang/Mokjang Select',
   component: MokjangSelect
 }
 

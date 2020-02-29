@@ -2,7 +2,7 @@ import React from 'react';
 import UserRow from '../views/admin/user/userList/userRow/userRow';
 
 export default {
-  title:'User row',
+  title:'User/User row',
   component: UserRow
 }
 

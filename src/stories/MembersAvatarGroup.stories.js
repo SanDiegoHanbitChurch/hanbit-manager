@@ -3,7 +3,7 @@ import MembersAvatarGroup from '../views/shared/membersAvatarGroup';
 import { generateFamily } from './helpers';
 
 export default {
-    title: 'Members Avatar Group',
+    title: 'Member/Members Avatar Group',
     component: MembersAvatarGroup
 }
 

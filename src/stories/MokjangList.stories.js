@@ -7,7 +7,7 @@ import MokjangList from '../views/shared/mokjangList';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'mokjang list',
+  title: 'Mokjang/mokjang list',
   component: MokjangList,
 };
 

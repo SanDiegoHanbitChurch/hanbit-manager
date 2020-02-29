@@ -4,7 +4,7 @@ import { generateVisitor } from './helpers';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'Edit Visitor Dialog',
+  title: 'Visitor/Edit Visitor Dialog',
   component: EditVisitorDialog
 }
 

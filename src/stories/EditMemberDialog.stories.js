@@ -7,7 +7,7 @@ import EditMemberDialog from '../views/admin/family/familyDetail/memberCard/edit
 import { generateMember } from './helpers';
 
 export default {
-  title: 'Edit Member Dialog',
+  title: 'Member/Edit Member Dialog',
   component: EditMemberDialog
 }
 

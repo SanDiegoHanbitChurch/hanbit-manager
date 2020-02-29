@@ -7,8 +7,6 @@ import NewNote from '../../../shared/newNote';
 const FamilyDetail = ({ family, saveFamily, addNote }) => {
     const { id, address, mokjang, members, notes = [] } = family;
 
-    console.log('notes', notes);
-
     const saveFamilyMembers = (updatedMembers) => {
         saveFamily({
             id,

@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import RelationSelect from '../views/admin/visitor/visitorList/editVisitorDialog/familyMembers/relationSelect';
 
 export default {
-  title: 'Relation Select',
+  title: 'shared/Relation Select',
   component: RelationSelect
 }
 

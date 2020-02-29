@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import MokjangCard from '../views/shared/mokjangCard';
 
 export default {
-    title: 'Mokjang Card',
+    title: 'Mokjang/Mokjang Card',
     component: MokjangCard
 };
 

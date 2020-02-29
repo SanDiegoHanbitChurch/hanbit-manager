@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import MokjangDetail from '../views/admin/mokjang/mokjangDetail/mokjangDetail';
 
 export default {
-  title: 'mokjang detail',
+  title: 'Mokjang/mokjang detail',
   component: MokjangDetail,
 };
 

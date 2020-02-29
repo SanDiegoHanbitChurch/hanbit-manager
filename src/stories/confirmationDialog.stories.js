@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import ConfirmationDialog from '../views/shared/confirmationDialog';
 
 export default {
-  title: 'Confirmation Dialog',
+  title: 'User/Confirmation Dialog',
   component: ConfirmationDialog
 }
 

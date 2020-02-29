@@ -5,7 +5,7 @@ import { range } from 'lodash';
 import ChowonDetail from '../views/admin/chowon/chowonDetail/chowonDetail';
 
 export default {
-  title: 'chowon detail',
+  title: 'Chowon/chowon detail',
   component: ChowonDetail,
 };
 

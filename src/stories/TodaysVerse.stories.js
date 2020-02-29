@@ -2,7 +2,7 @@ import React from 'react';
 import TodaysVerse from '../views/shared/todaysVerse';
 
 export default {
-    title: "Today's Verse",
+    title: "shared/Today's Verse",
     component: TodaysVerse
 }
 

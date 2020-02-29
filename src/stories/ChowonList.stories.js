@@ -4,7 +4,7 @@ import uuid from 'uuid';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'chowon list',
+  title: 'Chowon/chowon list',
   component: ChowonList,
 };
 

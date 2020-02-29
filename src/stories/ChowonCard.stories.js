@@ -4,7 +4,7 @@ import uuid from 'uuid';
 import ChowonCard from '../views/admin/chowon/chowonCard';
 
 export default {
-  title: 'Chowon Card',
+  title: 'Chowon/Chowon Card',
   component: ChowonCard,
 };
 

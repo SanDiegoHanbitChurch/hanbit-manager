@@ -2,7 +2,7 @@ import React from 'react';
 import SearchContainer from '../views/shared/searchContainer';
 
 export default {
-    title: 'Search Container',
+    title: 'shared/Search Container',
     component: SearchContainer
 }
 
