@@ -1,9 +1,11 @@
 import React from 'react';
-import faker from 'faker';
 import Avatar from '@material-ui/core/Avatar';
 
+const DEFAULT_AVATAR = '/broken-image.jpg';
+const getAvatarSrc = (member) => member.avatar ? member.avatar : DEFAULT_AVATAR;
+
 const MemberAvatar = (member) => (
-    <Avatar alt={member.koreanName} src={`${member.avatar ? member.avatar : faker.image.avatar()}`} />
+    <Avatar alt={member.koreanName} src={getAvatarSrc(member)} />
 )
 
 export default MemberAvatar;
