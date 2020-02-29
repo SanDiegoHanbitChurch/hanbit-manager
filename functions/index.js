@@ -28,9 +28,9 @@ exports.onVisitorCreated = functions.firestore.document('visitor/{visitorId}').o
     return index.saveObject(visitor);
 });
 
-exports.onVisitorUpdated = functions.firestore.document('visitor/{visitorId}').onUpdate((snap, context) => {
+exports.onVisitorUpdated = functions.firestore.document('visitor/{visitorId}').onUpdate((change, context) => {
     // Get the note document
-    const visitor = snap.data();
+    const visitor = change.after.data();
   
     // Add an 'objectID' field which Algolia requires
     visitor.objectID = context.params.visitorId;
@@ -52,9 +52,9 @@ exports.onFamilyCreated = functions.firestore.document('family/{familyId}').onCr
     return index.saveObject(family);
 });
 
-exports.onFamilyUpdated = functions.firestore.document('family/{familyId}').onUpdate((snap, context) => {
+exports.onFamilyUpdated = functions.firestore.document('family/{familyId}').onUpdate((change, context) => {
     // Get the note document
-    const family = snap.data();
+    const family = change.after.data();
   
     // Add an 'objectID' field which Algolia requires
     family.objectID = context.params.familyId;
