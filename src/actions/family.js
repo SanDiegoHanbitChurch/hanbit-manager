@@ -15,7 +15,23 @@ const searchFamily = (query) => {
     })
 }
 
+const addNote = (family, user, comment) => {
+    const note = {
+        createdBy: user,
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+        comment
+    };
+    if (family.notes) {
+        family.notes.push(note)
+    } else {
+        family.notes = [note]
+    }
+
+    return updateFamily(family);
+}
+
 export {
     updateFamily,
-    searchFamily
+    searchFamily,
+    addNote
 };

@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import faker from 'faker';
 import uuid from 'uuid';
 import { range } from 'lodash';
@@ -39,11 +40,24 @@ const generateVisitorList = (numberOfVisitors) => {
     return range(numberOfVisitors).map(() => generateVisitor())
 }
 
+const generateNote = () => (
+    {
+        createdBy: {
+            name: `${faker.name.firstName()} ${faker.name.lastName()}`
+        },
+        createdAt: firebase.firestore.Timestamp.fromDate(faker.date.past()),
+        comment: faker.lorem.paragraph()
+    }    
+)
+
+const generateNotes = (numberOfNotes) => range(numberOfNotes).map(() => generateNote())
+
 export {
     generateMember,
     generateFamily,
     generateFamilyList,
     generateMembers,
     generateVisitorList,
-    generateVisitor
+    generateVisitor,
+    generateNotes,
 }

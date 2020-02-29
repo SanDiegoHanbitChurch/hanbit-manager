@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { FirestoreDocument } from 'react-firestore';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import FamilyDetail from './familyDetail';
-import { updateFamily } from '../../../../actions/family';
+import { updateFamily, addNote } from '../../../../actions/family';
 
-const FamilyDetailContainer = () => {
+const FamilyDetailContainer = ({ user }) => {
   const { id } = useParams();
   const path = `family/${id}`;
 
@@ -15,6 +15,12 @@ const FamilyDetailContainer = () => {
       .catch(error => console.log('failed to update family', error))
   };
 
+  const handleAddNote = (family, comment) => {
+    addNote(family, user, comment)
+      .then(() => console.log('successfully updated family info'))
+      .catch(error => console.log('failed to update family', error))
+  }
+
   return (
     <FirestoreDocument
       path={path} 
@@ -23,7 +29,7 @@ const FamilyDetailContainer = () => {
           return isLoading ? (
             <CircularProgress />
           ) : (
-            <FamilyDetail family={data} saveFamily={saveFamily}/>
+            <FamilyDetail family={data} saveFamily={saveFamily} addNote={handleAddNote} />
           )
         }
       }
