@@ -9,6 +9,11 @@ const generateMember = () => ({
     birthDate: faker.date.past(),
     phoneNumber: faker.phone.phoneNumber(),
     email: faker.internet.email(),
+    baptized: faker.random.boolean(),
+    oneToOneTraining: faker.random.boolean(),
+    discipleshipTraining: faker.random.boolean(),
+    ministryTraining: faker.random.boolean(),
+    ministry: faker.random.word(),
     avatar: faker.image.avatar()
 });
 
