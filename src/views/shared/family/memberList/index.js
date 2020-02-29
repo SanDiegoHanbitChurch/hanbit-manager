@@ -6,6 +6,11 @@ const MemberList = ({ visitor, memberList, addMember, updateMember, deleteMember
 
     return (
         <MaterialTable
+            title="가족명단"
+            options={{
+                search: false,
+                paging: false
+            }}
             columns={visitor ? visitorColumns : regularColumns}
             data={memberList}
             editable={{
