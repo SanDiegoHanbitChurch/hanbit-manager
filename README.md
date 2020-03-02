@@ -16,6 +16,9 @@ provides various administrative functions for San Diego Hanbit Church.
   * analytics (coming soon!)
 * [Algolia](https://www.algolia.com/) - search
 * [CircleCI](https://circleci.com/) - CI (CD coming soon!)
+* Environments
+  * [DEV](https://hanbit-manager.dev.firebaseapps.com/)
+  * [Live](https://manager.sdhanbit.org)
 
 ## Setup
 
