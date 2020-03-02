@@ -15,6 +15,7 @@ provides various administrative functions for San Diego Hanbit Church.
   * storage (coming soon!)
   * analytics (coming soon!)
 * [Algolia](https://www.algolia.com/) - search
+* [CircleCI](https://circleci.com/) - CI (CD coming soon!)
 
 ## Setup
 
