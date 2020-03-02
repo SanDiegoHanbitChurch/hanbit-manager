@@ -48,7 +48,8 @@ const generateVisitorList = (numberOfVisitors) => {
 const generateNote = () => (
     {
         createdBy: {
-            name: `${faker.name.firstName()} ${faker.name.lastName()}`
+            name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+            email: faker.internet.email()
         },
         createdAt: firebase.firestore.Timestamp.fromDate(faker.date.past()),
         comment: faker.lorem.paragraph()
