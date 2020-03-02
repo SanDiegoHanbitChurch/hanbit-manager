@@ -19,7 +19,7 @@ provides various administrative functions for San Diego Hanbit Church.
 
 ## Setup
 
-1. Obtain `.env.dev` from @sangyum
+1. Obtain `.env.dev` from [@sangyum](https://github.com/orgs/SanDiegoHanbitChurch/people/sangyum)
 2. Install NVM
 3. Use node 10 as default version
 4. Clone this repo
