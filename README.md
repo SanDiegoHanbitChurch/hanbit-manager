@@ -1,6 +1,6 @@
 # Hanbit Manager
 
-provides various administrative functions for San Diego Hanbit Church.
+provides various administrative functions for [San Diego Hanbit Church](http://sdhanbit.org).
 
 ## Tools/Environments used
 * [React](https://reactjs.org/)
