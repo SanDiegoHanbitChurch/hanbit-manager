@@ -1,15 +1,23 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import { concat } from 'lodash';
 import EditableText from '../../../shared/editableText';
 import EditableSelect from '../../../shared/editableSelect';
 import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
-
-const mokjangLookup = [
-    { key: '은혜', value: '은혜'}
-]
+import { getAll as fetchMokjangList } from '../../../../actions/mokjang';
+import { CircularProgress, Box } from '@material-ui/core';
 
 const FamilyDetail = ({ family, saveFamily, user }) => {
+    let mokjangLookup = [];
+    const { status, data, error } = useQuery('mokjangList', fetchMokjangList);
+
+    if (status === 'success') {
+        console.log('data', data)
+        mokjangLookup = data.map(({name}) => ({key: name, value: name}));
+        console.log(mokjangLookup)
+    }
+
     const { id, address, mokjang, members, notes = [] } = family;
 
     const addMember = (newData) => {
@@ -84,24 +92,42 @@ const FamilyDetail = ({ family, saveFamily, user }) => {
         })
     }
 
-    return (
-        <>
-            <EditableSelect title='목장' data={mokjang} lookup={mokjangLookup} onSave={saveMokjang} />
-            <EditableText title='주소' data={address} onSave={saveAddress} />
-            <MemberList
-                memberList={members}
-                addMember={addMember}
-                updateMember={updateMember}
-                deleteMember={deleteMember}
-            />
-            <Notes 
-                notes={notes} 
-                user={user}
-                addNote={addNote}
-                updateNote={updateNote}
-            />
-        </>
-    )
+    return status === 'loading' 
+        ? <CircularProgress /> 
+        : (
+            <>
+                <Box m={1}>
+                    <EditableSelect 
+                        title='목장' 
+                        data={mokjang} 
+                        lookup={mokjangLookup} 
+                        onSave={saveMokjang} 
+                    />
+                </Box>
+                <Box m={1}>
+                    <EditableText title='주소' data={address} onSave={saveAddress} />
+                </Box>
+                <Box m={1}>
+                    <MemberList
+                        memberList={members}
+                        addMember={addMember}
+                        updateMember={updateMember}
+                        deleteMember={deleteMember}
+                    />
+                </Box>
+                {
+                    user.role !== 'mokja' && 
+                        <Box m={1}>
+                            <Notes 
+                                notes={notes} 
+                                user={user}
+                                addNote={addNote}
+                                updateNote={updateNote}
+                            />
+                        </Box>
+                }
+            </>
+        );
 }
 
 export default FamilyDetail;

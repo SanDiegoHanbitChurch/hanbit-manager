@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './views/home';
 import Admin from './views/admin';
@@ -9,114 +9,85 @@ import MokjangDetail from './views/admin/mokjang/mokjangDetail';
 import FamilyList from './views/admin/family';
 import FamilyDetail from './views/admin/family/familyDetail';
 import UserList from './views/admin/user/userList';
-import Unauthenticatd from './views/unAuthenticated';
 import NoMatch from './views/noMatch';
+import { initialize, chowonList, mokjangList } from './constants';
 
-const buildRoutesForSeniorPastorOrChowonLeader = (user) => {
-    return (
-        <Switch>
-            <Route path='/' exact>
-                <Home user={user} />
-            </Route>
-            <Route path='/chowon/:name'>
-                <ChowonDetail user={user}/>
-            </Route>
-            <Route path='/mokjang/:name'>
-                <MokjangDetail user={user}/>
-            </Route>
-            <Route path='/family/:id'>
-                <FamilyDetail user={user}/>
-            </Route>
-            <Route path='/chowon'>
-                <ChowonList user={user}/>
-            </Route>
-            <Route path='/mokjang'>
-                <MokjangList user={user}/>
-            </Route>
-            <Route path='/family'>
-                <FamilyList user={user}/>
-            </Route>
-            <Route>
-                <NoMatch />
-            </Route>
-        </Switch>
-    )
-}
+const routeConfigs = [
+    {
+        path: '/',
+        exact: true,
+        component: Home,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/admin',
+        exact: true,
+        component: Admin,
+        roles: ['관리자']
+    },
+    {
+        path: '/chowon/:name',
+        component: ChowonDetail,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/mokjang/:name',
+        component: MokjangDetail,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/family/:id',
+        component: FamilyDetail,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/chowon',
+        component: ChowonList,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/mokjang',
+        component: MokjangList,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/family',
+        component: FamilyList,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/user',
+        component: UserList,
+        roles: ['관리자']
+    },
 
-const buildRoutesForMokja = (user) => {
-    return (
-        <Switch>
-            <Route path='/' exact>
-                <Home user={user} />
-            </Route>
-            <Route path='/mokjang/:name'>
-                <MokjangDetail user={user}/>
-            </Route>
-            <Route path='/family/:id'>
-                <FamilyDetail user={user}/>
-            </Route>
-            <Route path='/mokjang'>
-                <MokjangList user={user}/>
-            </Route>
-            <Route path='/family'>
-                <FamilyList user={user}/>
-            </Route>
-            <Route>
-                <NoMatch />
-            </Route>
-        </Switch>
-    )
-}
+]
 
-const buildRoutesForAdmin = (user) => {
-    return (
-        <Switch>
-            <Route path='/' exact>
-                <Home user={user} />
-            </Route>
-            <Route path='/admin'>
-                <Admin user={user}/>
-            </Route>
-            <Route path='/chowon/:name'>
-                <ChowonDetail user={user}/>
-            </Route>
-            <Route path='/mokjang/:name'>
-                <MokjangDetail user={user}/>
-            </Route>
-            <Route path='/family/:id'>
-                <FamilyDetail user={user}/>
-            </Route>
-            <Route path='/chowon'>
-                <ChowonList user={user}/>
-            </Route>
-            <Route path='/mokjang'>
-                <MokjangList user={user}/>
-            </Route>
-            <Route path='/family'>
-                <FamilyList user={user}/>
-            </Route>
-            <Route path='/user'>
-                <UserList user={user}/>
-            </Route>
-            <Route>
-                <NoMatch />
-            </Route>
-        </Switch>
-    )
-}
 const Routes = ({ user, setUser }) => {
-    
-    if (user) {
-        if (user.role === '담임목사' || user.role === '초원장') {
-            return buildRoutesForSeniorPastorOrChowonLeader(user);
-        } else if (user.role === '목자') {
-            return buildRoutesForMokja(user);
-        } else {
-            return buildRoutesForAdmin(user);
-        }
-    }
+    initialize();
 
-    return <Unauthenticatd setUser={setUser} />
+    console.log({
+        chowonList,
+        mokjangList
+    })
+
+    return (
+        <Switch>
+            { routeConfigs.map(({ path, exact, component: Component, roles}) => {
+                if (roles.includes(user.role)) {
+                    return (
+                        <Route path={path} exact={exact}>
+                            <Component user={user} />
+                        </Route>
+                    )
+                }
+                return null;
+            })}
+            <Route>
+                <NoMatch />
+            </Route>
+        </Switch>
+    )
 };
 
 export default Routes;

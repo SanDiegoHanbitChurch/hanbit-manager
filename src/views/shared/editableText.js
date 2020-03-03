@@ -8,7 +8,7 @@ const EditableText = ({title, data, onSave}) => {
 
     const [edit, setEdit] = useState(false);
     const [newData, setNewData] = useState(data);
-    const handleOnSave = (event) => {
+    const handleOnSave = () => {
         setEdit(false);
         onSave(newData);
     }

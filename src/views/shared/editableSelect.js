@@ -16,7 +16,7 @@ const renderEditMode = (data, lookup, setData, handleOnSave, handleOnCancel) => 
             </IconButton>
             <Select
                 value={data}
-                onChange={setData}
+                onChange={(event) => setData(event.target.value)}
             >
                 { lookup.map(({key, value}) => <MenuItem value={value}>{key}</MenuItem>) }
             </Select>
@@ -41,9 +41,9 @@ const renderNonEditMode = (data, setEdit) => {
 const EditableSelect = ({ title, data, lookup, onSave }) => {
     const [edit, setEdit] = useState(false);
     const [newData, setNewData] = useState(data);
-    const handleOnSave = (event) => {
+    const handleOnSave = () => {
         setEdit(false);
-        onSave(event.target.value);
+        onSave(newData);
     }
     const handleOnCancel = () => setEdit(false);
 
