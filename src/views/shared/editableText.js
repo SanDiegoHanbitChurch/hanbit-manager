@@ -41,7 +41,6 @@ const EditableText = ({title, data, onSave}) => {
                             onChange={(event) => setNewData(event.target.value)}
                             fullWidth
                         />
-                        <Typography>{data}</Typography>
                     </Box>
             }
         </Container>
