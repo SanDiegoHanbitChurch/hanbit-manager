@@ -1,22 +1,45 @@
 import React from 'react';
-import { TableContainer, Table, Paper } from '@material-ui/core';
-import Header from './header';
-import Body from './body';
+import { TextField } from '@material-ui/core';
+import MaterialTable from 'material-table';
 
-const Notes = ({ notes }) => {
-    
-    if (notes.length === 0) {
-        return null;
+const columns = [
+    { title: '이름', field: 'createdBy.name', editable: 'never'},
+    { title: '입력일', field: 'createdAt', type: 'date', editable: 'never'},
+    { 
+        title: '내용',
+        field: 'comment',
+        type: 'string',
+        editComponent: ({value, onChange}) => 
+            <TextField 
+                multiline 
+                rows={4} 
+                value={value} 
+                onChange={(event) => onChange(event.target.value)}
+            />
     }
+]
 
-    return (
-        <TableContainer component={Paper}>
-            <Table>
-                <Header />
-                <Body notes={notes}/>
-            </Table>
-        </TableContainer>
-    )
-}
+const Notes = ({ user, notes, addNote, updateNote }) => (
+    <MaterialTable
+        title="Notes"
+        options={{
+            search: false,
+            paging: false,
+            addRowPosition: 'first',
+            sorting: false
+        }}
+        columns={columns}
+        data={notes.map(({createdAt, ...rest}) => ({
+            // creatdAt is a Timestamp object from firestore
+            createdAt: createdAt.toDate(),
+            ...rest
+        }))}
+        editable={{
+            isEditable: rowData => rowData.createdBy.email === user.email,
+            onRowAdd: ({comment}) => addNote({createdBy: user, createdAt: new Date(), comment}),
+            onRowUpdate: updateNote
+        }}
+    />
+)
 
 export default Notes;
