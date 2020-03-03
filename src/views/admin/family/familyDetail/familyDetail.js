@@ -10,7 +10,7 @@ import { CircularProgress, Box } from '@material-ui/core';
 
 const FamilyDetail = ({ family, saveFamily, user }) => {
     let mokjangLookup = [];
-    const { status, data, error } = useQuery('mokjangList', fetchMokjangList);
+    const { status, data } = useQuery('mokjangList', fetchMokjangList);
 
     if (status === 'success') {
         console.log('data', data)

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './views/home';
 import Admin from './views/admin';
@@ -10,7 +10,6 @@ import FamilyList from './views/admin/family';
 import FamilyDetail from './views/admin/family/familyDetail';
 import UserList from './views/admin/user/userList';
 import NoMatch from './views/noMatch';
-import { initialize, chowonList, mokjangList } from './constants';
 
 const routeConfigs = [
     {
@@ -64,13 +63,6 @@ const routeConfigs = [
 ]
 
 const Routes = ({ user, setUser }) => {
-    initialize();
-
-    console.log({
-        chowonList,
-        mokjangList
-    })
-
     return (
         <Switch>
             { routeConfigs.map(({ path, exact, component: Component, roles}) => {
