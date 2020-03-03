@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { List, ListItem, ListItemText, ListItemIcon, Divider } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+// import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Link } from 'react-router-dom';
+import NatureIcon from '@material-ui/icons/Nature';
+import NaturePeopleIcon from '@material-ui/icons/NaturePeople';
+import PersonIcon from '@material-ui/icons/Person';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+// import FlightLandIcon from '@material-ui/icons/FlightLand';
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import SuggestionDialog from './views/shared/suggestionDialog';
 
 const menuConfigs = [
@@ -10,31 +16,31 @@ const menuConfigs = [
         to: '/chowon',
         text: '초원',
         roles: ['관리자', '담임목사', '초원장', '목자'],
-        icon: HomeIcon
+        icon: NatureIcon
     },
     {
         to: '/mokjang',
         text: '목장',
         roles: ['관리자', '담임목사', '초원장', '목자'],
-        icon: HomeIcon
+        icon: NaturePeopleIcon
     },
     {
         to: '/family',
         text: '가족',
         roles: ['관리자', '담임목사', '초원장', '목자'],
-        icon: HomeIcon
+        icon: PeopleAltIcon
     },
     {
         to: '/user',
         text: '사용자',
         roles: ['관리자'],
-        icon: HomeIcon
+        icon: PersonIcon
     }
     // {
     //     to: '/visitor',
     //     text: '방문자',
     //     roles: ['관리자'],
-    //     icon: HomeIcon
+    //     icon: FlightLandIcon
     // }
 ]
 
@@ -71,7 +77,7 @@ const MenuList = ({ user, logout, addSuggestion }) => {
                     { menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig)) }
                     <ListItem button onClick={() => setOpen(true)}>
                         <ListItemIcon>
-                            <HomeIcon />
+                            <RecordVoiceOverIcon />
                         </ListItemIcon>
                         <ListItemText>
                             건의사항
