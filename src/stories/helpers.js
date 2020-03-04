@@ -24,7 +24,7 @@ const generateMembers = (numberOfMembers = 4) => {
 const generateFamily = (numberOfMembers = 4) => ({
     id: uuid.v4(),
     address: `${faker.address.streetAddress()} ${faker.address.city()}, ${faker.address.stateAbbr()} ${faker.address.zipCode()}`,
-    mokjang: faker.random.words(2),
+    mokjang: 'Grace',
     members: generateMembers(numberOfMembers)
 })
 

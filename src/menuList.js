@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { List, ListItem, ListItemText, ListItemIcon, Divider } from '@material-ui/core';
-// import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Link } from 'react-router-dom';
 import NatureIcon from '@material-ui/icons/Nature';
 import NaturePeopleIcon from '@material-ui/icons/NaturePeople';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-// import FlightLandIcon from '@material-ui/icons/FlightLand';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import SuggestionDialog from './views/shared/suggestionDialog';
 

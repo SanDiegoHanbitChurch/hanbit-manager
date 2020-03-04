@@ -9,8 +9,18 @@ export default {
 }
 
 const visitorList = generateVisitorList(10);
+const modifiedList = visitorList.map(({
+    members,
+    ...rest
+}) => ({
+    ...rest,
+    name: members[0].koreanName,
+    email: members[0].email,
+    phoneNumber: members[0].phoneNumber,
+    members
+}))
 
 export const defaultRendering = () => 
     <Router>
-        <VisitorList visitorList={visitorList} />
+        <VisitorList visitorList={modifiedList} />
     </Router>
