@@ -22,7 +22,6 @@ const VisitorList = ({ visitorList }) => (
         columns={columns}
         data={visitorList}
         detailPanel={({members}) => {
-            console.log('members', members);
             return (
                 <MaterialTable
                     options={{
