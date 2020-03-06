@@ -1,6 +1,8 @@
 import visitorDAL from './dataAccess/visitor';
 import { concat } from 'lodash';
 
+const getAll = () => visitorDAL.getAll();
+
 const addVisitor = (visitorData) => {
     const { koreanName, englishName, email, phoneNumber, members } = visitorData;
     const firstMember = {
@@ -19,5 +21,6 @@ const addVisitor = (visitorData) => {
 }
 
 export {
-    addVisitor
+    addVisitor,
+    getAll
 }

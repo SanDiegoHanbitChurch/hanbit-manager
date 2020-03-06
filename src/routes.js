@@ -9,6 +9,7 @@ import MokjangDetail from './views/admin/mokjang/mokjangDetail';
 import FamilyList from './views/admin/family';
 import FamilyDetail from './views/admin/family/familyDetail';
 import UserList from './views/admin/user/userList';
+import VisitorList from './views/admin/visitor';
 import NoMatch from './views/noMatch';
 
 const routeConfigs = [
@@ -52,6 +53,11 @@ const routeConfigs = [
     {
         path: '/family',
         component: FamilyList,
+        roles: ['관리자', '담임목사', '초원장', '목자']
+    },
+    {
+        path: '/visitor',
+        component: VisitorList,
         roles: ['관리자', '담임목사', '초원장', '목자']
     },
     {

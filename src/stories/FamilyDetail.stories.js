@@ -13,8 +13,21 @@ export default {
 
 const family = generateFamily();
 const saveFamily = action('saving family');
+const mokjangLookup = [
+    {
+        key: 'Grace',
+        value: 'Grace'
+    },
+    {
+        key: 'Hope',
+        value: 'Hope'
+    }
+];
+const user = {
+    role: '목자'
+}
 
 export const defaultRender = () => 
 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-    <FamilyDetail family={family} saveFamily={saveFamily}/>
+    <FamilyDetail family={family} saveFamily={saveFamily} mokjangLookup={mokjangLookup} user={user}/>
 </MuiPickersUtilsProvider>

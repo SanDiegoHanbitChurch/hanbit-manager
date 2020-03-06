@@ -2,6 +2,7 @@ import firebase from '../firebase';
 import familyDAL from './dataAccess/family';
 import { familyIndex } from './search';
 
+const getFamilyById = (id) => familyDAL.getById(id);
 const updateFamily = (family) => familyDAL.update(family);
 const searchFamily = (query) => {
     firebase.analytics().logEvent('search', { query });
@@ -33,5 +34,6 @@ const addNote = (family, user, comment) => {
 export {
     updateFamily,
     searchFamily,
-    addNote
+    addNote,
+    getFamilyById
 };
