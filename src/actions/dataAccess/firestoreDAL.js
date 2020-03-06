@@ -8,7 +8,12 @@ const firestoreDAL = (collection) => {
         return new Promise((resolve, reject) => {
             collectionRef.get()
                 .then(querySnapshot => {
-                    const data = querySnapshot.docs.map(doc => doc.data());
+                    const data = querySnapshot.docs.map(doc => {
+                        return {
+                            id: doc.id,
+                            ...doc.data()
+                        }
+                    });
                     resolve(data);
                 })
                 .catch(error => {
@@ -25,7 +30,10 @@ const firestoreDAL = (collection) => {
             docRef.get()
                 .then(doc => {
                     if (doc.exists) {
-                        resolve(doc.data());
+                        resolve({
+                            id: doc.id,
+                            ...doc.data()
+                        });
                     } else {
                         reject('document does not exist');
                     }
@@ -66,18 +74,10 @@ const firestoreDAL = (collection) => {
     
     const update = (document) => {
         const docRef = collectionRef.doc(document.id);
-    
-        return new Promise((resolve, reject) => {
-            docRef.update(document)
-                .then(resolve)
-                .catch(reject)
-        })
+        return docRef.update(document);
     }
 
-    const remove = (document) => {
-        collectionRef.doc(document.id).delete()
-            .then(() => console.log('document delete'));
-    }
+    const remove = (document) =>  collectionRef.doc(document.id).delete();
 
     return {
         getAll,
