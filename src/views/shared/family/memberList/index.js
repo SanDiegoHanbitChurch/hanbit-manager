@@ -16,7 +16,8 @@ const MemberList = ({ visitor, memberList, addMember, updateMember, deleteMember
             editable={{
                 onRowAdd: addMember,
                 onRowUpdate: updateMember,
-                onRowDelete: deleteMember
+                onRowDelete: deleteMember,
+                isDeletable: () => memberList.length > 1
             }}
         />
     );

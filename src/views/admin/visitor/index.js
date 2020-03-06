@@ -2,13 +2,14 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { CircularProgress } from '@material-ui/core';
 import { getAll as fetchVisitorList } from '../../../actions/visitor';
-import VisitorList from './visitorList';
+import FamilyList from '../../shared/familyList';
 
 const VisitorListContainer = () => {
     let visitorList = [];
     const { status, data } = useQuery('visitorList', fetchVisitorList);
 
     if (status === 'success') {
+        console.log(data);
         visitorList = data.map(({
             members,
             ...rest
@@ -23,7 +24,7 @@ const VisitorListContainer = () => {
 
     return status === 'loading'
         ? <CircularProgress />
-        : <VisitorList visitorList={visitorList} />
+        : <FamilyList familyList={visitorList} visitor />
 }
 
 export default VisitorListContainer;

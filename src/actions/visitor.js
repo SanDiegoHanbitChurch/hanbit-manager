@@ -1,26 +1,42 @@
+import firebase from '../firebase';
 import visitorDAL from './dataAccess/visitor';
-import { concat } from 'lodash';
 
-const getAll = () => visitorDAL.getAll();
-
-const addVisitor = (visitorData) => {
-    const { koreanName, englishName, email, phoneNumber, members } = visitorData;
-    const firstMember = {
-        koreanName,
-        englishName,
-        email,
-        phoneNumber
+const getVisitorById = (id) => visitorDAL.getById(id);
+const saveVisitor = ({id, visitDate, service ='', members = [], notes = []}) => {
+    const visitorToSave = {
+        id,
+        service,
+        members,
+        notes
+    };
+    if (visitDate) {
+        if (typeof visitDate === 'object') {
+            visitorToSave.visitDate = visitDate.toLocaleDateString();
+        } else {
+            visitorToSave.visitDate = visitDate;
+        }
     }
 
-    const visitor = {
-        visitDate: new Date().toLocaleDateString(),
-        members: concat([firstMember], members)
+    return visitorDAL.update(visitorToSave);
+};
+
+const getAll = () => visitorDAL.getAll()
+const addVisitor = ({visitDate, service ='', members = [], notes = []}) => {
+    const visitorToSave = {
+        service,
+        members,
+        notes
+    };
+    if (visitDate) {
+        visitorToSave.visitDate = firebase.firestore.Timestamp.fromDate(visitDate);
     }
 
-    return visitorDAL.add(visitor);
-}
+    return visitorDAL.add(visitorToSave);
+};
 
 export {
+    getVisitorById,
+    saveVisitor,
     addVisitor,
     getAll
 }
