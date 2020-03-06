@@ -96,7 +96,7 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             id,
             address,
             service,
-            visitDate: newVisitDate,
+            visitDate: newVisitDate.toLocaleDateString(),
             members,
             notes
         };
