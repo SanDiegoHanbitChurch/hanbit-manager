@@ -37,7 +37,8 @@ const generateVisitor = () => {
 
     return {
         ...family,
-        visitDate: faker.date.past()
+        visitDate: faker.date.past(),
+        service: '1부'
     }
 }
 
