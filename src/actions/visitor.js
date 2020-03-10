@@ -1,5 +1,6 @@
 import firebase from '../firebase';
 import visitorDAL from './dataAccess/visitor';
+import { visitorIndex } from './search';
 
 const getVisitorById = (id) => visitorDAL.getById(id);
 const saveVisitor = ({id, visitDate, service ='', members = [], notes = []}) => {
@@ -20,6 +21,18 @@ const saveVisitor = ({id, visitDate, service ='', members = [], notes = []}) => 
     return visitorDAL.update(visitorToSave);
 };
 
+const searchVisitor = (query) => {
+    firebase.analytics().logEvent('search', { query });
+    return new Promise((resolve, reject) => {
+        visitorIndex.search(query)
+            .then(({hits}) => {
+                const data = hits.map(({objectID, ...rest}) => ({id: objectID, ...rest}));
+                resolve(data);
+            })
+            .catch(reject);
+    })
+}
+
 const getAll = () => visitorDAL.getAll()
 const addVisitor = ({visitDate, service ='', members = [], notes = []}) => {
     const visitorToSave = {
@@ -38,5 +51,6 @@ export {
     getVisitorById,
     saveVisitor,
     addVisitor,
-    getAll
+    getAll,
+    searchVisitor
 }

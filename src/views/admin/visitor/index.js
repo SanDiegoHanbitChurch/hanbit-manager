@@ -1,30 +1,43 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { CircularProgress } from '@material-ui/core';
-import { getAll as fetchVisitorList } from '../../../actions/visitor';
+import SearchContainer from '../../shared/searchContainer';
+import { getAll as fetchVisitorList, searchVisitor } from '../../../actions/visitor';
 import FamilyList from '../../shared/familyList';
 
-const VisitorListContainer = () => {
-    let visitorList = [];
-    const { status, data } = useQuery('visitorList', fetchVisitorList);
+const rearrangeVisitorList = (data) => {
+    return data.map(({
+        members,
+        ...rest
+    }) => ({
+        ...rest,
+        name: members[0].koreanName,
+        email: members[0].email,
+        phoneNumber: members[0].phoneNumber,
+        members
+    }))
+}
 
-    if (status === 'success') {
-        console.log(data);
-        visitorList = data.map(({
-            members,
-            ...rest
-        }) => ({
-            ...rest,
-            name: members[0].koreanName,
-            email: members[0].email,
-            phoneNumber: members[0].phoneNumber,
-            members
-        }))
+const VisitorListContainer = () => {
+    const { status, data } = useQuery('visitorList', fetchVisitorList);
+    const handleOnClickAdd = () => {
+        console.log('handling onClick add')
     }
 
-    return status === 'loading'
-        ? <CircularProgress />
-        : <FamilyList familyList={visitorList} visitor />
+    return (
+        <SearchContainer search={searchVisitor}>
+            {(searchResult) => {
+                console.log('searchResult', searchResult);
+                if (searchResult && searchResult.length > 0) {
+                    return <FamilyList familyList={rearrangeVisitorList(searchResult)} visitor handleOnClickAdd={handleOnClickAdd} />
+                }
+
+                return status === 'loading'
+                    ? <CircularProgress />
+                    : <FamilyList familyList={rearrangeVisitorList(data)} visitor handleOnClickAdd={handleOnClickAdd} />
+            }}
+        </SearchContainer>
+    )
 }
 
 export default VisitorListContainer;

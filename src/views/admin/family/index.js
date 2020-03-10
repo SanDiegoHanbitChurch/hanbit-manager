@@ -1,49 +1,28 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { FirestoreCollection } from 'react-firestore';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import FamilyList from './familyList';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { CircularProgress } from '@material-ui/core';
 import SearchContainer from '../../shared/searchContainer';
-import { searchFamily } from '../../../actions/family';
+import { getAll as fetchFamilyList, searchFamily } from '../../../actions/family';
+import FamilyList from '../../shared/familyList';
 
 const FamilyListContainer = () => {
-
-  const [redirectTo, setRedirectTo] = useState(null);
-
-  const editFamily = (id) => {
-    setRedirectTo(`/family/${id}`);
-  };
-
-  if (redirectTo) {
-    return (
-      <Redirect to={redirectTo} />
-    )
+  const { status, data } = useQuery('familyList', fetchFamilyList);
+  const handleOnClickAdd = () => {
+    console.log('handling onClick add')
   }
 
   return (
     <SearchContainer search={searchFamily}>
-        {(searchResult) => {
-          if (searchResult) {
-            return <FamilyList familyList={searchResult} editFamily={editFamily} />
-          }
+      {(searchResult) => {
+        if (searchResult && searchResult.length > 0) {
+          return <FamilyList familyList={searchResult} handleOnClickAdd={handleOnClickAdd}/>
+        }
 
-          return (
-            <FirestoreCollection
-              path='family'
-              limit={25}
-              render={
-                ({isLoading, data}) => {
-                  return isLoading ? (<CircularProgress />) : 
-                    <FamilyList 
-                      familyList={data} 
-                      editFamily={editFamily}
-                    />
-                }
-              }
-            />      
-          )
-        }}
-
+        return status === 'loading'
+          ? <CircularProgress />
+          : <FamilyList familyList={data} handleOnClickAdd={handleOnClickAdd} />
+  
+      }}
     </SearchContainer>
   )
 }

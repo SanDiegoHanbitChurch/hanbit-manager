@@ -2,6 +2,7 @@ import firebase from '../firebase';
 import familyDAL from './dataAccess/family';
 import { familyIndex } from './search';
 
+const getAll = familyDAL.getAll;
 const getFamilyById = (id) => familyDAL.getById(id);
 const updateFamily = (family) => familyDAL.update(family);
 const searchFamily = (query) => {
@@ -35,5 +36,6 @@ export {
     updateFamily,
     searchFamily,
     addNote,
-    getFamilyById
+    getFamilyById,
+    getAll
 };
