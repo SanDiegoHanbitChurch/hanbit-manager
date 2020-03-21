@@ -4,6 +4,8 @@ import { sendMessage } from '../../../actions/message';
 
 const Message = ({ user }) => {
 
+    
+
     const handleSendMessage = (message) => {
         sendMessage(message)
             .then(response => {
