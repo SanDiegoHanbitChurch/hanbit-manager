@@ -4,18 +4,19 @@ import MUIRichTextEditor from 'mui-rte'
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
-const MessageCreator = ({ senderEmail = null, sendMessage }) => {
-    const [from, setFrom] = useState(senderEmail);
+const MessageCreator = (props) => {
+    const [name, setName] = useState(props.name)
+    const [email, setEmail] = useState(props.email);
     const [subject, setSubject] = useState(null);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const enableSendButton = from && subject && editorState.getCurrentContent().hasText();
+    const enableSendButton = email && subject && editorState.getCurrentContent().hasText();
 
     const handleSendMessage = () => {
         const rawContentState = convertToRaw(editorState.getCurrentContent()); 
         const markup = draftToHtml(
             rawContentState, 
         );
-        sendMessage({ from, subject, content: markup})
+        props.sendMessage({ name, email, subject, content: markup})
     }
 
     return (
@@ -23,10 +24,19 @@ const MessageCreator = ({ senderEmail = null, sendMessage }) => {
             <Box m={1}>
                 <TextField
                     required
-                    label='Email'
-                    value={from}
+                    label='Name'
+                    value={name}
                     fullWidth
-                    onChange={(event) => setFrom(event.target.value)}
+                    onChange={(event) => setName(event.target.value)}
+                />
+            </Box>
+            <Box m={1}>
+                <TextField
+                    required
+                    label='Email'
+                    value={email}
+                    fullWidth
+                    onChange={(event) => setEmail(event.target.value)}
                 />
             </Box>
             <Box m={1}>
@@ -38,7 +48,7 @@ const MessageCreator = ({ senderEmail = null, sendMessage }) => {
                     onChange={(event) => setSubject(event.target.value)}
                 />
             </Box>
-            <Box m={1}>
+            <Box m={1} border={1}>
                 <MUIRichTextEditor 
                     label="Start typing..." 
                     onChange={setEditorState}
