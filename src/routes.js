@@ -11,6 +11,7 @@ import FamilyDetail from './views/admin/family/familyDetail';
 import UserList from './views/admin/user/userList';
 import VisitorList from './views/admin/visitor';
 import VisitorDetail from './views/admin/visitor/visitorDetail';
+import Message from './views/admin/message';
 import NoMatch from './views/noMatch';
 
 const routeConfigs = [
@@ -70,6 +71,11 @@ const routeConfigs = [
         path: '/user',
         component: UserList,
         roles: ['관리자']
+    },
+    {
+        path: '/message',
+        component: Message,
+        roles: ['관리자', '담임목사']
     },
 
 ]
