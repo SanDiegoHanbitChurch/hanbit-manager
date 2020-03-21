@@ -14,6 +14,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
 import FlightLandIcon from "@material-ui/icons/FlightLand";
+import EmailIcon from '@material-ui/icons/Email';
 import SuggestionDialog from "./views/shared/suggestionDialog";
 
 const menuConfigs = [
@@ -46,6 +47,12 @@ const menuConfigs = [
     text: "방문자",
     roles: ["관리자"],
     icon: FlightLandIcon
+  },
+  {
+    to: "/message",
+    text: "메시지",
+    roles: ["관리자", '담임목사'],
+    icon: EmailIcon
   }
 ];
 
