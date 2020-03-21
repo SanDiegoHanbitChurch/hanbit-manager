@@ -26,7 +26,7 @@ const sendToAllMembers = async ({ email, name, subject, content }) => {
             from: `${name} <${email}>`,
             to: member.email,
             subject,
-            content
+            html: content
     }));
 
     await mailDAL.addMultiple(mailRequests);
