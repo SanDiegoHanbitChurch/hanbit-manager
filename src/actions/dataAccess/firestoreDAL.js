@@ -1,4 +1,5 @@
 import firebase from '../../firebase';
+import { chunk } from 'lodash';
 const db = firebase.firestore();
 
 const firestoreDAL = (collection) => {
@@ -71,7 +72,28 @@ const firestoreDAL = (collection) => {
                 })
         })
     }
-    
+
+    const addMultiple = (documents) => {
+        const chunks = chunk(documents, 500);
+        const promises = chunks.map(chunk => batchAdd(chunk));
+
+        return new Promise((resolve, reject) => {
+            Promise.all(promises)
+                .then(resolve)
+                .catch(reject);
+        })
+    }
+
+    const batchAdd = (documents) => {
+        const batch = db.batch();
+
+        documents.forEach(document => {
+            const newDocRef = collectionRef.doc();
+            batch.set(newDocRef, document);
+        });
+        return batch.commit();
+    }
+
     const update = (document) => {
         const docRef = collectionRef.doc(document.id);
         return docRef.update(document);
@@ -84,6 +106,7 @@ const firestoreDAL = (collection) => {
         getById,
         search,
         add,
+        addMultiple,
         update,
         remove
     }
