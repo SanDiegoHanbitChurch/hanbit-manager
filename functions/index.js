@@ -1,12 +1,12 @@
-import { onVisitorCreated,  onVisitorUpdated, onFamilyCreated, onFamilyUpdated } from './search';
-import { helloWorld } from './helloWorld';
-import { sendEmail } from './sendEmail';
+const { onVisitorCreated,  onVisitorUpdated, onFamilyCreated, onFamilyUpdated } = require('./search')
+const { helloWorld } = require('./helloWorld');
+const { sendEmail } = require('./sendEmail');
 
-export {
+module.exports = {
     onVisitorCreated,
     onVisitorUpdated,
     onFamilyCreated,
     onFamilyUpdated,
     helloWorld,
     sendEmail
-}
+};
