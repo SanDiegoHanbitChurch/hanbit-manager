@@ -31,7 +31,7 @@ const MessageContainer = ({ user }) => {
             <MessageCreator email={email} name={name} sendMessage={handleSendMessage}/>
             <Snackbar open={openSuccessAlert} autoHideDuration={2000} onClose={() => setOpenSuccessAlert(false)}>
                 <Alert onClose={() => setOpenSuccessAlert(false)} severity="success">
-                    Your message was successfully sent!
+                    Your message will be sent shortly.
                 </Alert>
             </Snackbar>
             <Snackbar open={openFailureAlert} autoHideDuration={5000} onClose={() => setOpenFailureAlert(false)}>
