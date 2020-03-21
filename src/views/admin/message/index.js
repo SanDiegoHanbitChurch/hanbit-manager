@@ -1,13 +1,33 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import { CircularProgress } from '@material-ui/core';
 import MessageCreator from './messageCreator';
+import { get, concat } from 'lodash';
 import { sendMessage } from '../../../actions/message';
+import { getAll as fetchFamilyList } from '../../../actions/family';
 
-const Message = ({ user }) => {
+const MessageContainer = ({ user }) => {
 
+    let emailList = [];
+    const { status, data } = useQuery('familyList', fetchFamilyList);
     
+    if (status === 'success') {
+        emailList = data.reduce((prev, curr) => {
+            const members = get(curr, 'members', []);
+            const memberEmails = members
+                .filter(member => member.email.trim())
+                .map(member => member.email)
+            prev = concat(prev, memberEmails);
+
+            return prev;
+        }, []);
+    }
 
     const handleSendMessage = (message) => {
-        sendMessage(message)
+        sendMessage({
+            to: emailList,
+            ...message
+        })
             .then(response => {
                 console.log(response)
             })
@@ -18,9 +38,10 @@ const Message = ({ user }) => {
 
     const { email } = user;
 
-    return (
-        <MessageCreator senderEmail={email} sendMessage={handleSendMessage} />
-    )
+    return status === 'loading'
+        ? <CircularProgress />
+        : <MessageCreator senderEmail={email} sendMessage={handleSendMessage} />
+    
 }
 
-export default Message;
+export default MessageContainer;

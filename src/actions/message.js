@@ -4,13 +4,7 @@ const instance = axios.create({
     baseURL: process.env.REACT_APP_FUNCTIONS_BASEURL
 })
 
-const sendMessage = ({from, subject, content}) => {
-    return instance.post('/sendEmail', {
-        from,
-        subject,
-        content
-    });
-}
+const sendMessage = (message) => instance.post('/sendEmail', message);
 
 export {
     sendMessage

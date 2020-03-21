@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { Container, Paper, Button, TextField, Box } from '@material-ui/core';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import MUIRichTextEditor from 'mui-rte'
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 const MessageCreator = ({ senderEmail = null, sendMessage }) => {
     const [from, setFrom] = useState(senderEmail);
     const [subject, setSubject] = useState(null);
-    const [content, setContent] = useState('');
-    const enableSendButton = from && subject && content;
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const enableSendButton = from && subject && editorState.getCurrentContent().hasText();
 
-    const handleSendMessage = () => sendMessage({ from, subject, content})
+    const handleSendMessage = () => {
+        const rawContentState = convertToRaw(editorState.getCurrentContent()); 
+        const markup = draftToHtml(
+            rawContentState, 
+        );
+        sendMessage({ from, subject, content: markup})
+    }
 
     return (
         <Container component={Paper}>
@@ -32,24 +39,9 @@ const MessageCreator = ({ senderEmail = null, sendMessage }) => {
                 />
             </Box>
             <Box m={1}>
-                <CKEditor
-                    editor={ ClassicEditor }
-                    data={content}
-                    onInit={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                        setContent(data);
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                <MUIRichTextEditor 
+                    label="Start typing..." 
+                    onChange={setEditorState}
                 />
             </Box>
             <Box m={1}>

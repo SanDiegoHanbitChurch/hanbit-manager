@@ -30,10 +30,12 @@ const addNote = (family, user, comment) => {
 
     return updateFamily(family);
 }
+const getAll = () => familyDAL.getAll()
 
 export {
     updateFamily,
     searchFamily,
     addNote,
-    getFamilyById
+    getFamilyById,
+    getAll
 };
