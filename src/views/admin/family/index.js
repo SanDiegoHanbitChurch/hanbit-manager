@@ -25,7 +25,7 @@ const FamilyListContainer = () => {
         {(searchResult) => {
           if (searchResult) {
             return <FamilyList familyList={searchResult} editFamily={editFamily} />
-          }
+          } 
 
           return (
             <FirestoreCollection
@@ -40,7 +40,7 @@ const FamilyListContainer = () => {
                     />
                 }
               }
-            />      
+            /> 
           )
         }}
 
