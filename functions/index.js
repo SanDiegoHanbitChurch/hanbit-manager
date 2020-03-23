@@ -1,5 +1,4 @@
 const { onVisitorCreated,  onVisitorUpdated, onFamilyCreated, onFamilyUpdated } = require('./search')
-const { helloWorld } = require('./helloWorld');
 const { onMailCreated } = require('./email');
 
 module.exports = {
@@ -7,6 +6,5 @@ module.exports = {
     onVisitorUpdated,
     onFamilyCreated,
     onFamilyUpdated,
-    helloWorld,
     onMailCreated
 };
