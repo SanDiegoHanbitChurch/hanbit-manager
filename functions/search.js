@@ -10,7 +10,7 @@ const ALGOLIA_VISITOR_INDEX_NAME = process.env.REACT_APP_ALGOLIA_VISITOR_INDEX;
 
 const algoliaClient = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
 
-exports.onVisitorCreated = functions.firestore.document('visitor/{visitorId}').onCreate((snap, context) => {
+const onVisitorCreated = functions.firestore.document('visitor/{visitorId}').onCreate((snap, context) => {
     // Get the note document
     const visitor = snap.data();
   
@@ -22,7 +22,7 @@ exports.onVisitorCreated = functions.firestore.document('visitor/{visitorId}').o
     return index.saveObject(visitor);
 });
 
-exports.onVisitorUpdated = functions.firestore.document('visitor/{visitorId}').onUpdate((change, context) => {
+const onVisitorUpdated = functions.firestore.document('visitor/{visitorId}').onUpdate((change, context) => {
     // Get the note document
     const visitor = change.after.data();
   
@@ -34,7 +34,7 @@ exports.onVisitorUpdated = functions.firestore.document('visitor/{visitorId}').o
     return index.saveObject(visitor);
 });
 
-exports.onFamilyCreated = functions.firestore.document('family/{familyId}').onCreate((snap, context) => {
+const onFamilyCreated = functions.firestore.document('family/{familyId}').onCreate((snap, context) => {
     // Get the note document
     const family = snap.data();
   
@@ -46,7 +46,7 @@ exports.onFamilyCreated = functions.firestore.document('family/{familyId}').onCr
     return index.saveObject(family);
 });
 
-exports.onFamilyUpdated = functions.firestore.document('family/{familyId}').onUpdate((change, context) => {
+const onFamilyUpdated = functions.firestore.document('family/{familyId}').onUpdate((change, context) => {
     // Get the note document
     const family = change.after.data();
   
@@ -57,3 +57,10 @@ exports.onFamilyUpdated = functions.firestore.document('family/{familyId}').onUp
     const index = algoliaClient.initIndex(ALGOLIA_FAMILY_INDEX_NAME);
     return index.saveObject(family);
 });
+
+module.exports = {
+    onVisitorCreated,
+    onVisitorUpdated,
+    onFamilyUpdated,
+    onFamilyCreated,
+}

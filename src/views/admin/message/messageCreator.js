@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Paper, Button, TextField, Box } from '@material-ui/core';
+import { DropzoneArea } from 'material-ui-dropzone'
 import MUIRichTextEditor from 'mui-rte'
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
@@ -9,14 +10,16 @@ const MessageCreator = (props) => {
     const [email, setEmail] = useState(props.email);
     const [subject, setSubject] = useState(null);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [attachments, setAttachements] = useState([]);
     const enableSendButton = email && subject && editorState.getCurrentContent().hasText();
 
+    const handleFileAdded = (files) => setAttachements(files);
     const handleSendMessage = () => {
         const rawContentState = convertToRaw(editorState.getCurrentContent()); 
         const markup = draftToHtml(
             rawContentState, 
         );
-        props.sendMessage({ name, email, subject, content: markup})
+        props.sendMessage({ name, email, subject, content: markup, attachments})
     }
 
     return (
@@ -52,6 +55,11 @@ const MessageCreator = (props) => {
                 <MUIRichTextEditor 
                     label="Start typing..." 
                     onChange={setEditorState}
+                />
+            </Box>
+            <Box m={1}>
+                <DropzoneArea 
+                    onChange={handleFileAdded}
                 />
             </Box>
             <Box m={1}>
