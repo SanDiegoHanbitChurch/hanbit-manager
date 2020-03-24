@@ -15,9 +15,23 @@ const useStyles = makeStyles(theme => ({
       color: '#212121',
       boxShadow: "3"
      },
+     root: {
+        display: 'flex',
+        '& > *': {
+          margin: theme.spacing(1),
+        },
+      },
+      small: {
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+      },
+      large: {
+        width: theme.spacing(7),
+        height: theme.spacing(7),
+      },
   }));
 
-const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjang }) => {
+const MokjangCard = ({ id, name, leader, chowon, avatar, memberFamilies = [], editMokjang }) => {
 
     const classes = useStyles();
     
@@ -26,7 +40,7 @@ const MokjangCard = ({ id, name, leader, chowon, memberFamilies = [], editMokjan
             <Card classes={{ root: classes.card }}>
                 <CardHeader
                     avatar={
-                        <Avatar alt={name} src='https://i.pravatar.cc/300' />
+                        <Avatar alt={name} src={avatar || 'https://i.pravatar.cc/300'} className={classes.large}/>
                     }
                     action={
                         <IconButton component={Link} to={`/mokjang/${name}`}>
