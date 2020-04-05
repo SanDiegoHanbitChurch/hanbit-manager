@@ -1,14 +1,10 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Routes from './routes';
-import Unauthenticated from './views/unAuthenticated';
 
-const Body = ({user, login, authError}) => (
+const Body = ({user}) => (
     <Container maxWidth='lg'>
-        { user 
-            ? <Routes user={user}/>
-            : <Unauthenticated login={login} authError={authError}/>
-        }
+        <Routes user={user}/>
     </Container>
 );
 
