@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@material-ui/core';
 import { concat } from 'lodash';
 import EditableText from '../../../shared/editableText';
@@ -7,10 +7,23 @@ import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
 
 const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
-    const { id, address, mokjang, members, notes = [] } = family;
+    const [ familyState, setFamilyState ] = useState(family);
+    const { id, address, mokjang, members, notes = [] } = familyState;
+
+    const handleSaveFamily = (update) => {
+        // Need to return a promise because react-table expect promise from event handlers
+        return new Promise((resolve, reject) => {
+            saveFamily(update)
+                .then((updatedFamily) => {
+                    setFamilyState(updatedFamily)
+                    resolve(updatedFamily);
+                })
+                .catch(reject);
+        });
+    }
 
     const addMember = (newData) => {
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address,
             mokjang,
@@ -21,7 +34,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
 
     const updateMember = (newData, oldData) => {
         const index = oldData.tableData.id;
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address,
             mokjang,
@@ -31,7 +44,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
     }
     const deleteMember = (oldData) => {
         const index = oldData.tableData.id;
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address,
             mokjang,
@@ -41,7 +54,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
     };
 
     const addNote = (newData) => {
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address,
             mokjang,
@@ -52,7 +65,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
 
     const updateNote = (newData, oldData) => {
         const index = oldData.tableData.id;
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address,
             mokjang,
@@ -62,7 +75,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
     }
 
     const saveAddress = (newAddress) => {
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address: newAddress,
             mokjang,
@@ -72,7 +85,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
     }
 
     const saveMokjang = (newMokjang) => {
-        return saveFamily({
+        return handleSaveFamily({
             id,
             address,
             mokjang: newMokjang,
