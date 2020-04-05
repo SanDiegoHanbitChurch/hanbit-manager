@@ -2,10 +2,9 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { CardActionArea } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -23,18 +22,17 @@ const ChowonCard = ({ id, name, leader, editChowon }) => {
     return (
       <Box>
         <Card classes={{ root: classes.card }}>
+          <CardActionArea 
+            onClick={() => editChowon(name)}
+          >
             <CardHeader
                 avatar={
                     <Avatar alt={name} src='https://i.pravatar.cc/300' />
                 }
-                action={
-                    <IconButton onClick={() => editChowon(name)}>
-                      <ArrowForwardIosIcon />
-                    </IconButton>
-                }
                 title={`${name}`}
                 subheader={leader}
             />
+          </CardActionArea>
         </Card>
       </Box>
     )
