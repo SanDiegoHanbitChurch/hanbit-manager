@@ -128,8 +128,13 @@ export default function App() {
     addSuggestion({user, suggestion})
   }
 
+  if (!user) {
+    return (
+      <Unauthenticated login={login} authError={authError} />
+    )
+  }
+
   return (
-    user ? 
     <Router>
       <div className={classes.root}>
         <CssBaseline />
@@ -192,6 +197,5 @@ export default function App() {
         </MuiPickersUtilsProvider>
       </div>
     </Router>
-    : <Unauthenticated login={login} authError={authError} />
   );
 }
