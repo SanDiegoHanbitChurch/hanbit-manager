@@ -96,7 +96,15 @@ const firestoreDAL = (collection) => {
 
     const update = (document) => {
         const docRef = collectionRef.doc(document.id);
-        return docRef.update(document);
+
+        return new Promise((resolve, reject) => {
+            docRef.update(document)
+                .then(() => {
+                    return getById(document.id)
+                        .then(updated => resolve(updated))
+                        .catch(reject);
+                })
+        })
     }
 
     const remove = (document) =>  collectionRef.doc(document.id).delete();
