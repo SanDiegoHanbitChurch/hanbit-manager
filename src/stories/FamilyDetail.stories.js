@@ -23,11 +23,20 @@ const mokjangLookup = [
         value: 'Hope'
     }
 ];
-const user = {
+const mokja = {
     role: '목자'
 }
 
-export const defaultRender = () => 
+export const mokjaView = () => 
 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-    <FamilyDetail family={family} saveFamily={saveFamily} mokjangLookup={mokjangLookup} user={user}/>
+    <FamilyDetail family={family} saveFamily={saveFamily} mokjangLookup={mokjangLookup} user={mokja}/>
+</MuiPickersUtilsProvider>
+
+const seniorPastor = {
+    role: '담임목사'
+};
+
+export const seniorPastorView = () => 
+<MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <FamilyDetail family={family} saveFamily={saveFamily} mokjangLookup={mokjangLookup} user={seniorPastor}/>
 </MuiPickersUtilsProvider>

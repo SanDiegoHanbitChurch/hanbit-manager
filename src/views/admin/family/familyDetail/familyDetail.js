@@ -5,10 +5,11 @@ import EditableText from '../../../shared/editableText';
 import EditableSelect from '../../../shared/editableSelect';
 import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
+import EditablePhoto from '../../../shared/editablePhoto';
 
-const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
+const FamilyDetail = ({ family, saveFamily, user, mokjangLookup, uploadPhoto }) => {
     const [ familyState, setFamilyState ] = useState(family);
-    const { id, address, mokjang, members, notes = [] } = familyState;
+    const { id, address, mokjang, members, photos = [], notes = [] } = familyState;
 
     const handleSaveFamily = (update) => {
         // Need to return a promise because react-table expect promise from event handlers
@@ -94,38 +95,53 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         })
     }
 
+    const handleUploadPhoto = async (file) => {
+        const { url } = await uploadPhoto(id, file);
+        return handleSaveFamily({
+            id,
+            address,
+            mokjang,
+            members,
+            notes,
+            photos: concat([url], photos)
+        })
+    }
+
     return (
         <>
             <Box m={1}>
-                <EditableSelect 
-                    title='목장' 
-                    data={mokjang} 
-                    lookup={mokjangLookup} 
-                    onSave={saveMokjang} 
-                />
-            </Box>
-            <Box m={1}>
-                <EditableText title='주소' data={address} onSave={saveAddress} />
-            </Box>
-            <Box m={1}>
+                <Box display='flex' flexDirection='row'>
+                    <Box m={1}>
+                        <EditablePhoto 
+                            imageUrl={photos.length > 0 ? photos[0] : undefined} 
+                            uploadImage={handleUploadPhoto} />
+                    </Box>
+                    <Box>
+                        <EditableSelect 
+                            title='목장' 
+                            data={mokjang} 
+                            lookup={mokjangLookup} 
+                            onSave={saveMokjang} 
+                        />
+                        <EditableText title='주소' data={address} onSave={saveAddress} />
+                    </Box>
+                </Box>
                 <MemberList
                     memberList={members}
                     addMember={addMember}
                     updateMember={updateMember}
                     deleteMember={deleteMember}
                 />
-            </Box>
             {
                 user.role !== '목자' && 
-                    <Box m={1}>
                         <Notes 
                             notes={notes} 
                             user={user}
                             addNote={addNote}
                             updateNote={updateNote}
                         />
-                    </Box>
             }
+            </Box>
         </>
     );
 }

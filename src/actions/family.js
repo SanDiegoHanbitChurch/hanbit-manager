@@ -1,5 +1,6 @@
 import firebase from '../firebase';
 import familyDAL from './dataAccess/family';
+import { uploadFile } from './storage';
 import { familyIndex } from './search';
 
 const getFamilyById = (id) => familyDAL.getById(id);
@@ -32,10 +33,16 @@ const addNote = (family, user, comment) => {
 }
 const getAll = () => familyDAL.getAll()
 
+const uploadPhoto = (id, file) => {
+    const directory = `family/${id}`;
+    return uploadFile(directory, file);
+}
+
 export {
     updateFamily,
     searchFamily,
     addNote,
     getFamilyById,
-    getAll
+    getAll,
+    uploadPhoto
 };
