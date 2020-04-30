@@ -5,7 +5,8 @@ const roleList = [
   '관리자',
   '담임목사',
   '초원장',
-  '목자'
+  '목자',
+  '부교역자'
 ];
 
 const RoleSelectContainer = ({onChange, value = ''}) => {

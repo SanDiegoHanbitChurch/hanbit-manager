@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { Container, Paper, Button, TextField, Box } from '@material-ui/core';
+import { Container, Paper, Button, TextField, Box, Typography } from '@material-ui/core';
 import { DropzoneArea } from 'material-ui-dropzone'
 import MUIRichTextEditor from 'mui-rte'
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
 const MessageCreator = (props) => {
-    const [name, setName] = useState(props.name)
-    const [email, setEmail] = useState(props.email);
     const [subject, setSubject] = useState(null);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [attachments, setAttachements] = useState([]);
-    const enableSendButton = email && subject && editorState.getCurrentContent().hasText();
+    const enableSendButton = subject && editorState.getCurrentContent().hasText();
 
     const handleFileAdded = (files) => setAttachements(files);
     const handleSendMessage = () => {
@@ -19,28 +17,13 @@ const MessageCreator = (props) => {
         const markup = draftToHtml(
             rawContentState, 
         );
-        props.sendMessage({ name, email, subject, content: markup, attachments})
+        props.sendMessage({ name: props.name, email: props.email, subject, content: markup, attachments})
     }
 
     return (
         <Container component={Paper}>
             <Box m={1}>
-                <TextField
-                    required
-                    label='Name'
-                    value={name}
-                    fullWidth
-                    onChange={(event) => setName(event.target.value)}
-                />
-            </Box>
-            <Box m={1}>
-                <TextField
-                    required
-                    label='Email'
-                    value={email}
-                    fullWidth
-                    onChange={(event) => setEmail(event.target.value)}
-                />
+                <Typography variant='h6'>From: {`${props.name} <${props.email}>`}</Typography>
             </Box>
             <Box m={1}>
                 <TextField
@@ -51,7 +34,7 @@ const MessageCreator = (props) => {
                     onChange={(event) => setSubject(event.target.value)}
                 />
             </Box>
-            <Box m={1} border={1}>
+            <Box m={1} border={1} height='200px'>
                 <MUIRichTextEditor 
                     label="Start typing..." 
                     onChange={setEditorState}

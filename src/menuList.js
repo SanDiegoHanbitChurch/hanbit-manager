@@ -21,19 +21,19 @@ const menuConfigs = [
   {
     to: "/chowon",
     text: "초원",
-    roles: ["관리자", "담임목사", "초원장", "목자"],
+    roles: ["관리자", "담임목사", "초원장", "목자", '부교역자'],
     icon: NatureIcon
   },
   {
     to: "/mokjang",
     text: "목장",
-    roles: ["관리자", "담임목사", "초원장", "목자"],
+    roles: ["관리자", "담임목사", "초원장", "목자", '부교역자'],
     icon: NaturePeopleIcon
   },
   {
     to: "/family",
     text: "가족",
-    roles: ["관리자", "담임목사", "초원장", "목자"],
+    roles: ["관리자", "담임목사", "초원장", "목자", '부교역자'],
     icon: PeopleAltIcon
   },
   {
@@ -51,7 +51,7 @@ const menuConfigs = [
   {
     to: "/message",
     text: "메시지",
-    roles: ["관리자", '담임목사'],
+    roles: ["관리자", '담임목사', '부교역자'],
     icon: EmailIcon
   }
 ];
