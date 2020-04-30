@@ -2,20 +2,13 @@ import React, { useState } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import MessageCreator from './messageCreator';
-// import { sendToAllMembers } from '../../../actions/mail';
+import { sendToAllMembers } from '../../../actions/mail';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 const MessageContainer = ({ user }) => {
-
-    const sendToAllMembers = () => {
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(), 2000);
-        })
-    }
-
     const [messageSent, setMessageSent] = useState(false);
     const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
     const [openFailureAlert, setOpenFailureAlert] = useState(false);

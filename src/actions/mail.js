@@ -1,4 +1,4 @@
-import { get, concat } from 'lodash';
+import { get, concat, uniq } from 'lodash';
 import mailDAL from './dataAccess/mail';
 import { getAll as fetchFamilyList } from './family';
 
@@ -40,7 +40,7 @@ const sendToAllMembers = async ({ email, name, subject, content, attachments }) 
 
     await mailDAL.add({
         from: `${name} <${email}>`,
-        to: recipients,
+        to: uniq(recipients),
         subject,
         html: content,
         attachments: attachments.map((attachment, index) => ({
