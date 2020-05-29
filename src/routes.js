@@ -19,7 +19,7 @@ const routeConfigs = [
         path: '/',
         exact: true,
         component: Home,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/admin',
@@ -30,42 +30,42 @@ const routeConfigs = [
     {
         path: '/chowon/:name',
         component: ChowonDetail,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/mokjang/:name',
         component: MokjangDetail,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/family/:id',
         component: FamilyDetail,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/visitor/:id',
         component: VisitorDetail,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/chowon',
         component: ChowonList,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/mokjang',
         component: MokjangList,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/family',
         component: FamilyList,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/visitor',
         component: VisitorList,
-        roles: ['관리자', '담임목사', '초원장', '목자']
+        roles: ['관리자', '담임목사', '초원장', '목자', '부교역자']
     },
     {
         path: '/user',
@@ -75,7 +75,7 @@ const routeConfigs = [
     {
         path: '/message',
         component: Message,
-        roles: ['관리자', '담임목사']
+        roles: ['관리자', '담임목사', '부교역자']
     },
 
 ]
