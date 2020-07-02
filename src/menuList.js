@@ -16,6 +16,7 @@ import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
 import FlightLandIcon from "@material-ui/icons/FlightLand";
 import EmailIcon from '@material-ui/icons/Email';
 import SuggestionDialog from "./views/shared/suggestionDialog";
+import Tooltip from '@material-ui/core/Tooltip';
 
 const menuConfigs = [
   {
@@ -70,6 +71,23 @@ const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
   ) : null;
 };
 
+/* Tooltip */
+const renderMenuItemTooltip = (user, { to, text, roles, icon: Icon }) => {
+  return roles.includes(user.role) ? (
+    <>
+      <Tooltip title={text}>
+      <ListItem key={user.text} button component={Link} to={to}>
+        <ListItemIcon>
+          <Icon />
+        </ListItemIcon>
+        <ListItemText>{text}</ListItemText>
+      </ListItem>
+      </Tooltip>
+      <Divider />
+    </>
+  ) : null;
+};
+
 const MenuList = ({ user, logout, addSuggestion }) => {
   const [open, setOpen] = useState(false);
   const handleCancel = () => setOpen(false);
@@ -81,21 +99,45 @@ const MenuList = ({ user, logout, addSuggestion }) => {
   if (user) {
     return (
       <>
+        { !open ?
         <List>
-          {menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig))}
-          <ListItem button onClick={() => setOpen(true)}>
-            <ListItemIcon>
-              <RecordVoiceOverIcon />
-            </ListItemIcon>
-            <ListItemText>건의사항</ListItemText>
-          </ListItem>
+          {menuConfigs.map(menuConfig => renderMenuItemTooltip(user, menuConfig))}
+          <Tooltip title="건의사항">
+            <ListItem button onClick={() => setOpen(true)}>
+              <ListItemIcon>
+                <RecordVoiceOverIcon />
+              </ListItemIcon>
+              <ListItemText>건의사항</ListItemText>
+            </ListItem>
+          </Tooltip>
+          
+          <Tooltip title="Logout">
           <ListItem button onClick={logout}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
             <ListItemText>Logout</ListItemText>
           </ListItem>
-        </List>
+          </Tooltip>
+          </List>
+          :
+          <List>
+            {menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig))}
+            <ListItem button onClick={() => setOpen(true)}>
+              <ListItemIcon>
+                <RecordVoiceOverIcon />
+              </ListItemIcon>
+              <ListItemText>건의사항</ListItemText>
+            </ListItem>
+  
+            <ListItem button onClick={logout}>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText>Logout</ListItemText>
+            </ListItem>
+          </List>
+        }
         {open && (
           <SuggestionDialog
             open={open}

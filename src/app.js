@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { BrowserRouter as Router} from 'react-router-dom';
@@ -155,7 +155,8 @@ export default function App() {
                 [classes.hide]: open,
               })}
             >
-              <MenuIcon />
+              {/* <MenuIcon /> */}
+              <ChevronRightIcon /> {/* Icon change(Menu->Right) */}
             </IconButton>
             <Typography variant="h6" noWrap style={style}>
                 교인정보 관리
