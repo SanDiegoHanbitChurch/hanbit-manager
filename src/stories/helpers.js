@@ -59,6 +59,21 @@ const generateNote = () => (
 
 const generateNotes = (numberOfNotes) => range(numberOfNotes).map(() => generateNote())
 
+//Added_Prayer
+const generatePrayer = () => (
+    {
+        createdBy: {
+            name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+            email: faker.internet.email()
+        },
+        createdAt: firebase.firestore.Timestamp.fromDate(faker.date.past()),
+        comment: faker.lorem.paragraph()
+    }    
+)
+
+const generatePrayers = (numberOfPrayers) => range(numberOfPrayers).map(() => generatePrayer())
+//Added_Prayer
+
 export {
     generateMember,
     generateFamily,
@@ -67,4 +82,5 @@ export {
     generateVisitorList,
     generateVisitor,
     generateNotes,
+    generatePrayers, //Added_Prayer
 }

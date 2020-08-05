@@ -6,10 +6,11 @@ import EditableText from '../../../shared/editableText';
 import ServicesRadioGroup from '../../../shared/ServicesRadioGroup';
 import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
+import Prayers from '../../../shared/prayers'; //Added_Prayer
 
 const VisitorDetail = ({ visitor, saveVisitor, user }) => {
     const [visitorState, setVisitorState] = useState(visitor);
-    const { id, visitDate, service, address, members, notes = [] } = visitorState;
+    const { id, visitDate, service, address, members, notes = [], prayers = [] } = visitorState; //Added_Prayer
 
     const addMember = (newData) => {
         const visitorToSave = {
@@ -18,7 +19,8 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             service,
             visitDate,
             members: concat(members, [newData]),
-            notes
+            notes,
+            prayers //Added_Prayer
         }
         setVisitorState(visitorToSave)
         return saveVisitor(visitorToSave);
@@ -32,7 +34,8 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             service,
             visitDate,
             members: members.map((member, i) => index === i ? newData : member),
-            notes
+            notes,
+            prayers //Added_Prayer
         }
         setVisitorState(visitorToSave)
         return saveVisitor(visitorToSave)
@@ -45,7 +48,8 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             service,
             visitDate,
             members: members.filter((member, i) => index !== i),
-            notes
+            notes,
+            prayers //Added_Prayer
         }
         setVisitorState(visitorToSave)
         return saveVisitor(visitorToSave)
@@ -78,6 +82,37 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
         return saveVisitor(visitorToSave)
     }
 
+    //Added_Prayer
+    const addPrayer = (newData) => {
+        const visitorToSave = {
+            id,
+            address,
+            service,
+            visitDate,
+            members,
+            notes,
+            prayers: concat([newData], prayers) //Added_Prayer
+        }
+        setVisitorState(visitorToSave)
+        return saveVisitor(visitorToSave);
+    };
+
+    const updatePrayer = (newData, oldData) => {
+        const index = oldData.tableData.id;
+        const visitorToSave = {
+            id,
+            address,
+            service,
+            visitDate,
+            members,
+            notes,
+            prayers: prayers.map((prayer, i) => index === i ? newData : prayer) //Added_Prayer
+        };
+        setVisitorState(visitorToSave)
+        return saveVisitor(visitorToSave)
+    }
+    //Added_Prayer
+
     const saveAddress = (newAddress) => {
         const visitorToSave = {
             id,
@@ -85,7 +120,8 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             service,
             visitDate,
             members,
-            notes
+            notes,
+            prayers //Added_Prayer
         }
         setVisitorState(visitorToSave)
         return saveVisitor(visitorToSave)
@@ -98,7 +134,8 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             service,
             visitDate: newVisitDate.toLocaleDateString(),
             members,
-            notes
+            notes,
+            prayers //Added_Prayer
         };
         setVisitorState(visitorToSave);
         return saveVisitor(visitorToSave)
@@ -111,7 +148,8 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
             service: newService,
             visitDate,
             members,
-            notes
+            notes,
+            prayers //Added_Prayer
         };
         setVisitorState(visitorToSave);
         return saveVisitor(visitorToSave)
@@ -147,6 +185,18 @@ const VisitorDetail = ({ visitor, saveVisitor, user }) => {
                     deleteMember={deleteMember}
                 />
             </Box>
+
+            {/* Added_Prayer */}
+            <Box m={1}>
+                <Prayers 
+                    prayers={prayers} 
+                    user={user}
+                    addPrayer={addPrayer}
+                    updatePrayer={updatePrayer}
+                />
+            </Box>
+            {/* Added_Prayer */}
+
             {
                 user.role !== '목자' && 
                     <Box m={1}>

@@ -30,12 +30,31 @@ const addNote = (family, user, comment) => {
 
     return updateFamily(family);
 }
+
+//Added_Prayer
+const addPrayer = (family, user, comment) => {
+    const prayer = {
+        createdBy: user,
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+        comment
+    };
+    if (family.prayers) {
+        family.prayers.push(prayer)
+    } else {
+        family.prayers = [prayer]
+    }
+
+    return updateFamily(family);
+}
+//Added_Prayer
+
 const getAll = () => familyDAL.getAll()
 
 export {
     updateFamily,
     searchFamily,
     addNote,
+    addPrayer,
     getFamilyById,
     getAll
 };
