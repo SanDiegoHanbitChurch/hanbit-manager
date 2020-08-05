@@ -3,7 +3,26 @@ import familyDAL from './dataAccess/family';
 import { familyIndex } from './search';
 
 const getFamilyById = (id) => familyDAL.getById(id);
-const updateFamily = (family) => familyDAL.update(family);
+const updateFamily = async (family) => {
+
+    const { notes, ...rest } = family;
+    const updatedNotes = notes.map(({ createdAt, createdBy, comment }) => {
+        const updatedNote = {
+            createdBy,
+            comment,
+            createdAt: typeof createdAt === 'string'
+                ? firebase.firestore.Timestamp.fromDate(new Date(createdAt))
+                : createdAt
+        }
+
+        return updatedNote;
+    });
+
+    return await familyDAL.update({
+        ...rest,
+        notes: updatedNotes
+    });
+};
 const searchFamily = (query) => {
     firebase.analytics().logEvent('search', { query });
     return new Promise((resolve, reject) => {
