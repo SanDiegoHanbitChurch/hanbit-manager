@@ -5,10 +5,11 @@ import EditableText from '../../../shared/editableText';
 import EditableSelect from '../../../shared/editableSelect';
 import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
+import Prayers from '../../../shared/prayers'; //Added_Prayer
 
 const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
     const [ familyState, setFamilyState ] = useState(family);
-    const { id, address, mokjang, members, notes = [] } = familyState;
+    const { id, address, mokjang, members, notes = [], prayers = [] } = familyState; //Added_Prayer
 
     const handleSaveFamily = (update) => {
         // Need to return a promise because react-table expect promise from event handlers
@@ -28,7 +29,8 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
             address,
             mokjang,
             members: concat(members, [newData]),
-            notes
+            notes,
+            prayers, //Added_Prayer
         });
     };
 
@@ -39,7 +41,8 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
             address,
             mokjang,
             members: members.map((member, i) => index === i ? newData : member),
-            notes
+            notes,
+            prayers, //Added_Prayer
         })
     }
     const deleteMember = (oldData) => {
@@ -49,11 +52,13 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
             address,
             mokjang,
             members: members.filter((member, i) => index !== i),
-            notes
+            notes,
+            prayers, //Added_Prayer
         })
     };
 
     const addNote = (newData) => {
+
         return handleSaveFamily({
             id,
             address,
@@ -65,6 +70,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
 
     const updateNote = (newData, oldData) => {
         const index = oldData.tableData.id;
+
         return handleSaveFamily({
             id,
             address,
@@ -74,13 +80,38 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         })
     }
 
+    //Added_Prayer
+    const addPrayer = (newData) => {
+        return handleSaveFamily({
+            id,
+            address,
+            mokjang,
+            members,
+            prayers: concat([newData], prayers),
+        });
+    };
+
+    const updatePrayer = (newData, oldData) => {
+        const index = oldData.tableData.id;
+
+        return handleSaveFamily({
+            id,
+            address,
+            mokjang,
+            members,
+            prayers: prayers.map((prayer, i) => index === i ? newData : prayer),
+        })
+    }
+    //Added_Prayer
+
     const saveAddress = (newAddress) => {
         return handleSaveFamily({
             id,
             address: newAddress,
             mokjang,
             members,
-            notes
+            notes,
+            prayers, //Added_Prayer
         })
     }
 
@@ -90,7 +121,8 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
             address,
             mokjang: newMokjang,
             members,
-            notes
+            notes,
+            prayers, //Added_Prayer
         })
     }
 
@@ -115,6 +147,18 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
                     deleteMember={deleteMember}
                 />
             </Box>
+
+            {/* Added_Prayer */}
+            <Box m={1}>
+                <Prayers 
+                    prayers={prayers} 
+                    user={user}
+                    addPrayer={addPrayer}
+                    updatePrayer={updatePrayer}
+                />
+            </Box>
+            {/* Added_Prayer */}
+
             {
                 user.role !== '목자' && 
                     <Box m={1}>
