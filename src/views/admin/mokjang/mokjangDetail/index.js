@@ -24,7 +24,12 @@ const MokjangDetailContainer = () => {
         path="family"
         filter={familyFilter}
         render={({isLoading, data}) => {
-          return isLoading ? <CircularProgress /> : <FamilyList familyList={data} />
+          // filter out inactive family
+          const familyList = data.filter((family) => {
+            const { inactive = false } = family;
+            return !inactive;
+          })
+          return isLoading ? <CircularProgress /> : <FamilyList familyList={familyList} />
         }}
       />
     </>

@@ -23,16 +23,13 @@ const updateFamily = async (family) => {
         notes: updatedNotes
     });
 };
-const searchFamily = (query) => {
+const searchFamily = async (query) => {
     firebase.analytics().logEvent('search', { query });
-    return new Promise((resolve, reject) => {
-        familyIndex.search(query)
-            .then(({hits}) => {
-                const data = hits.map(({objectID, ...rest}) => ({id: objectID, ...rest}));
-                resolve(data);
-            })
-            .catch(reject);
-    })
+    const { hits } = await familyIndex.search(query);
+
+    return hits
+        .filter(({ inactive = false }) => !inactive )
+        .map(({objectID, ...rest}) => ({id: objectID, ...rest}));
 }
 
 const addNote = (family, user, comment) => {
