@@ -2,6 +2,10 @@
   "name": "hanbit-manager",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=12.18.0",
+    "npm": ">=6.14.0"
+  },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@material-ui/core": "^4.9.0",
