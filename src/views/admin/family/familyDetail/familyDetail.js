@@ -6,25 +6,22 @@ import EditableSelect from '../../../shared/editableSelect';
 import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
 
-const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
+const FamilyDetail = ({ family, saveFamily, user, mokjangLookup, membershipTypes }) => {
     const [ familyState, setFamilyState ] = useState(family);
-    const { id, address, mokjang, members, notes = [] } = familyState;
+    const { id, address, mokjang, members, notes = [], membershipStatus } = familyState;
 
-    const handleSaveFamily = (update) => {
+    const handleSaveFamily = async (update) => {
         // Need to return a promise because react-table expect promise from event handlers
-        return new Promise((resolve, reject) => {
-            saveFamily(update)
-                .then((updatedFamily) => {
-                    setFamilyState(updatedFamily)
-                    resolve(updatedFamily);
-                })
-                .catch(reject);
-        });
+        const updatedFamily = await saveFamily(update);
+        setFamilyState(updatedFamily);
+
+        return updatedFamily;
     }
 
-    const addMember = (newData) => {
-        return handleSaveFamily({
+    const addMember = async (newData) => {
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address,
             mokjang,
             members: concat(members, [newData]),
@@ -32,20 +29,22 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         });
     };
 
-    const updateMember = (newData, oldData) => {
+    const updateMember = async (newData, oldData) => {
         const index = oldData.tableData.id;
-        return handleSaveFamily({
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address,
             mokjang,
             members: members.map((member, i) => index === i ? newData : member),
             notes
         })
     }
-    const deleteMember = (oldData) => {
+    const deleteMember = async (oldData) => {
         const index = oldData.tableData.id;
-        return handleSaveFamily({
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address,
             mokjang,
             members: members.filter((member, i) => index !== i),
@@ -53,9 +52,10 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         })
     };
 
-    const addNote = (newData) => {
-        return handleSaveFamily({
+    const addNote = async (newData) => {
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address,
             mokjang,
             members,
@@ -63,10 +63,11 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         });
     };
 
-    const updateNote = (newData, oldData) => {
+    const updateNote = async (newData, oldData) => {
         const index = oldData.tableData.id;
-        return handleSaveFamily({
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address,
             mokjang,
             members,
@@ -74,9 +75,10 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         })
     }
 
-    const saveAddress = (newAddress) => {
-        return handleSaveFamily({
+    const saveAddress = async (newAddress) => {
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address: newAddress,
             mokjang,
             members,
@@ -84,11 +86,23 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
         })
     }
 
-    const saveMokjang = (newMokjang) => {
-        return handleSaveFamily({
+    const saveMokjang = async (newMokjang) => {
+        return await handleSaveFamily({
             id,
+            membershipStatus,
             address,
             mokjang: newMokjang,
+            members,
+            notes
+        })
+    }
+
+    const saveMembershipStatus = async(newMembershipStatus) => {
+        return await handleSaveFamily({
+            id,
+            membershipStatus: newMembershipStatus,
+            address,
+            mokjang,
             members,
             notes
         })
@@ -97,11 +111,19 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
     return (
         <>
             <Box m={1}>
-                <EditableSelect 
-                    title='목장' 
-                    data={mokjang} 
-                    lookup={mokjangLookup} 
-                    onSave={saveMokjang} 
+                <EditableSelect
+                    title='목장'
+                    data={mokjang}
+                    lookup={mokjangLookup}
+                    onSave={saveMokjang}
+                />
+            </Box>
+            <Box m={1}>
+                <EditableSelect
+                    title='멤버십'
+                    data={membershipStatus}
+                    lookup={membershipTypes}
+                    onSave={saveMembershipStatus}
                 />
             </Box>
             <Box m={1}>
@@ -116,10 +138,10 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup }) => {
                 />
             </Box>
             {
-                user.role !== '목자' && 
+                user.role !== '목자' &&
                     <Box m={1}>
-                        <Notes 
-                            notes={notes} 
+                        <Notes
+                            notes={notes}
                             user={user}
                             addNote={addNote}
                             updateNote={updateNote}

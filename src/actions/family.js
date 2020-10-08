@@ -28,7 +28,6 @@ const searchFamily = async (query) => {
     const { hits } = await familyIndex.search(query);
 
     return hits
-        .filter(({ inactive = false }) => !inactive )
         .map(({objectID, ...rest}) => ({id: objectID, ...rest}));
 }
 

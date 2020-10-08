@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { find } from 'lodash';
 import { Container, Paper, Select, Typography, MenuItem, IconButton, Box } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -24,15 +25,16 @@ const renderEditMode = (data, lookup, setData, handleOnSave, handleOnCancel) => 
     )
 }
 
-const renderNonEditMode = (data, setEdit) => {
+const renderNonEditMode = (data, lookup, setEdit) => {
 
+    const item = find(lookup, { value: data });
     return (
         <Box m={1} display='flex' justifyItems='center'>
             <IconButton onClick={() => setEdit(true)}>
                 <EditIcon />
             </IconButton>
             <Typography>
-                {data}
+                {item.key}
             </Typography>
         </Box>
     )
@@ -53,7 +55,7 @@ const EditableSelect = ({ title, data, lookup, onSave }) => {
             {
                 edit
                     ? renderEditMode(newData, lookup, setNewData, handleOnSave, handleOnCancel)
-                    : renderNonEditMode(newData, setEdit)
+                    : renderNonEditMode(newData, lookup, setEdit)
             }
         </Container>
     )
