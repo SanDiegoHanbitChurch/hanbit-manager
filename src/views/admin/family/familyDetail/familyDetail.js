@@ -140,7 +140,7 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup, membershipTypes
                     />
                     <EditableText title='주소' data={address} onSave={saveAddress} />
                 </Box>
-                <MapContainer latitude={latitude} longitude={longitude}/>
+                <MapContainer name={address} latitude={latitude} longitude={longitude}/>
             </Box>
             <Box m={1}>
                 <MemberList
