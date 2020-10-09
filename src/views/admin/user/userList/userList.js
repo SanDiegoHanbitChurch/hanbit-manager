@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import { Table, TableHead, TableRow, TableBody, TableCell, Container, Paper, Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { Table, TableHead, TableRow, TableBody, TableCell, Container, Paper } from '@material-ui/core';
+import AddFab from '../../../shared/addFab';
 import UserRow from './userRow';
 import AddUser from '../addUser';
-
-const fabStyle = {
-  margin: 0,
-  top: 'auto',
-  right: 50,
-  bottom: 50,
-  left: 'auto',
-  position: 'fixed',
-};
 
 const UserList = ({ userList, deleteUser, updateUser, addUser }) => {
 
@@ -26,7 +17,7 @@ const UserList = ({ userList, deleteUser, updateUser, addUser }) => {
   }
 
   const cancel = () => setShowNewUserRow(false);
-  
+
   return (
     <>
       <Container component={Paper}>
@@ -57,9 +48,7 @@ const UserList = ({ userList, deleteUser, updateUser, addUser }) => {
           </TableBody>
         </Table>
       </Container>
-      <Fab style={fabStyle} color='primary'>
-        <AddIcon onClick={addNewUser} />
-      </Fab>
+      <AddFab onClick={addNewUser} />
     </>
   )
 }
