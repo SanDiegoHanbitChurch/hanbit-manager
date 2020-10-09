@@ -4,7 +4,7 @@ const db = firebase.firestore();
 
 const firestoreDAL = (collection) => {
     const collectionRef = db.collection(collection);
-    
+
     const getAll = () => {
         return new Promise((resolve, reject) => {
             collectionRef.get()
@@ -23,10 +23,10 @@ const firestoreDAL = (collection) => {
                 })
         })
     }
-    
+
     const getById = (id) => {
         const docRef = collectionRef.doc(id);
-    
+
         return new Promise((resolve, reject) => {
             docRef.get()
                 .then(doc => {
@@ -45,14 +45,20 @@ const firestoreDAL = (collection) => {
                 })
         })
     }
-    
+
     const search = (field, operator, value) => {
         const query = collectionRef.where(field, operator, value);
-        
+
         return new Promise((resolve, reject) => {
             query.get()
                 .then(querySnapshot => {
-                    const data = querySnapshot.docs.map(doc => doc.data());
+                    const data = querySnapshot.docs.map(doc => {
+                        const docData = doc.data();
+                        return {
+                            id: doc.id,
+                            ...docData
+                        };
+                    });
                     resolve(data);
                 })
                 .catch(error => {
@@ -61,7 +67,7 @@ const firestoreDAL = (collection) => {
                 })
         })
     }
-    
+
     const add = (document) => {
         return new Promise((resolve, reject) => {
             collectionRef.add(document)
