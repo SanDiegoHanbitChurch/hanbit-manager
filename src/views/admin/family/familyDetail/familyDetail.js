@@ -5,10 +5,20 @@ import EditableText from '../../../shared/editableText';
 import EditableSelect from '../../../shared/editableSelect';
 import MemberList from '../../../shared/family/memberList';
 import Notes from '../../../shared/notes';
+import MapContainer from '../../../shared/mapContainer';
 
 const FamilyDetail = ({ family, saveFamily, user, mokjangLookup, membershipTypes }) => {
     const [ familyState, setFamilyState ] = useState(family);
-    const { id, address, mokjang, members, notes = [], membershipStatus } = familyState;
+    const {
+        id,
+        address,
+        mokjang,
+        members,
+        notes = [],
+        membershipStatus,
+        latitude = 32.82753,
+        longitude = -117.1649437
+    } = familyState;
 
     const handleSaveFamily = async (update) => {
         // Need to return a promise because react-table expect promise from event handlers
@@ -110,24 +120,27 @@ const FamilyDetail = ({ family, saveFamily, user, mokjangLookup, membershipTypes
 
     return (
         <>
-            <Box m={1}>
-                <EditableSelect
-                    title='목장'
-                    data={mokjang}
-                    lookup={mokjangLookup}
-                    onSave={saveMokjang}
-                />
-            </Box>
-            <Box m={1}>
-                <EditableSelect
-                    title='멤버십'
-                    data={membershipStatus}
-                    lookup={membershipTypes}
-                    onSave={saveMembershipStatus}
-                />
-            </Box>
-            <Box m={1}>
-                <EditableText title='주소' data={address} onSave={saveAddress} />
+            <Box
+                display='flex'
+                justifyContent='space-around'
+                alignItems='center'
+                m={1}>
+                <Box m={1}>
+                    <EditableSelect
+                        title='소속목장'
+                        data={mokjang}
+                        lookup={mokjangLookup}
+                        onSave={saveMokjang}
+                    />
+                    <EditableSelect
+                        title='멤버십'
+                        data={membershipStatus}
+                        lookup={membershipTypes}
+                        onSave={saveMembershipStatus}
+                    />
+                    <EditableText title='주소' data={address} onSave={saveAddress} />
+                </Box>
+                <MapContainer latitude={latitude} longitude={longitude}/>
             </Box>
             <Box m={1}>
                 <MemberList

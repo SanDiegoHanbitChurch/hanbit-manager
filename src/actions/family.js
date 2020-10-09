@@ -1,8 +1,37 @@
 import firebase from '../firebase';
 import familyDAL from './dataAccess/family';
 import { familyIndex } from './search';
+import { geocode } from './google';
 
-const getFamilyById = (id) => familyDAL.getById(id);
+const getFamilyById = async (id) => {
+    const family = await familyDAL.getById(id);
+    const { address, latitude, longitude } = family;
+    console.log({
+        address,
+        latitude,
+        longitude
+    });
+    if (address) {
+        if (latitude && longitude) {
+            return family;
+        }
+
+        try {
+            const geocodeResult = await geocode(address);
+
+            return await familyDAL.update({
+                ...family,
+                latitude: geocodeResult.data.results[0].geometry.location.lat,
+                longitude: geocodeResult.data.results[0].geometry.location.lng
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    return family;
+};
+
 const updateFamily = async (family) => {
 
     const { notes, ...rest } = family;
