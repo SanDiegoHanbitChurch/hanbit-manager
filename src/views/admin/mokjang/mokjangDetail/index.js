@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryCache, QueryCache, ReactQueryCacheProvider } from 'react-query'
 import { useParams } from 'react-router-dom';
 import { CircularProgress, Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -20,6 +20,9 @@ const fabStyle = {
 const MokjangDetailContainer = () => {
   const { name } = useParams();
 
+   // Cache
+  const cache = useQueryCache()
+
   const {
     status: fetchFamiliesStatus,
     data: familiesData
@@ -29,6 +32,17 @@ const MokjangDetailContainer = () => {
     status: fetchMokjangStatus,
     data: mokjangData
   } = useQuery('mokjang', () => getMokjangByName(name));
+
+  const [addFamily] = useMutation(addNewFamilyToMokjang, {
+    onSuccess: () => {
+       // Query Invalidations
+       cache.invalidateQueries('mokjangFamilies')
+    }
+  });
+
+  const onClickAddHandler = () => {
+    addFamily(name);
+  }
 
   if (fetchFamiliesStatus === 'loading' || fetchMokjangStatus === 'loading') {
     return <CircularProgress />
@@ -44,7 +58,7 @@ const MokjangDetailContainer = () => {
       <MokjangDetail {...mokjangData}/>
       <FamilyList familyList={registeredFamilyList}/>
       <Fab style={fabStyle} color='primary'>
-        <AddIcon onClick={() => addNewFamilyToMokjang(name)} />
+        <AddIcon onClick={onClickAddHandler} />
       </Fab>
     </>
   )
