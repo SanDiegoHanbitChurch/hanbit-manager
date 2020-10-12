@@ -2,7 +2,6 @@ import firebase from '../firebase';
 import familyDAL from './dataAccess/family';
 import { familyIndex } from './search';
 import { geocode } from './google';
-import { rest } from 'lodash';
 
 const geoCodeAddress = async (family) => {
     const { address, latitude, longitude } = family;
@@ -21,6 +20,7 @@ const geoCodeAddress = async (family) => {
             });
         } catch (error) {
             console.log(error);
+            return family;
         }
     }
 }
