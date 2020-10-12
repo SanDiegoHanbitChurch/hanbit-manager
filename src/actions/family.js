@@ -2,15 +2,10 @@ import firebase from '../firebase';
 import familyDAL from './dataAccess/family';
 import { familyIndex } from './search';
 import { geocode } from './google';
+import { rest } from 'lodash';
 
-const getFamilyById = async (id) => {
-    const family = await familyDAL.getById(id);
+const geoCodeAddress = async (family) => {
     const { address, latitude, longitude } = family;
-    console.log({
-        address,
-        latitude,
-        longitude
-    });
     if (address) {
         if (latitude && longitude) {
             return family;
@@ -28,6 +23,46 @@ const getFamilyById = async (id) => {
             console.log(error);
         }
     }
+}
+
+const convertMembersBirthdate = (family) => {
+
+    const { members = [] } = family;
+
+    return {
+        ...family,
+        members: members.map(({ birthDate, ...rest }) => {
+
+            return {
+                ...rest,
+                birthDate: typeof birthDate === 'string'
+                    ? new Date(birthDate)
+                    : birthDate.toDate()
+            }
+        })
+    };
+};
+
+const convertFamilyNotes = (family) => {
+
+    const { notes = [] } = family;
+
+    return {
+        ...family,
+        notes: notes.map(({ createdAt, ...rest }) => ({
+            ...rest,
+            createdAt: typeof createdAt === 'string'
+                ? new Date(createdAt)
+                : createdAt.toDate()
+        }))
+    }
+}
+
+const getFamilyById = async (id) => {
+    let family = await familyDAL.getById(id);
+    family = await geoCodeAddress(family);
+    family = convertMembersBirthdate(family);
+    family = convertFamilyNotes(family);
 
     return family;
 };
