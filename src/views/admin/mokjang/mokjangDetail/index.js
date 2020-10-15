@@ -6,7 +6,7 @@ import MokjangDetail from './mokjangDetail';
 import FamilyList from '../../family/familyList';
 import AddFab from '../../../shared/addFab';
 import { getFamiliesByMokjang, addNewFamilyToMokjang } from '../../../../actions/dataAccess/family';
-import { getMokjangByName } from '../../../../actions/dataAccess/mokjang';
+import { getMokjangByName, updateMokjangDetail } from '../../../../actions/dataAccess/mokjang';
 
 const MokjangDetailContainer = () => {
   const { name } = useParams();
@@ -31,6 +31,12 @@ const MokjangDetailContainer = () => {
     }
   });
 
+  const [saveMokjangDetail] = useMutation(updateMokjangDetail, {
+    onSuccess: () => {
+      cache.invalidateQueries('mokjang')
+    }
+  })
+
   const onClickAddHandler = () => {
     addFamily(name);
   }
@@ -46,7 +52,7 @@ const MokjangDetailContainer = () => {
 
   return (
     <>
-      <MokjangDetail {...mokjangData}/>
+      <MokjangDetail {...mokjangData} saveMokjangDetail={saveMokjangDetail} />
       <FamilyList familyList={registeredFamilyList}/>
       <AddFab onClick={onClickAddHandler} />
     </>

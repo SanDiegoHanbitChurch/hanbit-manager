@@ -9,7 +9,6 @@ const VisitorListContainer = () => {
     const { status, data } = useQuery('visitorList', fetchVisitorList);
 
     if (status === 'success') {
-        console.log(data);
         visitorList = data.map(({
             members,
             ...rest

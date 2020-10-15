@@ -12,8 +12,13 @@ const getMokjangByName = async (mokjang) => {
     return searchResult[0];
 }
 
+const updateMokjangDetail = async (mokjang) => {
+    return await mokjangDAL.update(mokjang)
+};
+
 export {
-    getMokjangByName
+    getMokjangByName,
+    updateMokjangDetail
 }
 
 export default mokjangDAL;

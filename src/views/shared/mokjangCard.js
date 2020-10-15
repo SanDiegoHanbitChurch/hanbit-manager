@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 const MokjangCard = ({ id, name, leader, chowon, avatar, memberFamilies = [], editMokjang }) => {
 
     const classes = useStyles();
-    
+
     return (
         <Box m={1}>
             <Card classes={{ root: classes.card }}>
@@ -42,7 +42,7 @@ const MokjangCard = ({ id, name, leader, chowon, avatar, memberFamilies = [], ed
               >
                 <CardHeader
                     avatar={
-                        <Avatar alt={name} src={avatar || 'https://i.pravatar.cc/300'} className={classes.large}/>
+                        <Avatar alt={name} src={avatar} className={classes.large}/>
                     }
                     title={`${name} (${chowon})`}
                     subheader={leader}

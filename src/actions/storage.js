@@ -1,4 +1,4 @@
-import { firebase } from '../firebase';
+import firebase from '../firebase';
 const storageRef = firebase.storage().ref();
 
 const uploadFile = (file) => {
@@ -22,6 +22,7 @@ const uploadFile = (file) => {
             .catch(error => reject(error));
         })
 }
+
 export {
     uploadFile
 }
