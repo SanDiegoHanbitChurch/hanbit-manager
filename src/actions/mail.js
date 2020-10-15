@@ -30,12 +30,15 @@ const converFilesToBase64 = async (attachments) => {
     return Promise.all(attachments.map(attachment => toBase64(attachment)));
 }
 
+const isRegisteredMember = ({ membershipStatus = 'registered'}) => membershipStatus === 'registered';
+const hasEmail = ({ email }) => !!email && email.trim();
+
 const sendToAllMembers = async ({ email, name, subject, content, attachments }) => {
     const memberList = await buildMemberList();
     const base64s = await converFilesToBase64(attachments);
 
     const recipients = memberList
-        .filter(member => member.email.trim())
+        .filter((member) => isRegisteredMember(member) && hasEmail(member))
         .map(member => member.email);
 
     await mailDAL.add({
