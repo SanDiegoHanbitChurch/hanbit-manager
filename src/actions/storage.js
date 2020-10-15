@@ -1,3 +1,4 @@
+import * as uuid from 'uuid';
 import firebase from '../firebase';
 const storageRef = firebase.storage().ref();
 
@@ -8,7 +9,7 @@ const uploadFile = (file) => {
         size: file.size
     }
     return new Promise((resolve, reject) => {
-        storageRef.child(file.name)
+        storageRef.child(`${uuid.v4()}/${file.name}`)
             .put(file, metadata)
             .then(snapshot => {
                 snapshot.ref.getDownloadURL()
