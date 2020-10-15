@@ -1,5 +1,6 @@
 import { get, concat, uniq } from 'lodash';
 import firebase from '../firebase';
+import { logError } from './errorLog';
 import mailDAL from './dataAccess/mail';
 import { getAll as fetchFamilyList } from './family';
 
@@ -38,24 +39,29 @@ const sendToAllMembers = async ({ email, name, subject, content, attachments }) 
     const memberList = await buildMemberList();
     const base64s = await converFilesToBase64(attachments);
 
-    const recipients = memberList
-        .filter((member) => isRegisteredMember(member) && hasEmail(member))
-        .map(member => member.email);
+    try {
+        const recipients = memberList
+            .filter((member) => isRegisteredMember(member) && hasEmail(member))
+            .map(member => member.email);
 
-    await mailDAL.add({
-        from: `${name} <${email}>`,
-        to: uniq(recipients),
-        subject,
-        html: content,
-        attachments: attachments.map((attachment, index) => ({
-            content: base64s[index].split(',')[1],
-            filename: attachment.name,
-            type: attachment.type,
-            disposition: 'attachment',
-            contentId: `${attachment.name}${index}`
-        })),
-        createdAt: firebase.firestore.Timestamp.fromDate(new Date())
-    })
+        await mailDAL.add({
+            from: `${name} <${email}>`,
+            to: uniq(recipients),
+            subject,
+            html: content,
+            attachments: attachments.map((attachment, index) => ({
+                content: base64s[index].split(',')[1],
+                filename: attachment.name,
+                type: attachment.type,
+                disposition: 'attachment',
+                contentId: `${attachment.name}${index}`
+            })),
+            createdAt: firebase.firestore.Timestamp.fromDate(new Date())
+        })
+    } catch (error) {
+        await logError(error);
+        throw error;
+    }
 }
 
 export {
