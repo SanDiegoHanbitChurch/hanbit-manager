@@ -1,4 +1,5 @@
 import { get, concat, uniq } from 'lodash';
+import firebase from '../firebase';
 import mailDAL from './dataAccess/mail';
 import { getAll as fetchFamilyList } from './family';
 
@@ -52,7 +53,8 @@ const sendToAllMembers = async ({ email, name, subject, content, attachments }) 
             type: attachment.type,
             disposition: 'attachment',
             contentId: `${attachment.name}${index}`
-        }))
+        })),
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date())
     })
 }
 
