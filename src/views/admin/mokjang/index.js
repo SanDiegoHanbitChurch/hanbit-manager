@@ -1,8 +1,8 @@
 import React, { useState }  from 'react';
+import { useQuery } from 'react-query';
 import { Redirect } from 'react-router-dom';
-import { FirestoreCollection } from 'react-firestore';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { orderBy } from 'lodash';
+import { getAll } from '../../../actions/mokjang';
 import MokjangList from '../../shared/mokjangList'
 
 const addMokjang = () => {};
@@ -11,6 +11,8 @@ const deleteMokjang = () => {};
 const MokjangListContainer = () => {
 
   const [redirectTo, setRedirectTo] = useState(null);
+  const { isLoading, data: mokjangList } = useQuery('mokjangList', getAll);
+
   const editMokjang = (name) => {
     setRedirectTo(`/mokjang/${name}`);
   };
@@ -21,23 +23,16 @@ const MokjangListContainer = () => {
     )
   }
 
+  if (isLoading) {
+    return <CircularProgress />
+  }
+
   return (
-    <FirestoreCollection
-      path='mokjang'
-      render={
-        ({isLoading, data}) => {
-
-          const mokjangList = orderBy(data, ['name']);
-
-          return isLoading ? (<CircularProgress />) :
-            <MokjangList
-              mokjangList={mokjangList}
-              addMokjang={addMokjang}
-              editMokjang={editMokjang}
-              deleteMokjang={deleteMokjang}
-            />
-        }
-      }
+    <MokjangList
+      mokjangList={mokjangList}
+      addMokjang={addMokjang}
+      editMokjang={editMokjang}
+      deleteMokjang={deleteMokjang}
     />
   )
 }

@@ -83,10 +83,10 @@ const routeConfigs = [
 const Routes = ({ user, setUser }) => {
     return (
         <Switch>
-            { routeConfigs.map(({ path, exact, component: Component, roles}) => {
+            { routeConfigs.map(({ path, exact, component: Component, roles}, index) => {
                 if (roles.includes(user.role)) {
                     return (
-                        <Route path={path} exact={exact}>
+                        <Route key={index} path={path} exact={exact}>
                             <Component user={user} />
                         </Route>
                     )

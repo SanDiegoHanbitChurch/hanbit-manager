@@ -57,10 +57,10 @@ const menuConfigs = [
   }
 ];
 
-const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
+const renderMenuItem = (index, user, { to, text, roles, icon: Icon }) => {
   return roles.includes(user.role) ? (
     <>
-      <ListItem key={user.text} button component={Link} to={to}>
+      <ListItem key={index} button component={Link} to={to}>
         <ListItemIcon>
           <Icon />
         </ListItemIcon>
@@ -72,11 +72,11 @@ const renderMenuItem = (user, { to, text, roles, icon: Icon }) => {
 };
 
 /* Tooltip */
-const renderMenuItemTooltip = (user, { to, text, roles, icon: Icon }) => {
+const renderMenuItemTooltip = (index, user, { to, text, roles, icon: Icon }) => {
   return roles.includes(user.role) ? (
     <>
       <Tooltip title={text}>
-      <ListItem key={user.text} button component={Link} to={to}>
+      <ListItem key={index} button component={Link} to={to}>
         <ListItemIcon>
           <Icon />
         </ListItemIcon>
@@ -101,7 +101,7 @@ const MenuList = ({ user, logout, addSuggestion }) => {
       <>
         { !open ?
         <List>
-          {menuConfigs.map(menuConfig => renderMenuItemTooltip(user, menuConfig))}
+          {menuConfigs.map((menuConfig, index) => renderMenuItemTooltip(index, user, menuConfig))}
           <Tooltip title="건의사항">
             <ListItem button onClick={() => setOpen(true)}>
               <ListItemIcon>
@@ -110,7 +110,7 @@ const MenuList = ({ user, logout, addSuggestion }) => {
               <ListItemText>건의사항</ListItemText>
             </ListItem>
           </Tooltip>
-          
+
           <Tooltip title="Logout">
           <ListItem button onClick={logout}>
             <ListItemIcon>
@@ -122,14 +122,14 @@ const MenuList = ({ user, logout, addSuggestion }) => {
           </List>
           :
           <List>
-            {menuConfigs.map(menuConfig => renderMenuItem(user, menuConfig))}
+            {menuConfigs.map((menuConfig, index) => renderMenuItem(index, user, menuConfig))}
             <ListItem button onClick={() => setOpen(true)}>
               <ListItemIcon>
                 <RecordVoiceOverIcon />
               </ListItemIcon>
               <ListItemText>건의사항</ListItemText>
             </ListItem>
-  
+
             <ListItem button onClick={logout}>
               <ListItemIcon>
                 <ExitToAppIcon />

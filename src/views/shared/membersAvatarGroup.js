@@ -4,7 +4,7 @@ import MemberAvatar from './memberAvatar';
 
 const MembersAvatarGroup = ({members}) => (
     <AvatarGroup spacing='small'>
-        { members.map(member => <MemberAvatar key={member.name} member={member}/>)}
+        { members.map((member, index) => <MemberAvatar key={index} member={member}/>)}
     </AvatarGroup>
 )
 

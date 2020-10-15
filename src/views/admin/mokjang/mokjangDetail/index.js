@@ -12,7 +12,7 @@ const MokjangDetailContainer = () => {
   const { name } = useParams();
 
    // Cache
-  const cache = useQueryCache()
+  const cache = useQueryCache();
 
   const {
     status: fetchFamiliesStatus,
