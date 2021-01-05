@@ -15,7 +15,7 @@
     "@material-ui/pickers": "^3.2.10",
     "@react-google-maps/api": "^1.10.1",
     "algoliasearch": "^4.0.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.9.0",
     "draftjs-to-html": "^0.9.1",
     "firebase": "^7.7.0",
